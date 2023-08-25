@@ -40,6 +40,10 @@ export default {
               //let cc = r.group.element.querySelectorAll('path')
 
               var mk3 = _svg.querySelectorAll('.highcharts-markers.highcharts-series-0')
+              //var mklabel = _svg.querySelectorAll('.highcharts-label')
+              //var labelText = mklabel[0].children[1]
+              //labelText.setAttribute('fill','#000000')
+              //console.log('mklabel', labelText)
               console.log('mk3', mk3[0].children)
               console.log('mk3alone', mk3)
 
@@ -59,32 +63,93 @@ export default {
                     console.log('what is _el', _el);
                     _el.setAttribute('text-anchor', 'middle')
                     _el.setAttribute('x', 0)
-                    
+
                   } else {
                     _el.setAttribute('x', 25)
                   }
+                  // fix diff point color to black
                   _t = _b.dataLabels[(isLow) ? 0 : 1]
-                      _el = _t.text.element
-                      // _el.css('fill', '#000000')
-                      var _d = _b.options
-                      var _diff = _d.high - _d.low
-                      if (_diff < 10) {
-                        _el.setAttribute('x', (isLow) ? 43 : -22)
-                      } else {
-                        if (_diff < 30) {
-                          _el.setAttribute('x', (isLow) ? 33 : -20)
-                        }
-                      }
+                  _el = _t.text.element
+                 // _el.css('fill', '#000000')
+                  // _el.setAttribute('fill', '#000000')
+                  _el.style.fill = "#000000";
+                  var _d = _b.options
+                  var _diff = _d.high - _d.low
+                  if (_diff < 10) {
+                    _el.setAttribute('x', (isLow) ? 43 : -22)
+                  } else {
+                    if (_diff < 30) {
+                      _el.setAttribute('x', (isLow) ? 33 : -20)
+                    }
+                  }
+
+//                   const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
+
+// // Usage: 
+// addCSS("body{ background:red; }")
+
+
+
+
+
                 }
                 //mkr1.push(element)
               });
-              // console.log('mk4',mk4[0])
 
+              // pleung: fixing stem, render always reset usavg
+              // step 1: find us average 
+
+              //let cc = document.querySelector(r)
+              let stm1New = this.series[0].group.element.querySelectorAll('.highcharts-lollipop-stem')
+              console.log('stm1New', stm1New)
+
+              //var stm1 = $(this.series[0].group.element).children('.highcharts-lollipop-stem')
+              var dd = this.options.series[0].data
+              var adjPx = +this.options.yAxis[0].plotLines[0].width / 2
+              console.log('stm1New parent',stm1New[0].parentNode)
+              //stm1New[0].parentNode.removeAttr('usavg')
+              stm1New[0].parentNode.removeAttribute('usavg')
+        
+              console.log('dd', dd)
+              console.log('adjPx', adjPx)
+              //let test1 = stm1.eq(0).attr('d').split(' ')
+              let test1 = stm1New[0].getAttribute('d').split(' ')
+              console.log('test1', test1)
+              let uspt = (dd[0][3] == 'up') ? test1[2] : test1[5]
+              console.log('uspt value',uspt)
+              stm1New[0].parentNode.setAttribute('usavg', uspt)
+              stm1New.forEach(function (i, x) {
+                console.log('2i',i)
+                console.log('2x',x)
+                let mx = i.getAttribute('d').split(' ')
+                console.log('2mx',mx)
+                let dx = dd[x]
+                if (dx[3] == 'up') {
+                  // minus 2.5
+                  mx[2] = uspt - adjPx
+                  console.log('mx[2]',mx[2])
+                  i.setAttribute('usat', 2)
+                  console.log('set2i',i)
+                }
+                if (dx[3] == 'down') {
+                  // plus 2.5
+                 mx[5] = uspt + adjPx
+                 i.setAttribute('usat', 5)
+                }
+                i.setAttribute('d', mx.join(' '))
+                return
+              })
+
+
+
+              //-----//
+
+
+
+
+              // console.log('mk4',mk4[0])
               // var mkr1 = mk3.querySelectorAll('path')
               // console.log(mkr1)
-
-
-
               // mkr1.forEach(function (i, x) {
               //   console.log('i',i)
               //   console.log('x',x)
@@ -293,17 +358,17 @@ export default {
                   cc.forEach(function (i, x) {
                     console.log('second i', i)
                     let mx = i.getAttribute('d').split(' ')
-                    console.log('mx' + mx)
+                    console.log('second mx' + mx)
                     console.log('second x' + x)
                     let usat = i.getAttribute('usat')
                     let uspt = i.parentNode.getAttribute('usavg')
                     console.log('uspt', uspt)
-                    console.log('usat', usat)
+                    console.log('second usat', usat)
                     if (usat == '2') {
-                      mx[2] = `${+uspt - usbarHalf}`
+                      mx[2] = uspt - usbarHalf
                     }
                     if (usat == '5') {
-                      mx[5] = `${+uspt + usbarHalf}`
+                      mx[5] = uspt + usbarHalf
                     }
                     i.getAttribute('d', mx.join(' '))
                   })
