@@ -39,9 +39,9 @@ export default {
         this.subscription = DataService.getChartM7Data().subscribe(
             allResults => {
 
-                console.log('allresults', allResults.response);
+                //('allresults', allResults.response);
                 this.finalChartData = [M7StaticTotal.result, M7StaticRegular.result];
-                console.log(this.finalChartData);
+               // console.log(this.finalChartData);
 
             //     totalAverageM7Data = allResults[0].result[0].value;
 			// console.log("TCL: buildChartM7 -> totalAverageM7Data", totalAverageM7Data)

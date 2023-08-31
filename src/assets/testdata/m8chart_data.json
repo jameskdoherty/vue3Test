@@ -1,0 +1,22 @@
+[
+    {
+      "group": "Bottom quarter",
+      "oecd": 448,
+      "unitedstates": 432
+    },
+    {
+      "group": "Second quarter",
+      "oecd": 477,
+      "unitedstates": 461
+    },
+    {
+      "group": "Third quarter",
+      "oecd": 502,
+      "unitedstates": 491
+    },
+    {
+      "group": "Top quarter",
+      "oecd": 535,
+      "unitedstates": 531
+    }
+  ]

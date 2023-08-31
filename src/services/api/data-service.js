@@ -6,9 +6,11 @@ import { catchError } from 'rxjs/operators';
 const chartM7Subject = new Subject();
 const chartM8Subject = new Subject();
 const chartM9Subject = new Subject();
+const tableM7Subject = new Subject();
 
 export const DataService = {
     getChartM7Data: () => chartM7Subject.asObservable(),
+    getTableM7Data: () => tableM7Subject.asObservable(),
     getChartM8Data: () => chartM8Subject.asObservable(),
     getChartM9Data: () => chartM9Subject.asObservable(),
     createChartM7: () => {
@@ -33,6 +35,11 @@ export const DataService = {
     createChartM9: () => {
         ajax.getJSON(`https://jsonplaceholder.typicode.com/todos/4`).subscribe(allResults => {
             return chartM9Subject.next(allResults)
+        })
+    },
+    createTableM7: () => {
+        ajax.getJSON(`https://jsonplaceholder.typicode.com/todos/4`).subscribe(allResults => {
+            return tableM7Subject.next(allResults)
         })
     }
 };

@@ -1,22 +1,29 @@
 <template>
   <div class="chartElem">
     <div class="row">
-      <highcharts class="chart" :options="chartOptions"></highcharts>
+      <highcharts class="chart" :highcharts="Highcharts" :options="chartOptions"></highcharts>
     </div>
   </div>
 </template>
 
 <script>
 
+
 export default {
   data() {
     return {
 
+      created() {
+
+        // Highcharts.wrap(Highcharts.Axis.prototype, 'getLinePath', function (proceed, lineWidth) {
+        //         var axis = this;
+        //         console.log('axis',axis);
 
 
 
+        //       });
 
-
+      },
 
       chartOptions: {
         chart: {
@@ -30,6 +37,10 @@ export default {
           },
           events: {
             render: function () {
+
+
+
+
               const ren = this.renderer
               var _svg = ren.box
               //var mkr1 = [];
@@ -44,23 +55,23 @@ export default {
               //var labelText = mklabel[0].children[1]
               //labelText.setAttribute('fill','#000000')
               //console.log('mklabel', labelText)
-              console.log('mk3', mk3[0].children)
-              console.log('mk3alone', mk3)
+             // console.log('mk3', mk3[0].children)
+             // console.log('mk3alone', mk3)
 
 
               Array.from(mk3[0].children).forEach(function (element) {
-                console.log('element', element)
+                //.log('element', element)
 
                 if (element.getAttribute('opacity') == '1') {
                   var isLow = element.classList.contains('highcharts-lollipop-low')
-                  console.log('isLow', isLow);
+                 // console.log('isLow', isLow);
                   var _b = element.point
-                  console.log('_b', _b)
+                  //console.log('_b', _b)
                   var _t = _b.dataLabels[(isLow) ? 1 : 0]
-                  console.log('_t', _t);
+                 // console.log('_t', _t);
                   var _el = _t.text.element
                   if (isLow) {
-                    console.log('what is _el', _el);
+                   // console.log('what is _el', _el);
                     _el.setAttribute('text-anchor', 'middle')
                     _el.setAttribute('x', 0)
 
@@ -70,7 +81,7 @@ export default {
                   // fix diff point color to black
                   _t = _b.dataLabels[(isLow) ? 0 : 1]
                   _el = _t.text.element
-                 // _el.css('fill', '#000000')
+                  // _el.css('fill', '#000000')
                   // _el.setAttribute('fill', '#000000')
                   _el.style.fill = "#000000";
                   var _d = _b.options
@@ -83,14 +94,6 @@ export default {
                     }
                   }
 
-//                   const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
-
-// // Usage: 
-// addCSS("body{ background:red; }")
-
-
-
-
 
                 }
                 //mkr1.push(element)
@@ -101,87 +104,49 @@ export default {
 
               //let cc = document.querySelector(r)
               let stm1New = this.series[0].group.element.querySelectorAll('.highcharts-lollipop-stem')
-              console.log('stm1New', stm1New)
+             // console.log('stm1New', stm1New)
 
               //var stm1 = $(this.series[0].group.element).children('.highcharts-lollipop-stem')
               var dd = this.options.series[0].data
               var adjPx = +this.options.yAxis[0].plotLines[0].width / 2
-              console.log('stm1New parent',stm1New[0].parentNode)
+              //console.log('stm1New parent', stm1New[0].parentNode)
               //stm1New[0].parentNode.removeAttr('usavg')
               stm1New[0].parentNode.removeAttribute('usavg')
-        
-              console.log('dd', dd)
-              console.log('adjPx', adjPx)
+
+              //console.log('dd', dd)
+              //console.log('adjPx', adjPx)
               //let test1 = stm1.eq(0).attr('d').split(' ')
               let test1 = stm1New[0].getAttribute('d').split(' ')
-              console.log('test1', test1)
+             // console.log('test1', test1)
               let uspt = (dd[0][3] == 'up') ? test1[2] : test1[5]
-              console.log('uspt value',uspt)
+              //console.log('uspt value', uspt)
               stm1New[0].parentNode.setAttribute('usavg', uspt)
               stm1New.forEach(function (i, x) {
-                console.log('2i',i)
-                console.log('2x',x)
+               // console.log('2i', i)
+                //console.log('2x', x)
                 let mx = i.getAttribute('d').split(' ')
-                console.log('2mx',mx)
+               // console.log('2mx', mx)
                 let dx = dd[x]
                 if (dx[3] == 'up') {
                   // minus 2.5
                   mx[2] = uspt - adjPx
-                  console.log('mx[2]',mx[2])
+                 // console.log('mx[2]', mx[2])
                   i.setAttribute('usat', 2)
-                  console.log('set2i',i)
+                  //console.log('set2i', i)
                 }
                 if (dx[3] == 'down') {
                   // plus 2.5
-                 mx[5] = uspt + adjPx
-                 i.setAttribute('usat', 5)
+                  mx[5] = uspt + adjPx
+                  i.setAttribute('usat', 5)
                 }
-                i.setAttribute('d', mx.join(' '))
+               i.setAttribute('d', mx.join(' '))
                 return
               })
-
-
-
-              //-----//
-
-
-
-
-              // console.log('mk4',mk4[0])
-              // var mkr1 = mk3.querySelectorAll('path')
-              // console.log(mkr1)
-              // mkr1.forEach(function (i, x) {
-              //   console.log('i',i)
-              //   console.log('x',x)
-              //   if ($(x).attr('opacity') == '1') {
-              //     var isLow = $(x).hasClass('highcharts-lollipop-low')
-              //     var _b = x.point
-              //     var _t = _b.dataLabels[(isLow) ? 1 : 0]
-              //     var _el = $(_t.text.element)
-              //     if (isLow) {
-              //       _el.attr('text-anchor', 'middle')
-              //         .attr('x', 0)
-              //     } else {
-              //       _el.attr('x', 25)
-              //     }
-              //     _t = _b.dataLabels[(isLow) ? 0 : 1]
-              //     _el = $(_t.text.element)
-              //     _el.css('fill', '#000000')
-              //     var _d = _b.options
-              //     var _diff = _d.high - _d.low
-              //     if (_diff < 10) {
-              //       _el.attr('x', (isLow) ? 43 : -22)
-              //     } else {
-              //       if (_diff < 30) {
-              //         _el.attr('x', (isLow) ? 33 : -20)
-              //       }
-              //     }
-              //   }
-              // })
 
             }
           }
         },
+
         accessibility: {
           description: 'Demo'
         },
@@ -234,7 +199,7 @@ export default {
               width: '200px'
 
             }
-          }
+          },
         },
         yAxis: {
           min: 250,

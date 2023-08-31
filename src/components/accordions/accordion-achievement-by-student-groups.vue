@@ -1,11 +1,12 @@
 <template>
-    <!-- start accoridion content -->
+    <!-- start accordion content -->
     <div class="accordion-panel">
         <div class="panel" id="panel-s3-m1">
-            
-            
-            
-           
+
+            <ChartTableView />
+            <ChartTableTab />
+            <ChartTableView />
+            <ChartTableTab />
             <input id="mat-s3-1" class="for-panel" type="checkbox" name="panels" checked="checked">
             <label class="item-id" for="mat-s3-1">
                 <span class="key-feature">Are there gender differences in mathematics performance among
@@ -24,19 +25,27 @@
                 </ul>
                 <!-- toggle switch -->
                 <p class="display-as for-m6"><strong>Display as:</strong>
-                    <span class="graph-view-button active"><i class="fa-solid fa-chart-simple"
-                            aria-hidden="true"></i>Graph</span> | <span class="table-view-button "><i
-                            class="fa-solid fa-table" aria-hidden="true"></i>Table</span>
+                    <span @click="toggleElement(0)" :class="{ active: listElement[0].isActive }"><i
+                            class="fa-solid fa-chart-simple" aria-hidden="true"></i>Graph</span> | <span
+                        @click="toggleElement(1)" :class="{ active: listElement[1].isActive }"><i class="fa-solid fa-table"
+                            aria-hidden="true"></i>Table</span>
                 </p>
                 <!-- end toggle switch -->
 
+
+
+
+
+
+
                 <!-- start chart for m6 -->
-                <figure class="chart chart-6">
+                <figure class="chart chart-6" v-if="!this.isHidden">
                     <figcaption>
                         <strong>Figure M6.</strong> Difference in average scores of 15-year-old male and
                         female students on the PISA mathematics literacy scale, by education system: 2022
                     </figcaption>
                     <!-- chart m6 goes here -->
+                    <div>M6</div>
                     <div class="chart__controller">
                         <div class="sub-contain d-flex j-around">
                             <div class="grouping">
@@ -64,7 +73,7 @@
                     <NotesOne />
                 </figure>
                 <!-- start table for m6 -->
-                <figure class="table-classic table-6" style="display: none;">
+                <figure class="table-classic table-6" v-if="this.isHidden">
                     <figcaption>
                         <strong>Table M6.</strong> Difference in average scores of 15-year-old male and
                         female students on the PISA mathematics literacy scale, by education system: 2022
@@ -102,13 +111,14 @@
                     maxime. Eius alias ullam unde corrupti error vero fugit ipsam? Voluptates, iure!</p>
                 <!-- toggle switch -->
                 <p class="display-as for-m7"><strong>Display as:</strong>
-                    <span class="graph-view-button active"><i class="fa-solid fa-chart-simple"
-                            aria-hidden="true"></i>Graph</span> | <span class="table-view-button "><i
-                            class="fa-solid fa-table" aria-hidden="true"></i>Table</span>
+                    <span @click="toggleElement(2)" :class="{ active: listElement[2].isActive }"
+                        class="graph-view-button"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i>Graph</span> |
+                    <span @click="toggleElement(3)" :class="{ active: listElement[3].isActive }"
+                        class="table-view-button "><i class="fa-solid fa-table" aria-hidden="true"></i>Table</span>
                 </p>
                 <!-- end toggle switch -->
                 <!-- start chart for m7 -->
-                <figure class="highcharts-figure chart">
+                <figure class="highcharts-figure chart" v-if="this.isHidden">
                     <figcaption>
                         <strong>Figure M7.</strong> Average scores of U.S. 15-year-old students on the PISA
                         mathematics literacy scale, by race/ethnicity: 2022
@@ -129,14 +139,14 @@
 
                 </figure>
                 <!-- start table for m7 -->
-                <figure class="table-classic table-7" style="display: none;">
+                <figure class="table-classic table-7" v-if="!this.isHidden">
                     <figcaption>
                         <strong>Table M7.</strong> Average scores of U.S. 15-year-old students on the PISA
                         mathematics literacy scale, by race/ethnicity: 2022
                     </figcaption>
                     <div class="table-classic__container">
                         <!-- TABLE M7 -->
-
+                        <TableM7 />
                     </div>
                     <!-- Notes sig dif one -->
                     <NotesSignificantlyDifferentOne />
@@ -167,14 +177,16 @@
                     necessitatibus! Sequi reprehenderit aut in iste optio sapiente aliquam asperiores
                     mollitia sed similique.</p>
                 <!-- toggle switch -->
-                <p class="display-as for-m8"><strong>Display as:</strong>
-                    <span class="graph-view-button active last-open"><i class="fa-solid fa-chart-simple"
-                            aria-hidden="true"></i>Graph</span> | <span class="table-view-button "><i
-                            class="fa-solid fa-table" aria-hidden="true"></i>Table</span>
+                <p class="display-as for-m8"><strong>Display as 8:</strong>
+                    <span @click="toggleElement(4)" :class="{ active: listElement[4].isActive }"
+                        class="graph-view-button last-open"><i class="fa-solid fa-chart-simple"
+                            aria-hidden="true"></i>Graph</span> | <span @click="toggleElement(5)"
+                        :class="{ active: listElement[5].isActive }" class="table-view-button "><i class="fa-solid fa-table"
+                            aria-hidden="true"></i>Table</span>
                 </p>
                 <!-- end toggle switch -->
                 <!-- start chart for m8 -->
-                <figure class="chart chart-8">
+                <figure class="chart chart-8" v-if="this.isHidden">
                     <figcaption>
                         <strong>Figure M8.</strong> Average scores of 15-year-old students on the PISA
                         mathematics literacy scale, by national quarters of the PISA index of economic,
@@ -186,7 +198,7 @@
                     <NotesSignificantlyDifferentTwo />
                 </figure>
                 <!-- start table for m8 -->
-                <figure class="table-classic table-m8" style="display: none;">
+                <figure class="table-classic table-m8" v-if="!this.isHidden">
                     <figcaption>
                         <strong>Table M8.</strong> Average scores of 15-year-old students on the PISA
                         mathematics literacy scale, by national quarters of the PISA index of economic,
@@ -194,20 +206,24 @@
                     </figcaption>
                     <div class="table-classic__container">
                         <!-- TABLE M8-->
+                        <TableM8 />
+                        <TableM1 />
                     </div>
                     <!-- sig dif NOTES TWO -->
                     <NotesSignificantlyDifferentTwo />
                 </figure>
                 <!-- toggle switch -->
-                <p class="display-as for-m9" style="display: none;"><strong>Display as:</strong>
-                    <span class="graph-view-button active"><i class="fa-solid fa-chart-simple"
-                            aria-hidden="true"></i>Graph</span> | <span class="table-view-button "><i
-                            class="fa-solid fa-table" aria-hidden="true"></i>Table</span>
+                <p class="display-as for-m9"><strong>Display as 9:</strong>
+                    <span @click="toggleElement(0)" :class="{ active: listElement[0].isActive }"
+                        class="graph-view-button active"><i class="fa-solid fa-chart-simple"
+                            aria-hidden="true"></i>Graph</span> | <span @click="toggleElement(1)"
+                        :class="{ active: listElement[1].isActive }" class="table-view-button "><i class="fa-solid fa-table"
+                            aria-hidden="true"></i>Table</span>
                 </p>
                 <!-- end toggle switch -->
                 <!-- start chart for m9 -->
 
-                <figure class="highcharts-figure chart">
+                <figure class="highcharts-figure chart" v-if="!this.isHidden">
                     <figcaption>
                         <strong>Figure M9.</strong> Average scores of U.S. 15-year-old public school
                         students on the PISA mathematics literacy scale, by percentage of students enrolled
@@ -223,13 +239,13 @@
                                 each FRPL<br>category and the U.S. average</li>
                         </ul>
                     </div>
-                    <ChartM9 />
+                    <!-- <ChartM9 /> -->
                     <p class="highcharts-description"></p>
                     <!-- Notes sig dif one -->
-                    <NotesSignificantlyDifferentOne />
+                    <!-- <NotesSignificantlyDifferentOne /> -->
                 </figure>
                 <!-- start table for m9 -->
-                <figure class="table-classic table-m9">
+                <figure class="table-classic table-m9" v-if="this.isHidden">
                     <figcaption>
                         <strong>Table M9.</strong> Average scores of U.S. 15-year-old public school students
                         on the PISA mathematics literacy scale, by percentage of students enrolled in
@@ -238,11 +254,11 @@
                     </figcaption>
                     <div class="table-classic__container">
                         <table class="tblm9" tabindex="0">
-
+                            table m9
                         </table>
                     </div>
                     <!-- sig dif notes three -->
-                    <NotesSignificantlyDifferentThree />
+                    <!-- <NotesSignificantlyDifferentThree /> -->
 
                 </figure>
             </div>
@@ -259,16 +275,69 @@ import NotesSignificantlyDifferentThree from '../notes/notes-significantly-diffe
 import ChartM7 from '../charts/chart-m7.vue'
 import ChartM8 from '../charts/chart-m8.vue'
 import ChartM9 from '../charts/chart-m9.vue'
+import ChartTableView from '../chart-table-view.vue'
+import ChartTableTab from '../navigation/chart-table-tab.vue'
+import TableM1 from '../tables/table-m1.vue'
+import TableM8 from '../tables/table-m8.vue'
+import TableM7 from '../tables/table-m7.vue'
+
 
 import { DataService } from '../../services/api/data-service';
 
+
 export default {
     name: 'accordion-achievement-by-student-groups',
-    components: { NotesOne, NotesSignificantlyDifferentOne, NotesSignificantlyDifferentTwo, NotesSignificantlyDifferentThree, ChartM7, ChartM8, ChartM9 },
+    components: {
+        NotesOne,
+        NotesSignificantlyDifferentOne,
+        NotesSignificantlyDifferentTwo,
+        NotesSignificantlyDifferentThree,
+        ChartM7,
+        ChartM8,
+        ChartM9,
+        ChartTableView,
+        ChartTableTab,
+        TableM1,
+        TableM8,
+        TableM7
+    },
+    data() {
+        return {
+            isHidden: false,
+
+            listElement: [
+                { name: 1, isActive: true },
+                { name: 2, isActive: false },
+                { name: 3, isActive: true },
+                { name: 4, isActive: false },
+                { name: 5, isActive: true },
+                { name: 6, isActive: false },
+                { name: 7, isActive: true },
+                { name: 8, isActive: false }
+            ],
+        }
+    },
+    methods: {
+
+        toggleElement(index) {
+            console.log(index)
+            //console.log('list', this.listElement)
+            //this.listElement.forEach(element => element.isActive = false)
+            this.isHidden = !this.isHidden
+            //this.listElement[index].isActive = !this.listElement[index].isActive;
+        }
+       
+    },
+
     created() {
-       DataService.createChartM7();
-       DataService.createChartM8();
-       DataService.createChartM9();
+        DataService.createChartM7();
+        DataService.createChartM8();
+        DataService.createChartM9();
+        DataService.createTableM7();
+
+    },
+    mounted() {
+
        
     }
 }
@@ -277,7 +346,20 @@ export default {
 </script>
 
 
-<style scoped></style>
+<style scoped>
+.isHidden {
+    background-color: grey;
+}
+
+.graph-view-button.active,
+.table-view-button.active {
+    border: 2px solid var(--clr-dark);
+}
+
+div {
+    background-color: #fff;
+}
+</style>
 
 
 

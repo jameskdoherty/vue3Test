@@ -1,0 +1,38 @@
+[
+    {
+        "race": "U.S. average",
+        "mnScore": 478,
+        "gap": null,
+        "sig": "NA"
+    },
+    {
+        "race": "White",
+        "mnScore": 503,
+        "gap": 25,
+        "sig": "HIGHER"
+    },
+    {
+        "race": "Black",
+        "mnScore": 419,
+        "gap": -59,
+        "sig": "LOWER"
+    },
+    {
+        "race": "Hispanic",
+        "mnScore": 452,
+        "gap": -27,
+        "sig": "LOWER"
+    },
+    {
+        "race": "Asian",
+        "mnScore": 539,
+        "gap": 61,
+        "sig": "HIGHER"
+    },
+    {
+        "race": "Two or More Races",
+        "mnScore": 474,
+        "gap": -4,
+        "sig": "LOWER"
+    }
+]

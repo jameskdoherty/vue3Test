@@ -868,9 +868,9 @@ select {
   background-color: var(--clr-pisa-08);
   border: 1px solid var(--clr-pisa-08);
 }
-.main-content .chart__controller .button-sort.active {
+/* .main-content .chart__controller .button-sort.active {
   border: 2px solid var(--clr-dark);
-}
+} */
 .main-content .chart__controller .button-sort:hover {
   opacity: 0.7;
   transition: 0.2s;
