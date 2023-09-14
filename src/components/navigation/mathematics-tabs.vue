@@ -1,9 +1,9 @@
 <template>
     <ul class="secondary-nav">
-        <li id="tab-one" class=""><router-link to="/pisa/pisa2022/mathematics/international-comparisons">International Comparisons<br> of
+        <li id="tab-one" class=""><router-link to="/mathematics/international-comparisons">International Comparisons<br> of
                 Student Achievement</router-link></li>
-        <li id="tab-two" class=""><router-link to="/pisa/pisa2022/mathematics/trends">Change Trends in Student<br> Achievement</router-link></li>
-        <li id="tab-three" class=""><router-link to="/pisa/pisa2022/mathematics/achievement">Achievement by<br> Student
+        <li id="tab-two" class=""><router-link to="/mathematics/trends">Change Trends in Student<br> Achievement</router-link></li>
+        <li id="tab-three" class=""><router-link to="/mathematics/achievement">Achievement by<br> Student
                 Groups</router-link></li>
     </ul>
 </template>

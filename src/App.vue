@@ -1,10 +1,5 @@
 @charset "UTF-8";
 <template>
-  <div id="nav">
-      <router-link to="/">Home</router-link>
-      -
-      <router-link to="/mathematics/international-comparisons">Mathematics</router-link>
-    </div>
   <div class="content-wrapper">
     <main class="main-content">
             <router-view />

@@ -1,6 +1,6 @@
 <template>
   <div id="container" ref="resizeRef">
-    <svg style="background:none" ref="svgRef">
+    <svg id="chart" style="background:none" ref="svgRef">
       <g class="x-axis" />
       <g class="y-axis" />
     </svg>
@@ -8,7 +8,7 @@
 </template>
   
 <script>
-import { onMounted, ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect, watch } from "vue";
 import {
   select,
   // line,
@@ -37,19 +37,19 @@ export default {
 
 
       // whenever any dependencies (like data, resizeState) change, call this!
-      watchEffect(() => {
+      watch(() => {
+
         const { width, height } = resizeState.dimensions;
 
-        //console.log(props.data);
-        // scales: map index / data values to pixel values on x-axis / y-axis
-        // const xScale = scaleBand()
-        //   .domain([0, props.data.length - 1])
-        //   .range([0, width]);
+        svg.select(".bars").remove();
+        svg.select(".leftAxis").remove();
+        svg.select(".left-axis-key").remove();
+        svg.selectAll(".yAxisLabels").remove();
+        svg.selectAll(".hovertext").remove();
+        svg.selectAll("line").remove();
+        svg.selectAll(".tick").remove();
 
         const yAxisArray = [250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750];
-
-
-
         const xScale = scaleBand()
           .domain(props.groups)
           .range([0, width])
@@ -70,7 +70,9 @@ export default {
           .range(['#00843d', '#fbb03b']);
 
 
-        svg.append("g").selectAll("g")
+        svg.append("g")
+          .attr('class', 'bars')
+          .selectAll("g")
           .data(props.data)
           .enter()
           .append("g")
@@ -124,6 +126,7 @@ export default {
             else if (i == array.length - 1) return 1000;
             else return d
           })
+          .attr('class', 'yAxisLabels')
           .attr("fill", "black")
           .attr('font-size', '11px')
           .attr('font-weight', '500')
@@ -142,7 +145,6 @@ export default {
         var breakGap = (yScale(0) - yScale(50)) * .2;
         var breakLineHeight = (yScale(0) - yScale(50)) * .35
         g.selectAll('line.left-axis-break')
-          // .data([{x:0, y:yScale(50) + yScale(50) * (1 - breakGapPercentage) / 2}, {x:this.min + 66.7, y:0}, {x:this.max - 67, y:0}, {x:this.max - 33.3, y:0}, {x:this.min + 33, y:chartHeight}, {x:this.min + 66.7, y:chartHeight}, {x:this.max - 67, y:chartHeight}, {x:this.max - 33.3, y:chartHeight}])
           .data([{ x: 0, y: yScale(300) + breakLineHeight }, { x: 0, y: yScale(300) + breakLineHeight + breakGap }, { x: 0, y: yScale(750) + breakLineHeight }, { x: 0, y: yScale(750) + breakLineHeight + breakGap }])
           .join("line")
           .attr("x1", function (d) { return d.x - 8; })
@@ -165,6 +167,7 @@ export default {
         svg.selectAll(".text")
           .data(props.data)
           .enter().append("svg:text")
+          .attr('class', 'hovertext')
           .attr("x", function (d) { return xScale(d.group) - 5; })
           .attr("y", function (d) { return yScale(d.oecd + 5); })
           .attr("font-size", "12px")
@@ -175,6 +178,7 @@ export default {
         svg.selectAll(".text")
           .data(props.data)
           .enter().append("svg:text")
+          .attr('class', 'hovertext')
           .attr("x", function (d) { return xScale(d.group) - 5 + xSubgroup.bandwidth(); })
           .attr("y", function (d) { return yScale(d.unitedstates + 5); })
           .attr("fill", "#000")
@@ -183,21 +187,6 @@ export default {
           .attr("font-weight", "bold")
           .text(function (d) { return d.unitedstates });
 
-        // line generator: D3 method to transform an array of values to data points ("d") for a path element
-        // const lineGen = line()
-        //   .curve(curveBasis)
-        //   .x((value, index) => xScale(index))
-        //   .y((value) => yScale(value));
-
-        // render path element with D3's General Update Pattern
-        // svg
-        //   .selectAll(".line")
-        //   .data([props.data]) // pass entire data array
-        //   .join("path")
-        //   .attr("class", "line")
-        //   .attr("stroke", "green")
-        //   .attr("d", lineGen);
-
         // render axes with help of scales
         const xAxis = axisBottom(xScale).tickSize(1).tickPadding(10);
         svg
@@ -205,12 +194,8 @@ export default {
           .style("transform", `translateY(${height}px)`) // position on the bottom
           .call(xAxis);
 
-        //const yAxis = axisLeft(yScale);
-        //svg.select(".y-axis").call(yAxis);
-
-
-
-      });
+      },
+        { deep: true });
     });
 
     return { svgRef, resizeRef };

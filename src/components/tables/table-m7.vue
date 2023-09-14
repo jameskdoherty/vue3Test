@@ -73,7 +73,7 @@ export default {
                     this.rawData.push(allResults);
                 } else {
                     this.data = table7JSON;
-                    console.log('table7', this.data)
+                   // console.log('table7', this.data)
                     var mapFunction = function (element, index, array) {
                         var ret = {}
                         ret.headers = [element.race]
@@ -86,10 +86,10 @@ export default {
                         ret.values = [score, gap];
                         return ret;
                     }
-                    console.log('mapFunction tableM7', mapFunction)
-                    console.log('this.data tableM7', this.data)
+                   // console.log('mapFunction tableM7', mapFunction)
+                    //console.log('this.data tableM7', this.data)
 
-                    console.log('sort created',this.sort)
+                   // console.log('sort created',this.sort)
 
                     //MyComponent.test();
                     //ComponentClass.setKeyToSortBy('femaleScore');

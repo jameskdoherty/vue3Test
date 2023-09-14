@@ -47,7 +47,7 @@ export default {
               //var mkr1 = $(_svg).find('.highcharts-markers.highcharts-series-0').children()
 
               //console.log('mkr1',mkr1)
-              console.log('svg', _svg)
+              console.log('chart 7 svg', _svg)
               //let cc = r.group.element.querySelectorAll('path')
 
               var mk3 = _svg.querySelectorAll('.highcharts-markers.highcharts-series-0')
@@ -60,7 +60,7 @@ export default {
 
 
               Array.from(mk3[0].children).forEach(function (element) {
-                //.log('element', element)
+                console.log('element chart 7', element)
 
                 if (element.getAttribute('opacity') == '1') {
                   var isLow = element.classList.contains('highcharts-lollipop-low')

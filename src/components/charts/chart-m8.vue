@@ -32,22 +32,34 @@ export default {
             groups: [],
             subgroups: [],
             bardata: [],
+            finalChartData: []
         };
     },
     created() {
+        console.log('chart m8 created')
 
         let groupds = [];
         // let subgroups = [];
         // let finaldata = [];
 
-        this.subscription = DataService.getChartM8Data().subscribe(
+
+        this.subscription8 = DataService.getChartM8DataA().subscribe(
             allResults => {
-                if (allResults.response) {
-                    //console.log('allresults', allResults.response);
-                    this.finalChartData.push(allResults);
-                } else {
-                    this.finalChartData = M8StaticData.result;
-                }
+
+                console.log('chartM8 M8 allresults', allResults);
+
+                allResults.forEach((element, index, array ) => {
+                this.finalChartData.push(allResults[index]);
+            });
+
+            console.log('finalchartdata m8',this.finalChartData)
+
+                // if (allResults.response) {
+                //     this.finalChartData.push(allResults);
+                // } else {
+                //     console.log('chartM8 M8 allresults res', allResults.response);
+                //     this.finalChartData = M8StaticData.result;
+                // }
 
                 var filteredData = this.finalChartData.filter(function (element) {
                     return element.targetJurisdiction == 'USA';
@@ -68,7 +80,7 @@ export default {
                     }
                 });
 
-                console.log('final', finalMappedData);
+                console.log('chartM8 final', finalMappedData);
 
 
 
@@ -85,25 +97,19 @@ export default {
                     groupds.push(element.group);
 
                     let keys = Object.keys(array[index]);
-                    console.log('keys', keys);
                     var subindexes = keys.filter((element, index) => {
                         if (this.subgroups.length < 2) {
                             var sg = index !== 0 ? this.subgroups.push(element) : null;
-                            console.log('sg', sg)
                         }
                     })
-                    console.log('subindex', subindexes)
-                    console.log('subgroups', this.subgroups)
-
+                   
                 })
-
-
 
             });
     },
 
     beforeUnmount() {
-        this.subscription.unsubscribe();
+        this.subscription8.unsubscribe();
     }
 }
 </script>

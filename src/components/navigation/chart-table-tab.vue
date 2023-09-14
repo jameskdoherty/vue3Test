@@ -1,11 +1,22 @@
 <template>
-    <button @click="sendMessage()" class="btn btn-primary">Send Message</button>
-    <div @click="showHide('tab1')" :class="{ isActive: isActive }">
-        <p>This is a taba 1</p>
-    </div>
-    <div @click="showHide('tab2')" :class="{ isActive: !isActive }">
-        <p>This is tab 2</p>
-    </div>
+    <p class="display-as for-m8"><strong>Display as 8:</strong>
+        <span @click="showHide('tab1')" :class="{ isActive: isActive }" class="graph-view-button last-open"><i
+                class="fa-solid fa-chart-simple" aria-hidden="true"></i>Graph</span> | <span @click="showHide('tab2')"
+            :class="{ isActive: !isActive }" class="table-view-button "><i class="fa-solid fa-table"
+                aria-hidden="true"></i>Table</span>
+    </p>
+    <figure class="chart chart-8" :class="{ invisible: isHidden }">
+        <component :is="el4"></component>
+        <component :is="el"></component>
+        <component :is="el3"></component>
+    </figure>
+    <figure class="table-classic table-m8" :class="{ invisible: !isHidden }">
+        <component :is="el4"></component>
+        <div class="table-classic__container">
+            <component :is="el2"></component>
+        </div>
+        <component :is="el3"></component>
+    </figure>
 </template>
 <script>
 import { MessageService } from '../../services/message-service';
@@ -13,27 +24,44 @@ import { MessageService } from '../../services/message-service';
 
 export default {
     name: 'chart-table-tab',
+    props: {
+        el: {
+            type: [String, Object],
+            default: 'div'
+        },
+        el2: {
+            type: [String, Object],
+            default: 'div'
+        },
+        el3: {
+            type: [String, Object],
+            default: 'div'
+        },
+        el4: {
+            type: [String, Object],
+            default: 'div'
+        }
+    },
+
     data() {
         return {
             isActive: true,
+            isHidden: false,
             // isTab1Active: true,
             // isTab2Active: false
         }
     },
     methods: {
-        sendMessage() {
-            // send message to subscribers via observable subject
-            MessageService.sendMessage('Message from Home Page Component to App Component!');
-        },
         showHide(tab) {
             console.log('show', tab)
-            if (tab == 'tab1'){
+            this.isHidden = !this.isHidden
+            if (tab == 'tab1') {
                 this.isActive = true
-                } else {
-                    this.isActive = false
-                }
-            MessageService.showHide(tab)
-        },
+            } else {
+                this.isActive = false
+            }
+            //MessageService.showHide(tab)
+        }
 
     }
 }
@@ -41,5 +69,12 @@ export default {
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .isActive {
-  background-color: grey;
-}</style>
+    background-color: grey;
+
+}
+
+.invisible {
+    /* visibility: hidden; */
+    display: none;
+}
+</style>

@@ -28,11 +28,11 @@ export default {
         this.subscription = DataService.getChartM8Data().subscribe(
             allResults => {
                 if (allResults.response) {
-                    //console.log('allresults', allResults.response);
+                    console.log('allresults', allResults.response);
                     this.rawData.push(allResults);
                 } else {
                     this.rawData = M8chart_data;
-                    console.log('table8', this.rawData)
+                   // console.log('table8', this.rawData)
 
 
                     for (var i = 0; i < this.rawData.length; i++) {
@@ -55,7 +55,7 @@ export default {
                         return ret;
                     }
 
-                    console.log('mapFunction',mapFunction)
+                    // console.log('mapFunction',mapFunction)
 
 
 
