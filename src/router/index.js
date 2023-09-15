@@ -11,17 +11,47 @@ const routes = [
     },
     {
         path: '/mathematics/international-comparisons',
-        name: 'international-comparisons',
+        name: 'international-comparisons-mathematics',
         component: InternationalComparisons
     },
     {
         path: '/mathematics/trends',
-        name: 'trends-student-achievement',
+        name: 'trends-student-achievement-mathematics',
         component: TrendsStudentAchievement
     },
     {
         path: '/mathematics/achievement',
-        name: 'achievement-by-student-groups',
+        name: 'achievement-by-student-groups-mathematics',
+        component: AchievementByStudentGroups
+    },
+    {
+        path: '/science/international-comparisons',
+        name: 'international-comparisons-science',
+        component: InternationalComparisons
+    },
+    {
+        path: '/science/trends',
+        name: 'trends-student-achievement-science',
+        component: TrendsStudentAchievement
+    },
+    {
+        path: '/science/achievement',
+        name: 'achievement-by-student-groups-science',
+        component: AchievementByStudentGroups
+    },
+    {
+        path: '/reading/international-comparisons',
+        name: 'international-comparisons-reading',
+        component: InternationalComparisons
+    },
+    {
+        path: '/reading/trends',
+        name: 'trends-student-achievement-reading',
+        component: TrendsStudentAchievement
+    },
+    {
+        path: '/reading/achievement',
+        name: 'achievement-by-student-groups-reading',
         component: AchievementByStudentGroups
     },
     {

@@ -1,9 +1,13 @@
 <template>
+    {{ pathName }}
+
     <ul class="secondary-nav">
-        <li id="tab-one" class=""><router-link to="/mathematics/international-comparisons">International Comparisons<br> of
+        <li id="tab-one" class=""><router-link :to="{ path: `/${pathName}/international-comparisons` }">International
+                Comparisons<br> of
                 Student Achievement</router-link></li>
-        <li id="tab-two" class=""><router-link to="/mathematics/trends">Change Trends in Student<br> Achievement</router-link></li>
-        <li id="tab-three" class=""><router-link to="/mathematics/achievement">Achievement by<br> Student
+        <li id="tab-two" class=""><router-link :to="{ path: `/${pathName}/trends` }">Change Trends in Student<br>
+                Achievement</router-link></li>
+        <li id="tab-three" class=""><router-link :to="{ path: `/${pathName}/achievement` }">Achievement by<br> Student
                 Groups</router-link></li>
     </ul>
 </template>
@@ -11,7 +15,23 @@
 
 
 export default {
-    name: 'mathematics-tabs'
+    name: 'mathematics-tabs',
+    data() {
+        return {
+            pathName: '',
+        }
+    },
+    mounted() {
+
+        if (this.$route.path.includes('/mathematics')) {
+            this.pathName = 'mathematics'
+        } else if (this.$route.path.includes('/reading')) {
+            this.pathName = 'reading'
+        } else if (this.$route.path.includes('/science')) {
+            this.pathName = 'science'
+        }
+        console.log(this.pathName)
+    }
 }
 </script>
   <!-- Add "scoped" attribute to limit CSS to this component only -->

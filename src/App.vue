@@ -1184,4 +1184,10 @@ select {
 }
 
 
+.graph-view-button.active,
+.table-view-button.active {
+    border: 2px solid var(--clr-dark);
+}
+
+
 </style>

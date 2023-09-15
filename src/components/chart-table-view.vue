@@ -54,7 +54,7 @@ export default {
             }
         });
 
-        this.subscription3 = DataService.getChartM8DataA().subscribe(allResults => {
+        this.subscription3 = DataService.getChartEightData().subscribe(allResults => {
             let groupds = [];
 
             console.log('chart table view chart8mA', allResults)

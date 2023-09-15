@@ -43,7 +43,7 @@ export default {
         // let finaldata = [];
 
 
-        this.subscription8 = DataService.getChartM8DataA().subscribe(
+        this.subscription8 = DataService.getChartEightData().subscribe(
             allResults => {
 
                 console.log('chartM8 M8 allresults', allResults);

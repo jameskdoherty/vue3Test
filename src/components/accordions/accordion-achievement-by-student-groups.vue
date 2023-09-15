@@ -2,20 +2,12 @@
     <!-- start accordion content -->
     <div class="accordion-panel">
         <div class="panel" id="panel-s3-m1">
-
-            
-            
-            <!-- <ChartTableTab /> -->
-            <!-- <ChartTableView />-->
-           
-            
             <input id="mat-s3-1" class="for-panel" type="checkbox" name="panels" checked="checked">
             <label class="item-id" for="mat-s3-1">
-                <span class="key-feature">Are there gender differences in mathematics performance among
+                <span class="key-feature">Are there gender differences in {{ this.currentSection }} performance among
                     15-year-olds?</span>
             </label>
             <div class="panel-content">
-                <!-- <ChartTableTab :myPassedComponent="NotesOne" :myOtherPassedComponent="NotesSignificantlyDifferentOne" /> -->
                 <p>Voluptatem eum eaque amet illo delectus enim odio consectetur, alias incidunt? Lorem
                     ipsum, dolor sit amet consectetur adipisicing elit. Quidem blanditiis maiores
                     repudiandae assumenda veniam. Impedit autem rerum nostrum amet ad numquam. Deserunt
@@ -26,74 +18,24 @@
                     <li>molestiae error perferendis minus tempore voluptate quaerat mollitia</li>
                     <li>Laboriosam omnis architecto illum a quos itaque veniam autem, nam</li>
                 </ul>
-                <!-- toggle switch -->
-                <p class="display-as for-m6"><strong>Display as:</strong>
-                    <span @click="toggleElement(0)" :class="{ active: listElement[0].isActive }"><i
-                            class="fa-solid fa-chart-simple" aria-hidden="true"></i>Graph</span> | <span
-                        @click="toggleElement(1)" :class="{ active: listElement[1].isActive }"><i class="fa-solid fa-table"
-                            aria-hidden="true"></i>Table</span>
-                </p>
-                <!-- end toggle switch -->
-
-
-
-
-
-
-
-                <!-- start chart for m6 -->
-                <figure class="chart chart-6" v-if="!this.isHidden">
-                    <figcaption>
-                        <strong>Figure M6.</strong> Difference in average scores of 15-year-old male and
-                        female students on the PISA mathematics literacy scale, by education system: 2022
-                    </figcaption>
-                    <!-- chart m6 goes here -->
-                    <div>M6</div>
-                    <div class="chart__controller">
-                        <div class="sub-contain d-flex j-around">
-                            <div class="grouping">
-                                <div class="thead d-flex j-space align-e">
-                                    <span class="like-th m6-sort-alpha">Education system <i
-                                            class="fa fa-chevron-down"></i><i class="fa fa-chevron-up"></i></span>
-                                    <span class="like-th m6-sort-score-gap"><span>Score difference
-                                            between<br>male and female students</span> <i
-                                            class="fa fa-chevron-down active"></i><i class="fa fa-chevron-up"></i></span>
-                                </div>
-
-                            </div>
-                            <div class="grouping">
-                                <div class="thead d-flex j-space align-e">
-                                    <span class="like-th">Education system</span>
-                                    <span class="like-th">Score difference between<br>male and female
-                                        students</span>
-                                </div>
-                                <!-- FiGURE M6 PLACEHOLDER -->
-                            </div>
-                        </div>
-                        <p class="axis-title">Difference in average mathematics literacy scores</p>
-                    </div>
-                    <!-- NOTES 1 -->
-                    <NotesOne />
-                </figure>
-                <!-- start table for m6 -->
-                <figure class="table-classic table-6" v-if="this.isHidden">
-                    <figcaption>
-                        <strong>Table M6.</strong> Difference in average scores of 15-year-old male and
-                        female students on the PISA mathematics literacy scale, by education system: 2022
-                    </figcaption>
-                    <div class="table-classic__container">
-
-                        <!-- TABLE M6 -->
-                    </div>
-                    <!-- Notes 2--> <!-- NOTES INTERPRET DATA -->
-                    <NotesOne />
-                </figure>
+                <!-- Figure/Table Component 6 -->
+                <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'"
+                    :elchart="DynamicChartTablePlaceholder" :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent"
+                    :elcaptionfig="DynamicFigCaptionSix" figcaptionTitle="Figure M6" figcaptionTableTitle="Table M6"
+                    figcaptionBody="mathematics" />
+                <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartTablePlaceholder"
+                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
+                    figcaptionTitle="Figure S6" figcaptionTableTitle="Table S6" figcaptionBody="scientific" />
+                <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartTablePlaceholder"
+                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
+                    figcaptionTitle="Figure R6" figcaptionTableTitle="Table R6" figcaptionBody="reading" />
+                <!-- end Figure/Table Component 6 -->
             </div>
         </div>
         <div class="panel" id="panel-s3-m2">
             <input id="mat-s3-2" class="for-panel" type="checkbox" name="panels">
             <label class="item-id" for="mat-s3-2">
-                <span class="key-feature">How does the mathematics performance of U.S. 15-year-olds vary by
+                <span class="key-feature">How does the {{ this.currentSection }} performance of U.S. 15-year-olds vary by
                     race/ethnicity?</span>
             </label>
             <div class="panel-content">
@@ -112,64 +54,32 @@
                     quis vel enim modi eius veritatis culpa eos. Lorem ipsum dolor sit amet consectetur
                     adipisicing elit. Natus rem debitis enim doloribus quibusdam labore corporis eum sequi
                     maxime. Eius alias ullam unde corrupti error vero fugit ipsam? Voluptates, iure!</p>
-                    <!-- Figure/Table Component M7 -->
-                    <ChartTableTab :el="YetDynamicComponent" :el2="YetOtherDynamicComponent" :el3="NotesComponent" :el4="FourthDynamicComponent"/>
-                    <!-- end Figure/Table Component -->
-                <!-- toggle switch -->
-                <!-- <p class="display-as for-m7"><strong>Display as:</strong>
-                    <span @click="toggleElement(2)" :class="{ active: listElement[2].isActive }"
-                        class="graph-view-button"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i>Graph</span> |
-                    <span @click="toggleElement(3)" :class="{ active: listElement[3].isActive }"
-                        class="table-view-button "><i class="fa-solid fa-table" aria-hidden="true"></i>Table</span>
-                </p> -->
-                <!-- end toggle switch -->
-                <!-- start chart for m7 -->
-                <!-- <figure class="highcharts-figure chart" v-if="this.isHidden"> -->
-                    <!-- <figcaption>
-                        <strong>Figure M7.</strong> Average scores of U.S. 15-year-old students on the PISA
-                        mathematics literacy scale, by race/ethnicity: 2022
-                    </figcaption> -->
-                    <!-- chart m7 goes here -->
-                    <!-- <div class="lolli__legend">
-                        <ul class="lolli__legend__row">
-                            <li class="lolli__legend__row__item circle">U.S. average score for each
-                                race/ethnicity category</li>
-                            <li class="lolli__legend__row__item rect">Difference in average score between
-                                each race/ethnicity<br>category and the U.S. average</li>
-                        </ul>
-                    </div> -->
-                    <!-- <ChartM7 /> -->
-                    <!-- <p class="highcharts-description"></p> -->
-                    <!-- Notes sig dif one -->
-                    <!-- <NotesSignificantlyDifferentOne /> -->
-
-                <!-- </figure> -->
-                <!-- start table for m7 -->
-                <!-- <figure class="table-classic table-7" v-if="!this.isHidden"> -->
-                    <!-- <figcaption>
-                        <strong>Table M7.</strong> Average scores of U.S. 15-year-old students on the PISA
-                        mathematics literacy scale, by race/ethnicity: 2022
-                    </figcaption>
-                    <div class="table-classic__container"> -->
-                        <!-- TABLE M7 -->
-                        <!-- <TableM7 /> -->
-                    <!-- </div> -->
-                    <!-- Notes sig dif one -->
-                    <!-- <NotesSignificantlyDifferentOne /> -->
-                <!-- </figure> -->
+                <!-- Figure/Table Component 7 -->
+                <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartSeven"
+                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    figcaptionTitle="Figure M7" figcaptionTableTitle="Table M7" figcaptionBody="mathematics" />
+                <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartSeven"
+                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    figcaptionTitle="Figure S7" figcaptionTableTitle="Table S7" figcaptionBody="scientific" />
+                    <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartSeven"
+                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    figcaptionTitle="Figure R7" figcaptionTableTitle="Table R7" figcaptionBody="reading" />
+                <!-- end Figure/Table Component 7 -->
             </div>
         </div>
         <div class="panel" id="panel-s3-m3">
             <input id="mat-s3-3" class="for-panel" type="checkbox" name="panels">
             <label class="item-id" for="mat-s3-3">
-                <span class="key-feature">How does the mathematics performance of U.S. 15-year-olds vary by
+                <span class="key-feature">How does the {{ this.currentSection }} performance of U.S. 15-year-olds vary by
                     measures of poverty?</span>
             </label>
             <div class="panel-content">
-                <!-- toggle switch -->
+                <!-- toggle switch between Chart 8 and Chart 9-->
                 <p class="display-as for-m8-tier1"><strong>Show results for:</strong>
-                    <span class="table-view-button active">Economic, Social, and Cultural Status</span> |
-                    <span class="table-view-button ">Free or Reduced-priced lunch</span>
+                    <span @click="toggleElement()" :class="{ active: isStatusActive }" class="table-view-button ">Economic,
+                        Social, and Cultural Status</span> |
+                    <span @click="toggleElement()" :class="{ active: !isStatusActive }" class="table-view-button ">Free or
+                        Reduced-priced lunch</span>
                 </p>
                 <!-- end toggle switch -->
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit, <a href="#">amet
@@ -179,99 +89,37 @@
                 <p>Est ducimus illo labore repellendus at ipsam tempora, amet dolores numquam! Doloribus
                     dolor debitis tempora modi ipsum possimus ea, vero voluptas. Eaque.</p>
                 <p><strong>Porro nemo molestias ipsa sunt eveniet veniam facilis molestiae</strong></p>
-                <p>Amet consectetur adipisicing elit. Rem saepe facilis beatae sit magni fuga, neque animi
+                <p>Amet consectetur adipisicing elit. Rem
+                    saepe facilis beatae sit magni fuga, neque animi
                     necessitatibus! Sequi reprehenderit aut in iste optio sapiente aliquam asperiores
                     mollitia sed similique.</p>
-                <!-- Figure/Table Component -->
-                <ChartTableTab :el="DynamicComponent" :el2="OtherDynamicComponent" :el3="NotesComponent" :el4="FourthDynamicComponent"/> 
-                <!-- end Figure/Table Component -->
-                <!-- toggle switch -->
-                <!-- <p class="display-as for-m8"><strong>Display as 8:</strong>
-                    <span @click="toggleElement(4)" :class="{ active: !isHidden }"
-                        class="graph-view-button last-open"><i class="fa-solid fa-chart-simple"
-                            aria-hidden="true"></i>Graph</span> | <span @click="toggleElement(5)"
-                        :class="{ active: isHidden }" class="table-view-button "><i class="fa-solid fa-table"
-                            aria-hidden="true"></i>Table</span>
-                </p> -->
-                <!-- end toggle switch -->
-                <!-- start chart for m8 -->
-                <!-- <figure class="chart chart-8" :class="{ invisible: isHidden }"> -->
-                    <!-- <figcaption>
-                        <strong>Figure M8.</strong> Average scores of 15-year-old students on the PISA
-                        mathematics literacy scale, by national quarters of the PISA index of economic,
-                        social, and cultural status (ESCS): 2022
-                    </figcaption> -->
-                    <!-- chart m8 goes here -->
-                    <!-- <ChartM8 /> -->
-                    <!-- <ChartTableView /> -->
-                    <!-- sig dif NOTES TWO -->
-                    
-                    <!-- <NotesSignificantlyDifferentTwo /> -->
-                <!-- </figure> -->
-                <!-- start table for m8 -->
-                <!-- <figure class="table-classic table-m8" :class="{ invisible: !isHidden }">
-                    <figcaption>
-                        <strong>Table M8.</strong> Average scores of 15-year-old students on the PISA
-                        mathematics literacy scale, by national quarters of the PISA index of economic,
-                        social, and cultural status (ESCS): 2022
-                    </figcaption>
-                    <div class="table-classic__container"> -->
-                        <!-- TABLE M8-->
-                        <!-- <TableM8 />
-                        <TableM1 /> -->
-                    <!-- </div> -->
-                    <!-- sig dif NOTES TWO -->
-                    <NotesSignificantlyDifferentTwo />
-                <!-- </figure> -->
-                <!-- toggle switch -->
-                <p class="display-as for-m9"><strong>Display as 9:</strong>
-                    <span @click="toggleElement(0)" :class="{ active: !isHidden }"
-                        class="graph-view-button active"><i class="fa-solid fa-chart-simple"
-                            aria-hidden="true"></i>Graph</span> | <span @click="toggleElement(1)"
-                            :class="{ active: isHidden }" class="table-view-button "><i class="fa-solid fa-table"
-                            aria-hidden="true"></i>Table</span>
-                </p>
-                <!-- end toggle switch -->
-                <!-- start chart for m9 -->
-
-                <figure class="highcharts-figure chart" v-if="!this.isHidden">
-                    <figcaption>
-                        <strong>Figure M9.</strong> Average scores of U.S. 15-year-old public school
-                        students on the PISA mathematics literacy scale, by percentage of students enrolled
-                        in schools eligible for free or reduced-price lunch (FRPL), based on principals'
-                        reports: 2022
-                    </figcaption>
-                    <!-- chart m9 goes here -->
-                    <div class="lolli__legend">
-                        <ul class="lolli__legend__row">
-                            <li class="lolli__legend__row__item circle">U.S. average score for each FRPL
-                                category</li>
-                            <li class="lolli__legend__row__item rect">Difference in average score between
-                                each FRPL<br>category and the U.S. average</li>
-                        </ul>
-                    </div>
-                    <!-- <ChartM9 /> -->
-                    <p class="highcharts-description"></p>
-                    <!-- Notes sig dif one -->
-                    <!-- <NotesSignificantlyDifferentOne /> -->
-                </figure>
-                <!-- start table for m9 -->
-                <figure class="table-classic table-m9" v-if="this.isHidden">
-                    <figcaption>
-                        <strong>Table M9.</strong> Average scores of U.S. 15-year-old public school students
-                        on the PISA mathematics literacy scale, by percentage of students enrolled in
-                        schools eligible for free or reduced-price lunch (FRPL), based on principals'
-                        reports: 2022
-                    </figcaption>
-                    <div class="table-classic__container">
-                        <table class="tblm9" tabindex="0">
-                            table m9
-                        </table>
-                    </div>
-                    <!-- sig dif notes three -->
-                    <!-- <NotesSignificantlyDifferentThree /> -->
-
-                </figure>
+                <!-- Figure/Table Component 8 -->
+                <div :class="{ invisible: !isStatusActive }">8
+                    <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartEight"
+                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        figcaptionTitle="Figure M8" figcaptionTableTitle="Table M8" figcaptionBody="mathematics" />
+                    <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartEight"
+                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        figcaptionTitle="Figure S8" figcaptionTableTitle="Table S8" figcaptionBody="scientific" />
+                        <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartEight"
+                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        figcaptionTitle="Figure R8" figcaptionTableTitle="Table R8" figcaptionBody="reading" />
+                </div>
+                <!-- end Figure/Table Component 8 -->
+                <!-- Figure/Table Component 9 -->
+                <div :class="{ invisible: isStatusActive }">9
+                    <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartNine"
+                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        figcaptionTitle="Figure M9" figcaptionTableTitle="Table M9" figcaptionBody="mathematics" />
+                    <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartNine"
+                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        figcaptionTitle="Figure S9" figcaptionTableTitle="Table S9" figcaptionBody="scientific" />
+                    <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartTablePlaceholder"
+                        :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder"
+                        :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure R9" figcaptionTableTitle="Table R9"
+                        figcaptionBody="reading" />
+                </div>
+                <!-- end Figure/Table Component 9 -->
             </div>
         </div>
     </div>
@@ -289,6 +137,9 @@ import ChartM9 from '../charts/chart-m9.vue'
 import ChartTableView from '../chart-table-view.vue'
 import ChartTableTab from '../navigation/chart-table-tab.vue'
 import FigCaption from '../notes/fig-caption.vue'
+import FigCaptionSix from '../notes/fig-caption-six.vue'
+import FigCaptionSeven from '../notes/fig-caption-seven.vue'
+import ChartTablePlaceholder from '../charts/chart-table-placeholder.vue'
 // import TableM1 from '../tables/table-m1.vue'
 // import TableM8 from '../tables/table-m8.vue'
 // import TableM7 from '../tables/table-m7.vue'
@@ -309,6 +160,7 @@ export default {
         ChartM9,
         ChartTableView,
         ChartTableTab,
+        ChartTablePlaceholder,
         // TableM1,
         // TableM8,
         // TableM7
@@ -316,50 +168,55 @@ export default {
     data() {
         return {
             isHidden: false,
-
-            listElement: [
-                { name: 1, isActive: true },
-                { name: 2, isActive: false },
-                { name: 3, isActive: true },
-                { name: 4, isActive: false },
-                { name: 5, isActive: true },
-                { name: 6, isActive: false },
-                { name: 7, isActive: true },
-                { name: 8, isActive: false }
-            ],
-
-            DynamicComponent: ChartM8,
-            OtherDynamicComponent: NotesOne,
-            YetDynamicComponent: ChartM7,
+            isStatusActive: true,
+            whichSection: '',
+            currentSection: '',
+            DynamicChartEight: ChartM8,
+            DynamicNotesOne: NotesOne,
+            DynamicChartSeven: ChartM7,
             YetOtherDynamicComponent: NotesSignificantlyDifferentOne,
             NotesComponent: NotesSignificantlyDifferentTwo,
-            FourthDynamicComponent: FigCaption
+            DynamicFigCaption: FigCaption,
+            DynamicFigCaptionSix: FigCaptionSix,
+            DynamicFigCaptionSeven: FigCaptionSeven,
+            DynamicChartNine: ChartM9,
+            DynamicChartTablePlaceholder: ChartTablePlaceholder,
         }
     },
     methods: {
 
-        toggleElement(index) {
-           // console.log(index)
-            //console.log('list', this.listElement)
-            //this.listElement.forEach(element => element.isActive = false)
-            this.isHidden = !this.isHidden
-            //this.listElement[index].isActive = !this.listElement[index].isActive;
+        toggleElement() {
+            this.isStatusActive = !this.isStatusActive
         }
-       
+
     },
 
     created() {
-       
-       // DataService.createChartM9();
-       // DataService.createTableM7();
-       DataService.createChartM7();
+
+        let subScale
+
+        if (this.$route.path.includes('/mathematics')) {
+            subScale = 'PVMATH'
+            this.currentSection = 'mathematics'
+        } else if (this.$route.path.includes('/reading')) {
+            subScale = 'PVREAD'
+            this.currentSection = 'reading'
+        } else if (this.$route.path.includes('/science')) {
+            subScale = 'PVSCIE'
+            this.currentSection = 'science'
+        }
+
+        DataService.createChartNine(subScale);
+        //DataService.createChartM9(subScale);
+        //DataService.createTableM7();
+        DataService.createChartM7();
         //DataService.createChartM8();
-        DataService.createChartM8A();
+        DataService.createChartEight(subScale);
 
     },
     mounted() {
-       
-       
+        this.whichSection = this.$route.path;
+        console.log(this.whichSection)
     }
 }
 
@@ -375,11 +232,6 @@ export default {
 .invisible {
     /* visibility: hidden; */
     display: none;
-}
-
-.graph-view-button.active,
-.table-view-button.active {
-    border: 2px solid var(--clr-dark);
 }
 
 div {

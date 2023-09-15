@@ -1,0 +1,45 @@
+{
+    "status": 200,
+    "result": [
+        {
+            "year": 2018,
+            "sample": "R3",
+            "yearSampleLabel": "2018",
+            "Cohort": 1,
+            "CohortLabel": "15 years",
+            "stattype": "MN:MN",
+            "subject": "RMS",
+            "grade": 4,
+            "scale": "PVMATH",
+            "jurisdiction": "USA",
+            "jurisLabel": "United States",
+            "variable": "TOTAL",
+            "variableLabel": "All Cases",
+            "varValue": "1",
+            "varValueLabel": "All Cases",
+            "value": 478.244717372643,
+            "isStatDisplayable": 1,
+            "errorFlag": 0
+        },
+        {
+            "year": 2018,
+            "sample": "R3",
+            "yearSampleLabel": "2018",
+            "Cohort": 1,
+            "CohortLabel": "15 years",
+            "stattype": "RP:RP",
+            "subject": "RMS",
+            "grade": 4,
+            "scale": "PVMATH",
+            "jurisdiction": "USA",
+            "jurisLabel": "United States",
+            "variable": "TOTAL",
+            "variableLabel": "All Cases",
+            "varValue": "1",
+            "varValueLabel": "All Cases",
+            "value": 100,
+            "isStatDisplayable": 1,
+            "errorFlag": 2097152
+        }
+    ]
+}

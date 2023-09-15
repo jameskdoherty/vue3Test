@@ -12,8 +12,9 @@ import AccordionAchievementByStudentGroups from '../../components/accordions/acc
 
 export default {
     name: 'achievement-by-student-groups',
-    components: { MathematicsTabs, StoryBlockMathematics,AccordionAchievementByStudentGroups}
+    components: { MathematicsTabs, StoryBlockMathematics,AccordionAchievementByStudentGroups},
 }
+
 </script>
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
