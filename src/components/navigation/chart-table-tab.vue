@@ -5,7 +5,7 @@
             :class="{ active: !isActive }" class="table-view-button "><i class="fa-solid fa-table"
                 aria-hidden="true"></i>Table</span>
     </p>
-    <figure class="chart chart-8" :class="{ invisible: isHidden }">
+    <figure id="chart-area" class="chart chart-8" :class="{ invisible: isHidden }">
         <component :is="elcaptionfig" :figuretitle="figcaptionTitle" :figurebody="figcaptionBody"></component>
         <component :is="elchart"></component>
         <component :is="elnote"></component>
@@ -44,6 +44,7 @@ export default {
         figcaptionTitle: { type: String },
         figcaptionTableTitle: { type: String },
         figcaptionBody: { type: String },
+        
     },
 
     data() {

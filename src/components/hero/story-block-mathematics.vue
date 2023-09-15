@@ -1,6 +1,6 @@
 <template>
-    <div class="top-banner domain mathematics">
-    <p>PISA 2022 Mathematics Literacy Results</p><i class="fa-solid fa-calculator"></i>
+    <div class="top-banner domain" :class="getSectionClass">
+    <p>PISA 2022 {{ this.currentSection }} Literacy Results</p><i class="fa-solid fa-calculator"></i>
 </div>
 <section class="story__block">
     <img src="http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/subject-home.png" />
@@ -25,6 +25,27 @@
 <script>
 export default {
     name: 'Story-Block-Mathematics',
+    data() {
+        return {
+            currentSection: ''
+        }
+    },
+    computed:{
+        getSectionClass() {
+            return this.currentSection.toLocaleLowerCase()
+        }
+    },
+    created() {
+        
+
+        if (this.$route.path.includes('/mathematics')) {
+            this.currentSection = 'Mathematics'
+        } else if (this.$route.path.includes('/reading')) {
+            this.currentSection = 'Reading'
+        } else if (this.$route.path.includes('/science')) {
+            this.currentSection = 'Science'
+        }
+    }
 }
 </script>
 

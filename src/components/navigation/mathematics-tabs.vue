@@ -1,13 +1,13 @@
 <template>
-    {{ pathName }}
+   
 
-    <ul class="secondary-nav">
-        <li id="tab-one" class=""><router-link :to="{ path: `/${pathName}/international-comparisons` }">International
+    <ul class="secondary-nav" :class="getSectionClass">
+        <li id="tab-one"><router-link :to="{ path: `/${pathName}/international-comparisons` }">International
                 Comparisons<br> of
                 Student Achievement</router-link></li>
-        <li id="tab-two" class=""><router-link :to="{ path: `/${pathName}/trends` }">Change Trends in Student<br>
+        <li id="tab-two"><router-link :to="{ path: `/${pathName}/trends` }">Change Trends in Student<br>
                 Achievement</router-link></li>
-        <li id="tab-three" class=""><router-link :to="{ path: `/${pathName}/achievement` }">Achievement by<br> Student
+        <li id="tab-three"><router-link :to="{ path: `/${pathName}/achievement` }">Achievement by<br> Student
                 Groups</router-link></li>
     </ul>
 </template>
@@ -19,6 +19,11 @@ export default {
     data() {
         return {
             pathName: '',
+        }
+    },
+    computed: {
+        getSectionClass() {
+            return this.pathName.toLocaleLowerCase()
         }
     },
     mounted() {
@@ -72,9 +77,18 @@ export default {
 }
 
 .main-content .secondary-nav li a.router-link-active {
-    background-color: var(--clr-pisa-06);
     color: var(--clr-neutral);
     font-weight: 600;
+}
+
+.main-content .secondary-nav.mathematics li a.router-link-active {
+    background-color: var(--clr-pisa-06);
+}
+.main-content .secondary-nav.reading li a.router-link-active {
+    background-color: var(--clr-pisa-05);
+}
+.main-content .secondary-nav.science li a.router-link-active {
+    background-color: var(--clr-pisa-01);
 }
 
 .main-content .secondary-nav li a.router-link-active {

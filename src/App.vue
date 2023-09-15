@@ -185,6 +185,9 @@ select {
 .main-content .top-banner.domain.mathematics {
   background-color: var(--clr-pisa-06);
 }
+.main-content .top-banner.domain.science {
+  background-color: var(--clr-pisa-01);
+}
 .main-content .top-banner.domain p {
   font-weight: 500;
   padding: 0.5em 1em;
@@ -569,6 +572,13 @@ select {
   .main-content .table-1 .table-control.d-flex {
     display: block;
   }
+}
+.main-content #chart-area i.fas {
+  background-color: var(--clr-showy);
+  border-radius: 50%;
+  border: 1px solid var(--clr-grey);
+  padding: 0.1em 0.3em;
+  margin: 0 0 0 -0.2em;
 }
 .main-content .table-1 #chart-area {
   font-size: 1.2rem;
