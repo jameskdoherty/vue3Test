@@ -23,7 +23,7 @@ import ChildComponent from './child-component.vue'
 import table7_data from '../../assets/testdata/table7_data.json';
 
 export default {
-    name: 'TableM7',
+    name: 'TableM9',
     components: {
         ChildComponent
     },

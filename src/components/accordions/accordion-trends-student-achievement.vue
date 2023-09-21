@@ -33,26 +33,26 @@
 
                 <!-- Figure/Table Component 4a -->
                 <div :class="{ invisible: !isStatusActive }">4a
-                    <ChartTableNotab v-if="this.whichSection == '/mathematics/trends'" :eltable="DynamicChartTablePlaceholder"
+                    <ChartTableNotab v-if="this.whichSection == '/mathematics/trends'" :eltable="DynamicTableFourA"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTableTitle="Table M4a" figcaptionBody="mathematics" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/science/trends'" :eltable="DynamicChartTablePlaceholder"
+                    <ChartTableNotab v-if="this.whichSection == '/science/trends'" :eltable="DynamicTableFourA"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table S4a"
                         figcaptionBody="scientific" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/reading/trends'" :eltable="DynamicChartTablePlaceholder"
+                    <ChartTableNotab v-if="this.whichSection == '/reading/trends'" :eltable="DynamicTableFourA"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table R4a"
                         figcaptionBody="reading" figureClassTable="table-1" />
                 </div>
                 <!-- end Figure/Table Component 4 -->
 
                 <div :class="{ invisible: isStatusActive }">4b
-                    <ChartTableNotab v-if="this.whichSection == '/mathematics/trends'" :eltable="DynamicChartTablePlaceholder"
+                    <ChartTableNotab v-if="this.whichSection == '/mathematics/trends'" :eltable="DynamicTableFourB"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
-                        figcaptionTitle="Figure M4b" figcaptionBody="mathematics" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/science/trends'" :eltable="DynamicChartTablePlaceholder"
+                        figcaptionTableTitle="Table M4b" figcaptionBody="mathematics" figureClassTable="table-1" />
+                    <ChartTableNotab v-if="this.whichSection == '/science/trends'" :eltable="DynamicTableFourB"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTableTitle="Table S4b" figcaptionBody="scientific" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/reading/trends'" :eltable="DynamicChartTablePlaceholder"
+                    <ChartTableNotab v-if="this.whichSection == '/reading/trends'" :eltable="DynamicTableFourB"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTableTitle="Table R4b" figcaptionBody="reading" figureClassTable="table-1" />
                 </div>
@@ -80,15 +80,15 @@
 
                 <!-- Figure/Table Component 5 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/trends'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="DynamicNotesOne"
+                    :eltable="DynamicTableFive" :elnote="DynamicNotesOne"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M5" figcaptionTableTitle="Table M5"
                     figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/trends'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="DynamicNotesOne"
+                    :eltable="DynamicTableFive" :elnote="DynamicNotesOne"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure S5" figcaptionTableTitle="Table S5"
                     figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/trends'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="DynamicNotesOne"
+                    :eltable="DynamicTableFive" :elnote="DynamicNotesOne"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure R5" figcaptionTableTitle="Table R5"
                     figcaptionBody="reading" />
                 <!-- end Figure/Table Component 5 -->
@@ -113,6 +113,10 @@ import ChartTableTab from '../navigation/chart-table-tab.vue'
 import ChartTableNotab from '../navigation/chart-table-notab.vue'
 import ChartTablePlaceholder from '../charts/chart-table-placeholder.vue'
 
+import TableFourA from '../tables/table-4a.vue'
+import TableFourB from '../tables/table-4b.vue'
+import TableFive from '../tables/table-5.vue'
+
 export default {
     name: 'accordion-trends-student-achievement',
     components: {
@@ -124,6 +128,10 @@ export default {
         ChartTableTab,
         ChartTableNotab,
         ChartTablePlaceholder,
+        TableFourA,
+        TableFourB,
+        TableFive,
+
     },
     data() {
         return {
@@ -137,6 +145,9 @@ export default {
             NotesComponent: NotesSignificantlyDifferentTwo,
             DynamicFigCaption: FigCaption,
             DynamicChartTablePlaceholder: ChartTablePlaceholder,
+            DynamicTableFourA: TableFourA,
+            DynamicTableFourB: TableFourB,
+            DynamicTableFive: TableFive,
         }
     },
     methods: {
@@ -160,6 +171,10 @@ export default {
             subScale = 'PVSCIE'
             this.currentSection = 'science'
         }
+
+        DataService.createTable4A(subScale);
+        DataService.createTable4B(subScale);
+        DataService.createTable5(subScale);
 
         //DataService.createChartNine(subScale);
         //DataService.createChartM9(subScale);

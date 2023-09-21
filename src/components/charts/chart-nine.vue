@@ -1,5 +1,6 @@
 <template>
-    <div id="Chart-M7">
+    <div id="Chart-9">
+        <div>chart nine here</div>
       <component :is="currentView"></component>
     </div>
       
@@ -9,14 +10,14 @@
   import HighChartLollipop from './high-chart-lollipop.vue'
   
   export default {
-      name: 'Chart-M7',
+      name: 'Chart-9',
       data () {
       return {
-        currentView: 'chart7'
+        currentView: 'chart9'
       }
     },
     components: {
-      chart7: HighChartLollipop,
+      chart9: HighChartLollipop,
     }
   }
   </script>

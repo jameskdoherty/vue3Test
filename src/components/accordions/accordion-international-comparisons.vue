@@ -18,15 +18,15 @@
                     <li>molestiae error perferendis minus tempore voluptate quaerat mollitia</li>
                     <li>Laboriosam omnis architecto illum a quos itaque veniam autem, nam</li>
                 </ul>
-                <!-- Figure/Table Component 1 -->
+                <!-- Chart/Table Component 1 -->
 
                 <ChartTableNotab v-if="this.whichSection == '/mathematics/international-comparisons'"
-                        :eltable="DynamicNotesOne" :elnote="DynamicNotesOne"
+                        :eltable="DynamicTableOne" :elnote="DynamicNotesOne"
                         :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table M1" figcaptionBody="mathematics" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/science/international-comparisons'" :eltable="DynamicChartTablePlaceholder"
+                    <ChartTableNotab v-if="this.whichSection == '/science/international-comparisons'" :eltable="DynamicTableOne"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTableTitle="Table S1" figcaptionBody="scientific" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/reading/international-comparisons'" :eltable="DynamicChartTablePlaceholder"
+                    <ChartTableNotab v-if="this.whichSection == '/reading/international-comparisons'" :eltable="DynamicTableOne"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTableTitle="Table R1" figcaptionBody="reading" figureClassTable="table-1" />
             </div>
@@ -49,18 +49,17 @@
                     <li>molestiae error perferendis minus tempore voluptate quaerat mollitia</li>
                     <li>Laboriosam omnis architecto illum a quos itaque veniam autem, nam</li>
                 </ul>
-                <!-- Figure/Table Component 2 -->
+                <!-- Chart/Table Component 2 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/international-comparisons'"
-                    :elchart="DynamicChartTablePlaceholder" :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder"
+                    :elchart="DynamicChartTablePlaceholder" :eltable="DynamicTableTwo" :elnote="DynamicChartTablePlaceholder"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M2" figcaptionTableTitle="Table M2"
                     figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/international-comparisons'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
+                    :eltable="DynamicTableTwo" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
                     figcaptionTitle="Figure S2" figcaptionTableTitle="Table S2" figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/international-comparisons'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
+                    :eltable="DynamicTableTwo" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
                     figcaptionTitle="Figure R2" figcaptionTableTitle="Table R2" figcaptionBody="reading" />
-                <!-- end Figure/Table Component 2 -->
             </div>
         </div>
         <div class="panel" id="panel-s1-m3">
@@ -78,18 +77,17 @@
                     <li>molestiae error perferendis minus tempore voluptate quaerat mollitia</li>
                     <li>Laboriosam omnis architecto illum a quos itaque veniam autem, nam</li>
                 </ul>
-                <!-- Figure/Table Component 3 -->
+                <!-- Chart/Table Component 3 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/international-comparisons'"
-                    :elchart="DynamicChartTablePlaceholder" :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder"
+                    :elchart="DynamicChartTablePlaceholder" :eltable="DynamicTableThree" :elnote="DynamicChartTablePlaceholder"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M3" figcaptionTableTitle="Table M3"
                     figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/international-comparisons'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
+                    :eltable="DynamicTableThree" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
                     figcaptionTitle="Figure S3" figcaptionTableTitle="Table S3" figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/international-comparisons'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
+                    :eltable="DynamicTableThree" :elnote="DynamicChartTablePlaceholder" :elcaptionfig="DynamicFigCaption"
                     figcaptionTitle="Figure R3" figcaptionTableTitle="Table R3" figcaptionBody="reading" />
-                <!-- end Figure/Table Component 3 -->
                
                
             </div>
@@ -111,6 +109,10 @@ import ChartTableTab from '../navigation/chart-table-tab.vue'
 import ChartTableNotab from '../navigation/chart-table-notab.vue'
 import ChartTablePlaceholder from '../charts/chart-table-placeholder.vue'
 
+import TableOne from '../tables/table-one.vue'
+import TableTwo from '../tables/table-two.vue'
+import TableThree from '../tables/table-three.vue'
+
 export default {
     name: 'accordion-international-comparisons',
     components: {
@@ -122,6 +124,9 @@ export default {
         ChartTableTab,
         ChartTableNotab,
         ChartTablePlaceholder,
+        TableOne,
+        TableTwo,
+        TableThree,
     },
     data() {
         return {
@@ -135,6 +140,9 @@ export default {
             NotesComponent: NotesSignificantlyDifferentTwo,
             DynamicFigCaption: FigCaption,
             DynamicChartTablePlaceholder: ChartTablePlaceholder,
+            DynamicTableOne: TableOne,
+            DynamicTableTwo: TableTwo,
+            DynamicTableThree: TableThree,
         }
     },
     methods: {
@@ -159,7 +167,9 @@ export default {
             this.currentSection = 'science'
         }
 
-        //DataService.createChartNine(subScale);
+        DataService.createTable1(subScale);
+        //DataService.createTable2(subScale);
+        DataService.createTable3(subScale);
         //DataService.createChartM9(subScale);
         //DataService.createTableM7();
         //DataService.createChartM7();

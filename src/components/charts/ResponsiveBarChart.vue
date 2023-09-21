@@ -39,6 +39,8 @@ export default {
       // whenever any dependencies (like data, resizeState) change, call this!
       watch(() => {
 
+        console.log('RESPONSIVE BAR props.data',props.data)
+
         const { width, height } = resizeState.dimensions;
 
         svg.select(".bars").remove();

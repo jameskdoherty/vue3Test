@@ -1,11 +1,35 @@
 <template>
-   <div class="table-classic__container">
-        <button v-on:click="addCount">Add count to child</button>
-        <button v-on:click="subtractCount">subtractCount count to child</button>
-        <child-component @interface="getChildInterface" ></child-component>
+    <div class="table-classic__container">
+        <!-- <button v-on:click="addCount">Add count to child</button>
+         <button v-on:click="subtractCount">subtractCount count to child</button> -->
+        <table class="tbl6" tabindex="0">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th><span>Education system</span> <span><i class="fa fa-chevron-down"></i><i
+                                class="fa fa-chevron-up"></i></span></th>
+                    <th><span>Male score</span> <span><i class="fa fa-chevron-down"></i><i
+                                class="fa fa-chevron-up"></i></span></th>
+                    <th><span>Female score</span> <span><i class="fa fa-chevron-down"></i><i
+                                class="fa fa-chevron-up"></i></span></th>
+                    <th><span>Score difference between<br>male and female students</span>
+                        <span><i class="fa fa-chevron-down"></i><i class="fa fa-chevron-up"></i></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <child-component @interface="getChildInterface"></child-component>
+
+            </tbody>
+        </table>
     </div>
 </template>
-
+ 
 <script>
 import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../services/api/data-service';
@@ -20,7 +44,7 @@ import table8_data from '../../assets/testdata/table8_data.json';
 
 
 export default {
-    name: 'Table-M8',
+    name: 'Table-Six',
     components: {
         ChildComponent
     },
@@ -29,14 +53,14 @@ export default {
         subtractCount: () => { },
         setKeyToSortBy: () => { },
         sortedProperties: () => { },
-        addData: () => {},
-        addHeaders: () => {},
+        addData: () => { },
+        addHeaders: () => { },
     },
     data() {
         return {
             data: [{ 'country': 'OECD average' }, { 'country': 'United States' }],
-            tableData:[],
-            tableHeaders:[],
+            tableData: [],
+            tableHeaders: [],
             rawData: [],
             figureControls: {}
 
@@ -53,12 +77,12 @@ export default {
         addCount() {
             this.$options.childInterface.addCount();
         },
-        addData(data){
-            console.log('add data',data)
+        addData(data) {
+            console.log('add data', data)
             this.$options.childInterface.addData(data)
         },
-        addHeaders(headers){
-            console.log('add headers',headers)
+        addHeaders(headers) {
+            console.log('add headers', headers)
             this.$options.childInterface.addHeaders(headers)
         },
         subtractCount() {
@@ -82,7 +106,7 @@ export default {
 
                 let data = [];
                 let theHeaders = ['group', 'oecd', 'unitedstates', 'significant'];
-               
+
 
                 data[0] = { 'country': 'OECD average', 'countryId': 'IN3' };
                 data[1] = { 'country': 'United States', 'countryId': 'USA' };
@@ -107,7 +131,7 @@ export default {
                     }
                 });
 
-                console.log('tablem8 finalmappedata',finalMappedData)
+                console.log('tablem8 finalmappedata', finalMappedData)
                 // finalMappedData.forEach((element, index, array) => {
 
                 //     let keys = Object.keys(array[index]);
@@ -123,48 +147,7 @@ export default {
                 this.addData(this.tableData)
                 this.addHeaders(this.tableHeaders)
 
-                //  var mapFunction = function (element) {
-                //     console.log('table 8', element)
-                    
-                //     var ret = {}
-                //     ret.headers = [element.country]
-                //     ret.values = [element['Bottom quarter'], element['Second quarter'], element['Third quarter'], element['Top quarter'], element['All students']];
-                //     return ret;
-                // }
 
-                // if (allResults) {
-                //     console.log('8 allresults', allResults);
-
-                // } else {
-                //     this.rawData = M8chart_data;
-                //     console.log('table8 raw', this.rawData['Array'])
-                // }
-
-                // for (var i = 0; i < this.allResults.length; i++) {
-                //     var group = this.allResults[i].group
-                //     console.log('group', group)
-                //     this.data[0][group] = this.allResults[i].oecd;
-                //     if (i < 3) {
-                //         this.data[0][group] += '*';
-                //     }
-                //     this.data[1][group] = this.allResults[i].unitedstates;
-                // }
-
-                // this.data[0]['All students'] = '490*';
-                // this.data[1]['All students'] = '505';
-
-               
-
-                // console.log('mapFunction', mapFunction)
-
-
-
-                // figureControls['tableM8'] = new FigureControl(data, mapFunction, [new PisaTable3('table.tblm8')]);
-                // figureControls['tableM8'].sortFilterStatus.keyToSortBy = '';
-                // figureControls['tableM8'].sortFilterStatus.isOECDFirst = false;
-                // figureControls['tableM8'].sortFilterStatus.isOECDOnly = false;
-                // figureControls['tableM8'].updateFigures();
-                //console.log('figureControls',figureControls)
 
 
             })
@@ -179,7 +162,7 @@ export default {
     },
     mounted() {
         this.setKeyToSortBy('gap');
-       
+
 
 
     }
@@ -187,5 +170,5 @@ export default {
 
 }
 </script>
-
+ 
 <style></style>

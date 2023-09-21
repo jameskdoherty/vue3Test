@@ -25,6 +25,8 @@
     name: "ResponsiveLineChart",
     props: ["data"],
     setup(props) {
+
+      console.log('responsive line',props)
       // create ref to pass to D3 for DOM manipulation
       const svgRef = ref(null);
   

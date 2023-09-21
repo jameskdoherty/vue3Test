@@ -18,18 +18,18 @@
                     <li>molestiae error perferendis minus tempore voluptate quaerat mollitia</li>
                     <li>Laboriosam omnis architecto illum a quos itaque veniam autem, nam</li>
                 </ul>
-                <!-- Figure/Table Component 6 -->
+                <!-- Chart/Table Component 6 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'"
-                    :elchart="DynamicChartTablePlaceholder" :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent"
+                    :elchart="DynamicChartSix" :eltable="DynamicTableSix" :elnote="NotesComponent"
                     :elcaptionfig="DynamicFigCaptionSix" figcaptionTitle="Figure M6" figcaptionTableTitle="Table M6"
                     figcaptionBody="mathematics" />
-                <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
+                <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartSix"
+                    :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
                     figcaptionTitle="Figure S6" figcaptionTableTitle="Table S6" figcaptionBody="scientific" />
-                <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartTablePlaceholder"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
+                <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartSix"
+                    :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
                     figcaptionTitle="Figure R6" figcaptionTableTitle="Table R6" figcaptionBody="reading" />
-                <!-- end Figure/Table Component 6 -->
+                <!-- end Chart/Table Component 6 -->
             </div>
         </div>
         <div class="panel" id="panel-s3-m2">
@@ -54,17 +54,16 @@
                     quis vel enim modi eius veritatis culpa eos. Lorem ipsum dolor sit amet consectetur
                     adipisicing elit. Natus rem debitis enim doloribus quibusdam labore corporis eum sequi
                     maxime. Eius alias ullam unde corrupti error vero fugit ipsam? Voluptates, iure!</p>
-                <!-- Figure/Table Component 7 -->
+                <!-- Chart/Table Component 7 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartSeven"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    :eltable="DynamicTableSeven" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
                     figcaptionTitle="Figure M7" figcaptionTableTitle="Table M7" figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartSeven"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    :eltable="DynamicTableSeven" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
                     figcaptionTitle="Figure S7" figcaptionTableTitle="Table S7" figcaptionBody="scientific" />
-                    <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartSeven"
-                    :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartSeven"
+                    :eltable="DynamicTableSeven" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
                     figcaptionTitle="Figure R7" figcaptionTableTitle="Table R7" figcaptionBody="reading" />
-                <!-- end Figure/Table Component 7 -->
             </div>
         </div>
         <div class="panel" id="panel-s3-m3">
@@ -93,33 +92,30 @@
                     saepe facilis beatae sit magni fuga, neque animi
                     necessitatibus! Sequi reprehenderit aut in iste optio sapiente aliquam asperiores
                     mollitia sed similique.</p>
-                <!-- Figure/Table Component 8 -->
+                <!-- Chart/Table Component 8 -->
                 <div :class="{ invisible: !isStatusActive }">8
                     <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure M8" figcaptionTableTitle="Table M8" figcaptionBody="mathematics" />
                     <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure S8" figcaptionTableTitle="Table S8" figcaptionBody="scientific" />
-                        <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                    <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartEight"
+                        :eltable="DynamicTableEight" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure R8" figcaptionTableTitle="Table R8" figcaptionBody="reading" />
                 </div>
-                <!-- end Figure/Table Component 8 -->
-                <!-- Figure/Table Component 9 -->
+                <!-- Chart/Table Component 9 -->
                 <div :class="{ invisible: isStatusActive }">9
                     <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableNine" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure M9" figcaptionTableTitle="Table M9" figcaptionBody="mathematics" />
                     <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicChartTablePlaceholder" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableNine" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure S9" figcaptionTableTitle="Table S9" figcaptionBody="scientific" />
-                    <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartTablePlaceholder"
-                        :eltable="DynamicChartTablePlaceholder" :elnote="DynamicChartTablePlaceholder"
-                        :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure R9" figcaptionTableTitle="Table R9"
-                        figcaptionBody="reading" />
+                    <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartNine"
+                        :eltable="DynamicTableNine" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
+                        figcaptionTitle="Figure R9" figcaptionTableTitle="Table R9" figcaptionBody="reading" />
                 </div>
-                <!-- end Figure/Table Component 9 -->
             </div>
         </div>
     </div>
@@ -134,6 +130,8 @@ import NotesSignificantlyDifferentThree from '../notes/notes-significantly-diffe
 import ChartM7 from '../charts/chart-m7.vue'
 import ChartM8 from '../charts/chart-m8.vue'
 import ChartM9 from '../charts/chart-m9.vue'
+import ChartNine from '../charts/chart-nine.vue'
+import ChartSix from '../charts/chart-six.vue'
 import ChartTableView from '../chart-table-view.vue'
 import ChartTableTab from '../navigation/chart-table-tab.vue'
 import FigCaption from '../notes/fig-caption.vue'
@@ -141,8 +139,10 @@ import FigCaptionSix from '../notes/fig-caption-six.vue'
 import FigCaptionSeven from '../notes/fig-caption-seven.vue'
 import ChartTablePlaceholder from '../charts/chart-table-placeholder.vue'
 // import TableM1 from '../tables/table-m1.vue'
-// import TableM8 from '../tables/table-m8.vue'
-// import TableM7 from '../tables/table-m7.vue'
+import TableM8 from '../tables/table-m8.vue'
+import TableM7 from '../tables/table-m7.vue'
+import TableM9 from '../tables/table-m9.vue'
+import TableSix from '../tables/table-six.vue'
 
 
 import { DataService } from '../../services/api/data-service';
@@ -158,12 +158,16 @@ export default {
         ChartM7,
         ChartM8,
         ChartM9,
+        ChartNine,
+        ChartSix,
         ChartTableView,
         ChartTableTab,
         ChartTablePlaceholder,
         // TableM1,
-        // TableM8,
-        // TableM7
+        TableM8,
+        TableM7,
+        TableSix,
+        TableM9,
     },
     data() {
         return {
@@ -174,12 +178,17 @@ export default {
             DynamicChartEight: ChartM8,
             DynamicNotesOne: NotesOne,
             DynamicChartSeven: ChartM7,
+            DynamicChartSix: ChartSix,
+            DynamicTableSix: TableSix,
+            DynamicTableSeven: TableM7,
+            DynamicTableEight: TableM8,
+            DynamicTableNine: TableM9,
             YetOtherDynamicComponent: NotesSignificantlyDifferentOne,
             NotesComponent: NotesSignificantlyDifferentTwo,
             DynamicFigCaption: FigCaption,
             DynamicFigCaptionSix: FigCaptionSix,
             DynamicFigCaptionSeven: FigCaptionSeven,
-            DynamicChartNine: ChartM9,
+            DynamicChartNine: ChartNine,
             DynamicChartTablePlaceholder: ChartTablePlaceholder,
         }
     },
@@ -208,7 +217,10 @@ export default {
 
         DataService.createChartNine(subScale);
         //DataService.createChartM9(subScale);
-        //DataService.createTableM7();
+        DataService.createTable7(subScale);
+        DataService.createTable6(subScale);
+        DataService.createTable8(subScale);
+        DataService.createTable9(subScale);
         DataService.createChartM7();
         //DataService.createChartM8();
         DataService.createChartEight(subScale);

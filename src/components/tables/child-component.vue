@@ -25,24 +25,31 @@
 <script>
 
 
+// import M7StaticTotal from '../../assets/testdata/M7StaticTotal.json';
 
 export default {
     name: 'ChildComponent',
+    created() {
+
+        // const table8data = ref(table8_data.result)
+        // console.log('child component table8 data',table8data.value)
+       
+        // this.properties = table8data
+
+    //    table8data = M7StaticTotal.result
+    //    console.log('child component table8 data',table8data)
+
+    },
     mounted() {
+
+
         // Emits on mount
         this.emitInterface();
     },
     data() {
         return {
-            headers: ['race', 'mnScore', 'gap', 'sig'],
-            properties: [
-                { 'race': 'U.S. average', 'mnScore': 478, 'gap': null, 'sig': 'NA' },
-                { 'race': 'White', 'mnScore': 503, 'gap': 25, 'sig': 'HIGHER' },
-                { 'race': 'Black', 'mnScore': 419, 'gap': -59, 'sig': 'LOWER' },
-                { 'race': 'Hispanic', 'mnScore': 452, 'gap': -27, 'sig': 'LOWER' },
-                { 'race': 'Asian', 'mnScore': 539, 'gap': 61, 'sig': 'HIGHER' },
-                { 'race': 'Two or More Races', 'mnScore': 474, 'gap': -4, 'sig': 'LOWER' }
-            ],
+            headers: [],
+            properties: [],
             data: [],
             rawData: [],
             figureControls: {},
@@ -59,9 +66,6 @@ export default {
             const type = (this.sortBy === 'race' || this.sortBy === 'sig') ? 'String' : 'Number' 
             const direction = this.sortDirection
             const head = this.sortBy
-
-            console.log('head', head)
-            console.log('type to sort by', type)
             // here is the magic
             return this.properties.sort(this.sortMethods(type, head, direction))
         }
@@ -69,10 +73,12 @@ export default {
     methods: {
 
         sort(head) {
+            console.log(head)
             this.sortBy = head
             this.sortDirection *= -1
         },
         sortMethods(type, head, direction) {
+            console.log(head)
             switch (type) {
                 case 'String': {
                     return direction === 1 ?
@@ -99,6 +105,16 @@ export default {
             this.count--;
         },
 
+        addData(data){
+            console.log('child data', data);
+            this.properties = data
+        },
+
+        addHeaders(headers){
+            console.log('child headers',headers)
+            this.headers = headers
+        },
+
         setKeyToSortBy(key) {
 
             this.keyToSortBy = 'gap';
@@ -108,14 +124,13 @@ export default {
 
             if (key == this.keyToSortBy) {
                 this.sortDirection = -this.sortDirection;
-                console.log(this.sortDirection);
                 return this.sortDirection
             } else {
                 this.keyToSortBy = key;
-                console.log('child', this.keyToSortBy)
                 this.sortDirection = (this.keyToSortBy == 'country') ? 1 : -1
             }
 
+           
 
         },
 
@@ -154,7 +169,9 @@ export default {
                 addCount: () => this.addCount(),
                 subtractCount: () => this.subtractCount(),
                 setKeyToSortBy: (key) => this.setKeyToSortBy(key),
-                //sortedProperties: () => this.sortedProperties()
+                sortedProperties: () => this.sortedProperties(),
+                addData: (data) => this.addData(data),
+                addHeaders: (headers) => this.addHeaders(headers)
             });
         }
 

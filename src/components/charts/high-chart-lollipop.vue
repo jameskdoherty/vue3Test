@@ -47,7 +47,7 @@ export default {
               //var mkr1 = $(_svg).find('.highcharts-markers.highcharts-series-0').children()
 
               //console.log('mkr1',mkr1)
-              console.log('chart 7 svg', _svg)
+              //console.log('chart 7 svg', _svg)
               //let cc = r.group.element.querySelectorAll('path')
 
               var mk3 = _svg.querySelectorAll('.highcharts-markers.highcharts-series-0')
