@@ -33,13 +33,13 @@
 
                 <!-- Figure/Table Component 4a -->
                 <div :class="{ invisible: !isStatusActive }">4a
-                    <ChartTableNotab v-if="this.whichSection == '/mathematics/trends'" :eltable="DynamicTableFourA"
+                    <ChartTableNotab v-if="this.whichSection == '/mathematics/trends'" :eltable="DynamicNotesOne"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                         figcaptionTableTitle="Table M4a" figcaptionBody="mathematics" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/science/trends'" :eltable="DynamicTableFourA"
+                    <ChartTableNotab v-if="this.whichSection == '/science/trends'" :eltable="DynamicNotesOne"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table S4a"
                         figcaptionBody="scientific" figureClassTable="table-1" />
-                    <ChartTableNotab v-if="this.whichSection == '/reading/trends'" :eltable="DynamicTableFourA"
+                    <ChartTableNotab v-if="this.whichSection == '/reading/trends'" :eltable="DynamicNotesOne"
                         :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table R4a"
                         figcaptionBody="reading" figureClassTable="table-1" />
                 </div>

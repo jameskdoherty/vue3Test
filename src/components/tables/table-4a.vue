@@ -22,15 +22,17 @@
                 <col>
                 <col>
             </colgroup>
+
+
             <thead>
                 <tr>
-                    <th><span class="4a-alpha">Education system <i class="fa fa-chevron-down"></i><i
+                    <th><span class="alpha">Education system <i class="fa fa-chevron-down"></i><i
                                 class="fa fa-chevron-up"></i></span></th>
-                    <th><span class="4a-score1">2003 score <i class="fa fa-chevron-down"></i><i
+                    <th><span class="score1">2003 score <i class="fa fa-chevron-down"></i><i
                                 class="fa fa-chevron-up"></i></span></th>
-                    <th><span class="4a-score2">2022 score <i class="fa fa-chevron-down"></i><i
+                    <th><span class="score2">2022 score <i class="fa fa-chevron-down"></i><i
                                 class="fa fa-chevron-up"></i></span></th>
-                    <th><span class="4a-scorediff">Score difference <i class="fa fa-chevron-down"></i><i
+                    <th><span class="scorediff">Score difference <i class="fa fa-chevron-down"></i><i
                                 class="fa fa-chevron-up"></i></span></th>
                 </tr>
             </thead>
@@ -210,26 +212,21 @@ export default {
 
                 class PisaTable {
                     constructor(tableSelector) {
-                        console.log('tableSelector', tableSelector)
                         this.tBody = document.querySelector('tbody');
                         this.rowHtmlTemplate = this.tBody.querySelector('tr');
                         this.tBody.removeChild(this.tBody.querySelectorAll('tr')[0])
 
-                        //var wrapper = document.createElement('div');
-                        // wrapper.innerHTML = '<tr>'+ this.tBody.querySelector('tr') +'</tr>';
-                        //.specialdiv = wrapper.firstChild;
-                        //console.log('special div',this.specialdiv)
-
-                        // const list = document.getElementById("list");
-                        // console.log(list.lastElementChild.textContent);
-
+                        //console.log('rowhtml',this.rowHtmlTemplate.innerHTML)
                     }
 
                     addRow(dataRow) {
-                        this.tBody.append(this.rowHtmlTemplate);
-                        
+
+                        this.wrapper = document.createElement('tr');
+                        //var thePreviousRow = this.tBody.querySelector('tr');
+                        this.wrapper.innerHTML = this.rowHtmlTemplate.innerHTML;
+                        console.log('add row wrapper innerhtml', this.wrapper.innerHTML)
+                        this.tBody.append(this.wrapper);
                         var lastRow = this.tBody.lastChild;
-                        console.log('real', lastRow)
 
                         if (dataRow.country == 'United States') {
                             lastRow.querySelectorAll('th')[0].innerHTML = '<span>' + dataRow.country + '</span>'
@@ -254,24 +251,25 @@ export default {
                         } else if (dataRow.decorators[2] && dataRow.decorators[2].toLowerCase() == 'equal') {
                             content = '<span class="sig-up" role="img" aria-label="no significant difference from US average score" title="no significant difference from US average score"><i class="fa fa-diamond"></i></span>';
                         }
+                        console.log('add content', content)
                         var gap = Math.round(dataRow.values[2]);
                         if (gap == 0) gap = '#';
-                        lastRow.querySelectorAll('td')[0].innerHTML = gap + content
+                        lastRow.querySelectorAll('td')[2].innerHTML = gap + content
                         if (dataRow.country == 'United States') {
                             lastRow.classList.add('usa');
                         }
                     }
 
                     clearTable() {
-                        var alltBodyTR = this.tBody.querySelectorAll('tr')
-                        console.log(alltBodyTR)
-                        //this.tBody.html('');
-                        //this.alltBodyTR = [].slice.call(this.alltBodyTR);
-                        alltBodyTR.forEach((element, index, array) => {
-                            // let mx = $('#area-left, #area-right').find('dl').remove()
-                            console.log('remove', element)
-                            //element.parentNode.removeChild(element);
+
+                        console.log('clear table')
+                        document.querySelectorAll('tbody > tr').forEach((el) => {
+                            //console.log('parent', el.parentElement);
+                            var parent = el.parentElement
+                            // el.innerHTML = '<th class="country">commodi distinctio</th><td class="">422</td><td>21</td><td>332</td>'
+                            parent.removeChild(el)
                         });
+
                     }
 
                     generate(data) {
@@ -284,8 +282,8 @@ export default {
 
                 class FigureControl {
                     constructor(data, mapFunction, figures) {
-                        console.log('figurecontrol',data)
-                        console.log('figures',figures)
+                        console.log('figurecontrol', data)
+                        console.log('figures', figures)
                         this.data = data;
                         this.mapFunction = mapFunction;
                         this.figures = figures;
@@ -298,9 +296,10 @@ export default {
                         var data = this.getSortedFilteredData()
                         console.log('updatefigu', data)
                         for (var i = 0; i < this.figures.length; i++) {
-                            console.log('update', i)
+                            // console.log('update', i)
+
                             // $(this.figures[i].selector).html('')
-                            //console.log('update figures',this.figures[i].selector)
+                            console.log('remove these figures', this.figures[i].selector)
                             this.figures[i].generate(data[i])
                         }
                     }
@@ -336,6 +335,116 @@ export default {
                 figureControls['table4a'].sortFilterStatus.isOECDFirst = false;
                 figureControls['table4a'].updateFigures();
 
+                var els = document.querySelectorAll('.all-education-systems')
+                console.log(els)
+
+                document.querySelectorAll('.all-education-systems').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.isOECDOnly = false;
+                    figureControls['table4a'].updateFigures();
+                }));
+
+                document.querySelectorAll('input.oecd-only').forEach((el) => el.addEventListener("click", function () {
+                    console.log('click')
+                    figureControls['table4a'].sortFilterStatus.isOECDOnly = true;
+                    figureControls['table4a'].updateFigures();
+                }));
+
+               // var scorediff = document.querySelectorAll('span.scorediff > i.fa.fa-chevron-down')
+                //scorediff.classList.add('active')
+                document.querySelectorAll('span > i.fa.fa-chevron-down').forEach((el, index, array) => {
+                    for (var i = 0; i < array.length; i++) {
+                        console.log('chevron down',i)
+                        array[i].classList.add('active');
+                    }
+
+                });
+
+                //$('table.tbl4a .4a-scorediff .fa-chevron-down').addClass('active');
+
+                document.querySelectorAll('span.alpha > i.fa').forEach((el, index, array) => el.addEventListener("click", function () {
+                    for (var i = 0; i < array.length; i++) {
+                        console.log('clicked this',i)
+                        array[i].classList.remove('active');
+                        if (array[i] == el) {
+                            array[i].classList.add('active');
+                        }
+                    }
+                }));
+
+                document.querySelectorAll('span.score1 > i.fa').forEach((el, index, array) => el.addEventListener("click", function () {
+                    for (var i = 0; i < array.length; i++) {
+                        console.log('clicked this',i)
+                        array[i].classList.remove('active');
+                        if (array[i] == el) {
+                            array[i].classList.add('active');
+                        }
+                    }
+                }));
+
+                document.querySelectorAll('span.score2 > i.fa').forEach((el, index, array) => el.addEventListener("click", function () {
+                    for (var i = 0; i < array.length; i++) {
+                        console.log('clicked this',i)
+                        array[i].classList.remove('active');
+                        if (array[i] == el) {
+                            array[i].classList.add('active');
+                        }
+                    }
+                }));
+
+                document.querySelectorAll('span.scorediff > i.fa').forEach((el, index, array) => el.addEventListener("click", function () {
+                    for (var i = 0; i < array.length; i++) {
+                        console.log('clicked this',i)
+                        array[i].classList.remove('active');
+                        if (array[i] == el) {
+                            array[i].classList.add('active');
+                        }
+                    }
+                }));
+
+                document.querySelectorAll('span.alpha > i.fa.fa-chevron-down').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('country');
+                    figureControls['table4a'].sortFilterStatus.sortDirection = 1;
+                    figureControls['table4a'].updateFigures();
+                }));
+
+                document.querySelectorAll('span.alpha > i.fa.fa-chevron-up').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('country');
+                    figureControls['table4a'].sortFilterStatus.sortDirection = -1;
+                    figureControls['table4a'].updateFigures();
+                }));
+
+                document.querySelectorAll('span.score1 > i.fa.fa-chevron-down').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + _firstYear);
+                    figureControls['table4a'].sortFilterStatus.sortDirection = -1;
+                    figureControls['table4a'].updateFigures();
+                }));
+
+                document.querySelectorAll('span.score1 > i.fa.fa-chevron-up').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + _firstYear);
+                    figureControls['table4a'].sortFilterStatus.sortDirection = 1;
+                    figureControls['table4a'].updateFigures();
+                }));
+                document.querySelectorAll('span.score2 > i.fa.fa-chevron-down').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + _lastYear);
+                    figureControls['table4a'].sortFilterStatus.sortDirection = -1;
+                    figureControls['table4a'].updateFigures();
+                }));
+                document.querySelectorAll('span.score2 > i.fa.fa-chevron-up').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + _lastYear);
+                    figureControls['table4a'].sortFilterStatus.sortDirection = 1;
+                    figureControls['table4a'].updateFigures();
+                }));
+                document.querySelectorAll('span.scorediff > i.fa.fa-chevron-down').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('gap');
+                    figureControls['table4a'].sortFilterStatus.sortDirection = -1;
+                    figureControls['table4a'].updateFigures();
+                }));
+                document.querySelectorAll('span.scorediff > i.fa.fa-chevron-up').forEach((el) => el.addEventListener("click", function () {
+                    figureControls['table4a'].sortFilterStatus.setKeyToSortBy('gap');
+                    figureControls['table4a'].sortFilterStatus.sortDirection = 1;
+                    figureControls['table4a'].updateFigures();
+                }));
+
 
 
 
@@ -356,69 +465,6 @@ export default {
         this.subscription.unsubscribe();
     },
     mounted() {
-
-        // figureControls['table4a'].sortFilterStatus.isOECDOnly = false;
-        // figureControls['table4a'].sortFilterStatus.isOECDFirst = false;
-        // figureControls['table4a'].updateFigures();
-        // $('figure.table-4a input.all-education-systems').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.isOECDOnly = false;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('figure.table-4a input.oecd-only').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.isOECDOnly = true;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-scorediff .fa-chevron-down').addClass('active');
-        // $('table.tbl4a i').on('click', function () {
-        // 	$('table.tbl4a i.active').removeClass('active');
-        // 	$(this).addClass('active');
-        // })
-        // $('table.tbl4a .4a-alpha .fa-chevron-down').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('country');
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = 1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-alpha .fa-chevron-up').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('country');
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = -1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-score1 .fa-chevron-down').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + pisaApp.firstYear);
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = -1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-score1 .fa-chevron-up').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + pisaApp.firstYear);
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = 1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-score2 .fa-chevron-down').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + pisaApp.lastYear);
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = -1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-score2 .fa-chevron-up').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('mn-' + pisaApp.lastYear);
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = 1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-scorediff .fa-chevron-down').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('gap');
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = -1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-        // $('table.tbl4a .4a-scorediff .fa-chevron-up').on('click', function () {
-        // 	figureControls['table4a'].sortFilterStatus.setKeyToSortBy('gap');
-        // 	figureControls['table4a'].sortFilterStatus.sortDirection = 1;
-        // 	figureControls['table4a'].updateFigures();
-        // })
-
-
-
-
-
-
     }
 }
 </script>

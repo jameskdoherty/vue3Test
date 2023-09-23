@@ -1199,5 +1199,22 @@ select {
     border: 2px solid var(--clr-dark);
 }
 
+.main-content span i.fa:before {
+  background-color: var(--clr-showy);
+  border-radius: 0.3em;
+  padding: 0.2em;
+}
+.main-content span i.fa.active::before {
+  background-color: var(--clr-pisa-03);
+}
+.main-content span i.fa.active {
+  color: var(--clr-neutral)
+}
+.main-content span i.fa {
+  font-size: 1.1rem;
+}
+
+
+
 
 </style>
