@@ -167,14 +167,11 @@ export default {
             this.currentSection = 'science'
         }
 
-        DataService.createTable1(subScale);
-        //DataService.createTable2(subScale);
-        DataService.createTable3(subScale);
-        //DataService.createChartM9(subScale);
-        //DataService.createTableM7();
-        //DataService.createChartM7();
-        //DataService.createChartM8();
-        //DataService.createChartEight(subScale);
+       // DataService.createTable1(subScale);
+        DataService.createTable2(subScale);
+       // DataService.createTable3(subScale);
+
+       
 
     },
     mounted() {

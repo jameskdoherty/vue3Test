@@ -4,6 +4,7 @@ import { fromFetch } from 'rxjs/fetch';
 import { catchError, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import chart9MathTotal from '../../assets/testdata/chart9MathTotal.json';
 import chart9Math from '../../assets/testdata/chart9Math.json';
+import { Suspense } from 'vue';
 
 
 const chartM7Subject = new Subject();
@@ -289,32 +290,9 @@ export const DataService = {
             return tableOneSubject.next(allResults)
         });
     },
-    createTable2: (subScale) => {
-        console.log("TCL: this.section", subScale);
-        fromFetch(   allCountriesWithoutUSA.map(function (element) {
-            return domain+`UseCache=true&type=sigacrossjuris&subject=RMS&cohort=1&subscale=${subScale}&variable=BMSCIE&jurisdiction=${element},USA&stattype=RP:RP&Year=2022&Program=PISA&collapse=BMSCIE:1-2-3-4-BelowLevel2,BMSCIE:8-9-FiveAndAbove`;
-        })).pipe(
-            switchMap(response => {
-                console.log('table2 ', response);
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    console.log('do something else')
-                }
-            }),
-            catchError(err => {
-                console.log(err);
-                return of({ error: true, message: err.message })
-            })
-        ).subscribe(result => {
-            let allResults = result.result
-            console.log("TCL: table2 allResults", allResults)
-            return tableTwoSubject.next(allResults)
-        });
-    },
     createTable3: (subScale) => {
         console.log("TCL: TABLE3 this.section", subScale);
-       
+
         forkJoin([
             fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=gaponpercentileacrossjuris&subject=RMS&cohort=1&subscale=PVMATH&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=PC:P1,PC:P9&Year=2022&Program=PISA`).pipe(
                 switchMap(response => {
@@ -349,7 +327,7 @@ export const DataService = {
     },
     createTable4A: (subScale) => {
         console.log("TCL: this.section", subScale);
-        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=${jurisdictionAUS_VNM}&stattype=MN:MN&Year=${firstYear},2022&Program=PISA` ).pipe(
+        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=${jurisdictionAUS_VNM}&stattype=MN:MN&Year=${firstYear},2022&Program=PISA`).pipe(
             switchMap(response => {
                 console.log('createTable4A ', response);
                 if (response.ok) {
@@ -409,6 +387,120 @@ export const DataService = {
             console.log("TCL: createTable5 allResults", allResults)
             return tableFiveSubject.next(allResults)
         });
+    },
+    createTable2: (subScale) => {
+        console.log("TCL: table2 this.section", subScale);
+        let callsArray = [];
+
+
+        allCountriesWithoutUSA.map(function (element) {
+            callsArray.push(`${domain}UseCache=true&type=sigacrossjuris&subject=RMS&cohort=1&subscale=${subScale}&variable=BMSCIE&jurisdiction=${element},USA&stattype=RP:RP&Year=2022&Program=PISA&collapse=BMSCIE:1-2-3-4-BelowLevel2,BMSCIE:8-9-FiveAndAbove`)
+        })
+
+        console.log('callsarray length', callsArray.length)
+
+        forkJoin([
+            fromFetch(callsArray[0]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[1]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[2]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[3]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[4]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[5]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[6]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[7]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[8]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[9]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[10]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[11]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                })),
+            fromFetch(callsArray[12]).pipe(
+                switchMap(response => {
+                    console.log('a table2', response);
+                    if (response.ok) {
+                        return response.json()
+                    }
+                }))
+
+        ]).subscribe(result => {
+            let tableResults = [];
+            result.forEach((element, index, array) => {
+                tableResults.push(element.result)
+            })
+            console.log("TCL: table 2 ", tableResults)
+            return tableTwoSubject.next(tableResults)
+        });
+
     },
 };
 
