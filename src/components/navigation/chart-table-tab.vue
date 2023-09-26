@@ -10,11 +10,11 @@
         <component :is="elchart"></component>
         <component :is="elnote"></component>
     </figure>
-    <figure class="table-classic table-m8" :class="{ invisible: !isHidden }">
+    <figure class="table-classic" :class="{ invisible: !isHidden }">
         <component :is="elcaptionfig" :figuretitle="figcaptionTableTitle" :figurebody="figcaptionBody"></component>
-        <div class="table-classic__container">
+        
             <component :is="eltable"></component>
-        </div>
+      
         <component :is="elnote"></component>
     </figure>
 </template>

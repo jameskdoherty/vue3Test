@@ -318,7 +318,7 @@ export const DataService = {
         forkJoin([
             fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=gaponpercentileacrossjuris&subject=RMS&cohort=1&subscale=PVMATH&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=PC:P1,PC:P9&Year=2022&Program=PISA`).pipe(
                 switchMap(response => {
-                    console.log('a table3', response);
+                    // console.log('a table3', response);
                     if (response.ok) {
                         return response.json()
                     } else {
@@ -329,7 +329,7 @@ export const DataService = {
             ),
             fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=data&subject=RMS&cohort=1&subscale=PVMATH&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=MN:MN&Year=2022&Program=PISA`).pipe(
                 switchMap(response => {
-                    console.log('b table3', response);
+                    // console.log('b table3', response);
                     if (response.ok) {
                         return response.json()
                     } else {
@@ -411,3 +411,6 @@ export const DataService = {
         });
     },
 };
+
+
+
