@@ -363,16 +363,86 @@ select {
   font-size: 1.1em;
   padding: 0.5em;
 }
-.main-content figure.chart-3 .m3__legend {
+.main-content figure.chart-3.math .m3__legend,
+.main-content figure.chart-3.math .r3__legend,
+.main-content figure.chart-3.math .s3__legend, .main-content figure.chart-3.read .m3__legend,
+.main-content figure.chart-3.read .r3__legend,
+.main-content figure.chart-3.read .s3__legend, .main-content figure.chart-3.sci .m3__legend,
+.main-content figure.chart-3.sci .r3__legend,
+.main-content figure.chart-3.sci .s3__legend {
+  margin: 0 auto;
   padding-bottom: 2em;
-  text-align: center;
+  height: 50px;
+  width: 450px;
 }
-.main-content figure.chart-3 .m3__legend__title {
+@media (max-width: 42em) {
+  .main-content figure.chart-3.math .m3__legend,
+  .main-content figure.chart-3.math .r3__legend,
+  .main-content figure.chart-3.math .s3__legend, .main-content figure.chart-3.read .m3__legend,
+  .main-content figure.chart-3.read .r3__legend,
+  .main-content figure.chart-3.read .s3__legend, .main-content figure.chart-3.sci .m3__legend,
+  .main-content figure.chart-3.sci .r3__legend,
+  .main-content figure.chart-3.sci .s3__legend {
+    height: 100%;
+    width: 100%;
+  }
+}
+.main-content figure.chart-3.math .m3__legend__title,
+.main-content figure.chart-3.math .r3__legend__title,
+.main-content figure.chart-3.math .s3__legend__title, .main-content figure.chart-3.read .m3__legend__title,
+.main-content figure.chart-3.read .r3__legend__title,
+.main-content figure.chart-3.read .s3__legend__title, .main-content figure.chart-3.sci .m3__legend__title,
+.main-content figure.chart-3.sci .r3__legend__title,
+.main-content figure.chart-3.sci .s3__legend__title {
   font-size: 1.4rem;
   font-weight: 600;
 }
-.main-content figure.chart-3 .m3__legend__item__text {
+.main-content figure.chart-3.math .m3__legend__item__text,
+.main-content figure.chart-3.math .r3__legend__item__text,
+.main-content figure.chart-3.math .s3__legend__item__text, .main-content figure.chart-3.read .m3__legend__item__text,
+.main-content figure.chart-3.read .r3__legend__item__text,
+.main-content figure.chart-3.read .s3__legend__item__text, .main-content figure.chart-3.sci .m3__legend__item__text,
+.main-content figure.chart-3.sci .r3__legend__item__text,
+.main-content figure.chart-3.sci .s3__legend__item__text {
   font-weight: 600;
+}
+.main-content figure.chart-3.math .sub-contain, .main-content figure.chart-3.read .sub-contain, .main-content figure.chart-3.sci .sub-contain {
+  align-items: flex-start !important;
+}
+.main-content figure.chart-3.math .sub-contain .grouping, .main-content figure.chart-3.read .sub-contain .grouping, .main-content figure.chart-3.sci .sub-contain .grouping {
+  margin-left: 0;
+}
+.main-content figure.chart-5 svg button, .main-content figure.chart-5 svg .m5key {
+  background-color: white !important;
+}
+.main-content figure.chart-6 .sub-contain {
+  align-items: flex-start !important;
+}
+.main-content figure.chart-6 .sub-contain .grouping {
+  margin-left: 0;
+}
+.main-content figure[class^=table-] .table-classic__container {
+  padding: 0.5em 4em;
+}
+@media (max-width: 42em) {
+  .main-content figure[class^=table-] .table-classic__container {
+    padding: 0 1em 0 4em;
+  }
+}
+@media (max-width: 24em) {
+  .main-content figure[class^=table-] .table-classic__container {
+    padding: 0 1em 0 2em;
+  }
+}
+.main-content figure.table-8 table thead tr th {
+  padding-top: 0.5em;
+}
+.main-content figure.table-8 table thead tr th[colspan] {
+  background-color: var(--clr-showy);
+  border-bottom: 0;
+  border-radius: 0.4em 0.4em 0 0;
+  padding: 0.4em 0;
+  text-align: center;
 }
 .main-content figure.chart-3 .sub-contain {
   align-items: flex-start !important;

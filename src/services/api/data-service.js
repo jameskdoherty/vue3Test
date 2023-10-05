@@ -4,7 +4,10 @@ import { fromFetch } from 'rxjs/fetch';
 import { catchError, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import chart9MathTotal from '../../assets/testdata/chart9MathTotal.json';
 import chart9Math from '../../assets/testdata/chart9Math.json';
-import { Suspense } from 'vue';
+
+
+
+
 
 
 const chartM7Subject = new Subject();
@@ -12,6 +15,7 @@ const chartM8Subject = new Subject();
 const chartEightSubject = new Subject();
 const tableEightSubject = new Subject();
 const tableSixSubject = new Subject();
+const chartSixSubject = new Subject();
 const tableOneSubject = new Subject();
 const tableTwoSubject = new Subject();
 const tableThreeSubject = new Subject();
@@ -57,6 +61,7 @@ export const DataService = {
     getChartM8Data: () => chartM8Subject.asObservable(),
     getChartEightData: () => chartEightSubject.asObservable(),
     getTableSixData: () => tableSixSubject.asObservable(),
+    getChartSixData: () => chartSixSubject.asObservable(),
     getTableEightData: () => tableEightSubject.asObservable(),
     getTableNineData: () => tableNineSubject.asObservable(),
     getChartNineData: () => chartNineSubject.asObservable(),
@@ -114,7 +119,7 @@ export const DataService = {
 
     },
     createTable8: (subScale) => {
-        console.log("TCL: this.section", subScale);
+        console.log("TCL: CREATE TABLE 8 this.section", subScale);
         fromFetch(domain + queryBegin + `subscale=${subScale}` + `&variable=C8ESCSUSQ` + queryEnd).pipe(
             switchMap(response => {
                 console.log('table8 ', response);
@@ -269,6 +274,29 @@ export const DataService = {
             return tableSixSubject.next(allResults)
         });
     },
+    createChart6: (subScale) => {
+        console.log("TCL: chart 6 this.section", subScale);
+        console.log("TCL: chart 6 domain", domain);
+        fromFetch(`${domain}UseCache=true&type=sigacrossvalue&subject=RMS&cohort=1&subscale=${subScale}&variable=ST004301&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=MN:MN&Year=2022&Program=PISA`).pipe(
+            switchMap(response => {
+                console.log('chart6 ', response);
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    console.log('do something else')
+                }
+            }),
+            catchError(err => {
+                console.log(err);
+                return of({ error: true, message: err.message })
+            })
+        ).subscribe(result => {
+            let allResults = result.result
+            console.log("TCL: chart6 allResults", allResults)
+            return chartSixSubject.next(allResults)
+        });
+
+    },
     createTable1: (subScale) => {
         console.log("TCL: this.section", subScale);
 
@@ -305,7 +333,7 @@ export const DataService = {
                     }
                 }),
             ),
-            fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=data&subject=RMS&cohort=1&subscale=PVMATH&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=MN:MN&Year=2022&Program=PISA`).pipe(
+            fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=gaponpercentileacrossjuris&subject=RMS&cohort=1&subscale=PVMATH&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=PC:P1,PC:P9&Year=2022&Program=PISA`).pipe(
                 switchMap(response => {
                     // console.log('b table3', response);
                     if (response.ok) {
@@ -363,7 +391,7 @@ export const DataService = {
             })
         ).subscribe(result => {
             let allResults = result.result
-            console.log("TCL: createTable4B allResults", allResults)
+            console.log("TCL: DATASERVICE createTable4B allResults", allResults)
             return tableFourBSubject.next(allResults)
         });
     },
@@ -384,7 +412,7 @@ export const DataService = {
             })
         ).subscribe(result => {
             let allResults = result.result
-            console.log("TCL: createTable5 allResults", allResults)
+            console.log("TCL: DATASERVICE createTable5 allResults", allResults)
             return tableFiveSubject.next(allResults)
         });
     },
