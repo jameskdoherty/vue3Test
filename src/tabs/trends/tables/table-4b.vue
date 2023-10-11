@@ -215,6 +215,7 @@ export default {
                         // console.log('row',tableSelector)
                        
                         this.tBody = document.querySelector('#tbody4B');
+                        console.log('---- table4b tbody',this.tBody)
                         this.rowHtmlTemplate4b = document.querySelector('tr.first-tr-4b');
                         this.rowTemplate = document.querySelectorAll('.four-b-systems > tr.first-tr-4b')
                         var toberemoved = this.tBody.querySelectorAll('tr')[0];

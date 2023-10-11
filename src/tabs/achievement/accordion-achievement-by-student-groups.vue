@@ -19,7 +19,7 @@
                     <li>Laboriosam omnis architecto illum a quos itaque veniam autem, nam</li>
                 </ul>
                 <!-- Chart/Table Component 6 -->
-                <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartSix"
+                <!-- <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartSix"
                     :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
                     figcaptionTitle="Figure M6" figcaptionTableTitle="Table M6" figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartSix"
@@ -27,7 +27,7 @@
                     figcaptionTitle="Figure S6" figcaptionTableTitle="Table S6" figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartSix"
                     :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
-                    figcaptionTitle="Figure R6" figcaptionTableTitle="Table R6" figcaptionBody="reading" />
+                    figcaptionTitle="Figure R6" figcaptionTableTitle="Table R6" figcaptionBody="reading" /> -->
                 <!-- end Chart/Table Component 6 -->
             </div>
         </div>
@@ -218,6 +218,7 @@ export default {
         DataService.createChartEight(subScale);
         DataService.createTable9(subScale);
         DataService.createChartNine(subScale);
+        DataService.createCurrentSection(this.currentSection)
     },
     mounted() {
         this.whichSection = this.$route.path;

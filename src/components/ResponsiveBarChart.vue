@@ -9,12 +9,12 @@
   </div> -->
   <!-- <img :src="image" /> -->
   <div class="scaling-svg-container" :style="{ paddingBottom: bottom + '%' }">
-  <svg class="scaling-svg" viewBox="-35 0 800 400" ref="svgRef" >
-    <!-- SVG content -->
-    <g class="x-axis" />
+    <svg class="scaling-svg" viewBox="-35 0 800 400" ref="svgRef">
+      <!-- SVG content -->
+      <g class="x-axis" />
       <g class="y-axis" />
-  </svg>
-</div>
+    </svg>
+  </div>
 </template>
   
 <script>
@@ -44,7 +44,7 @@ export default {
     const width = props.width;
     const image = props.image;
     const padding = props.bottom
-    
+
     //const { resizeRef, resizeState } = useResizeObserver();
 
 
@@ -52,15 +52,15 @@ export default {
       const svg = select(svgRef.value);
       const g = svg.append("g").attr("transform", "translate(" + 0 + "," + 0 + ")");
 
-     // console.log('ehat is height',height)
+      // console.log('ehat is height',height)
 
       // whenever any dependencies (like data, resizeState) change, call this!
       watch(() => {
 
-        
-        console.log('RESPONSIVE BAR props.data',props.data)
-        console.log('RESPONSIVE BAR props.imagesrc',image)
-        console.log('RESPONSIVE BAR props.paddng',padding)
+
+        console.log('RESPONSIVE BAR props.data', props.data)
+        console.log('RESPONSIVE BAR props.imagesrc', image)
+        console.log('RESPONSIVE BAR props.paddng', padding)
 
         // const { width, height } = resizeState.dimensions;
 
@@ -129,9 +129,9 @@ export default {
           .attr('class', 'left-axis-key')
           .attr("text-anchor", "start")
           .attr("dominant-baseline", "auto")
-          .attr("x",-25)
+          .attr("x", -25)
           .attr("y", function () {
-            return yScale(yAxisArray[yAxisArray.length - 1]+30)
+            return yScale(yAxisArray[yAxisArray.length - 1] + 30)
           })
           .text('Average score')
           .attr("fill", "black")
@@ -233,19 +233,21 @@ export default {
   display: block;
   height: 400px;
 }
+
 .scaling-svg-container {
- position: relative; 
- height: 0; 
- width: 100%; 
- padding: 0;
- padding-bottom: 100%; 
- /* override this inline for aspect ratio other than square */
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 100%;
+  /* override this inline for aspect ratio other than square */
 }
+
 .scaling-svg {
- position: absolute; 
- height: 100%; 
- width: 100%; 
- left: 0; 
- top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
 </style>

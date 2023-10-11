@@ -228,6 +228,7 @@ export default {
                     this.rowHtmlTemplate = "";
                     this.data = data;
                     this.tBody = tableSelector;
+                    console.log('---- table2 tbody',this.tBody);
                     this.sortFilterStatus = new SortFilterStatus();
 
                     this.getRowHtmlTemplate = function () {
@@ -250,7 +251,7 @@ export default {
 
                     this.removeFirstRow = function () {
                         document.querySelectorAll('tbody > tr').forEach((el) => {
-                            console.log('remove elrent', el);
+                            console.log('remove tbody elrent', el);
                         });
                         //tableSelector.querySelector('tr')[0].remove();
                     }

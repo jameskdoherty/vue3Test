@@ -213,6 +213,7 @@ export default {
                 class PisaTable {
                     constructor(tableSelector) {
                         this.tBody4A = document.querySelector('#tbody4A');
+                        console.log('---- table4A tbody',this.tBody4A)
                         this.rowHtmlTemplate4A = this.tBody4A.querySelector('tr');
                         this.tBody4A.removeChild(this.tBody4A.querySelectorAll('tr')[0])
 

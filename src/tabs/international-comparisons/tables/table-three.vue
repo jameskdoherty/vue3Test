@@ -157,6 +157,7 @@ export default {
                     this.data = data;
                     //this.tBody = document.querySelector('tbody');
                     this.tBody = tableSelector;
+                    console.log('---- table three tbody',this.tBody)
                     console.log('constructor tbody', this.tBody)
                     // this.tBody.removeChild(this.tBody.querySelectorAll('tr')[0])
                     this.sortFilterStatus = new SortFilterStatus();

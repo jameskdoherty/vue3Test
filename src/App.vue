@@ -1165,6 +1165,10 @@ select {
   border-left: 1px solid var(--clr-grey);
   text-align: right;
 }
+.main-content .table-classic table tbody tr td:first-child {
+  border-left: none;
+  text-align: left;
+}
 .main-content .table-classic table tbody tr:last-child th, .main-content .table-classic table tbody tr:last-child td {
   border-bottom: 1px solid var(--clr-dark);
 }

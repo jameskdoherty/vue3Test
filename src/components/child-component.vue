@@ -18,6 +18,9 @@
                     {{ data[head] }}
                 </td>
             </tr>
+            <tr v-for="s in scoresZ">
+                <td>1</td>
+            </tr>
         </tbody>
     </table>
 </template>
@@ -25,23 +28,46 @@
 <script>
 
 import { PisaService } from './misc/PisaService';
+import { onMounted, watch } from "vue";
 // import M7StaticTotal from '../../assets/testdata/M7StaticTotal.json';
 
 export default {
     name: 'ChildComponent',
+    props: ["specialdata"],
+    setup(props) {
+        const scoresZ = props.specialdata;
+
+        onMounted(() => {
+
+
+
+            watch(() => {
+
+                console.log('childcomp scorez', scoresZ)
+
+            })
+
+
+        });
+
+        return { scoresZ };
+    },
     created() {
 
         // const table8data = ref(table8_data.result)
         // console.log('child component table8 data',table8data.value)
-       
+
         // this.properties = table8data
 
-    //    table8data = M7StaticTotal.result
-    //    console.log('child component table8 data',table8data)
+        //    table8data = M7StaticTotal.result
+        //    console.log('child component table8 data',table8data)
 
     },
     mounted() {
         PisaService.clearTable();
+        console.log('childcomp this headers', this.headers)
+        console.log('childcomp this properties', this.properties)
+
 
 
         // Emits on mount
@@ -64,9 +90,11 @@ export default {
     computed: {
         sortedProperties() {
 
-            const type = (this.sortBy === 'race' || this.sortBy === 'sig') ? 'String' : 'Number' 
+            const type = (this.sortBy === 'race' || this.sortBy === 'sig') ? 'String' : 'Number'
             const direction = this.sortDirection
             const head = this.sortBy
+
+            console.log('childcomp converted sorted p', this.properties)
             // here is the magic
             return this.properties.sort(this.sortMethods(type, head, direction))
         }
@@ -106,18 +134,18 @@ export default {
             this.count--;
         },
 
-        addData(data){
-            console.log('child data', data);
-            this.properties = data
+        addData(data) {
+            var convertedData = JSON.parse(JSON.stringify(data))
+            console.log('childcomp convertedData child data', convertedData);
+            this.properties = convertedData
         },
 
-        addHeaders(headers){
-            console.log('child headers',headers)
+        addHeaders(headers) {
+            console.log('child headers', headers)
             this.headers = headers
         },
 
         setKeyToSortBy(key) {
-
             this.keyToSortBy = 'gap';
             this.sortDirection = -1;
             this.isOECDOnly = true;
@@ -130,9 +158,6 @@ export default {
                 this.keyToSortBy = key;
                 this.sortDirection = (this.keyToSortBy == 'country') ? 1 : -1
             }
-
-           
-
         },
 
         propComparator(propName, direction) {

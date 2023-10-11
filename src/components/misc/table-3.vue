@@ -36,7 +36,7 @@
                                 class="fa fa-chevron-up"></i></span></th>
                 </tr>
             </thead>
-            <tbody id="thing">
+            <tbody id="tbody3">
                 <tr>
                     <th class="country">commodi distinctio</th>
                     <td class="">422</td>
@@ -212,11 +212,11 @@ export default {
 
                 class PisaTable {
                     constructor(tableSelector) {
-                        this.tBody = document.querySelector('tbody');
+                        this.tBody = document.querySelector('#tbody3');
                         this.rowHtmlTemplate = this.tBody.querySelector('tr');
                         this.tBody.removeChild(this.tBody.querySelectorAll('tr')[0])
 
-                        //console.log('rowhtml',this.rowHtmlTemplate.innerHTML)
+                        console.log('---- table3 tbody',this.tBody)
                     }
 
                     addRow(dataRow) {

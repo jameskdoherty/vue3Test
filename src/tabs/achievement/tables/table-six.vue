@@ -20,7 +20,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody6">
                 <tr>
                     <th>Lorem ipsum</th>
                     <td>370</td>
@@ -176,9 +176,11 @@ export default {
 
                 class PisaTable {
                     constructor(tableSelector) {
-                        this.tBody = document.querySelector('tbody');
+                        this.tBody = document.querySelector('#tbody6');
                         this.rowHtmlTemplate = this.tBody.querySelector('tr');
                         this.tBody.removeChild(this.tBody.querySelectorAll('tr')[0])
+
+                        console.log('---- table6 tbody',this.tBody)
 
                         //console.log('rowhtml',this.rowHtmlTemplate.innerHTML)
                     }

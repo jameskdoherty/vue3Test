@@ -26,6 +26,7 @@ const tableNineSubject = new Subject();
 const chartNineSubject = new Subject();
 const chartM9Subject = new Subject();
 const tableM7Subject = new Subject();
+const currentSectionSubject = new Subject();
 
 const domain = `http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?`;
 const variable = 'C8ESCSUSQ';
@@ -65,6 +66,7 @@ export const DataService = {
     getTableEightData: () => tableEightSubject.asObservable(),
     getTableNineData: () => tableNineSubject.asObservable(),
     getChartNineData: () => chartNineSubject.asObservable(),
+    getCurrentSection: () => currentSectionSubject.asObservable(),
     createChartM7: () => {
         forkJoin([
             ajax.getJSON(`https://jsonplaceholder.typicode.com/todos/1`),
@@ -530,6 +532,10 @@ export const DataService = {
         });
 
     },
+    createCurrentSection: (currentSection) => {
+        console.log("TCL: createCurrentSection this.section", currentSection);
+        return currentSectionSubject.next(currentSection)
+    }
 };
 
 

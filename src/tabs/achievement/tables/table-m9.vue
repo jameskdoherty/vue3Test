@@ -1,8 +1,6 @@
 <template>
     <div class="table-classic__container">
-        <button v-on:click="addCount">Add count to child</button>
-        <button v-on:click="subtractCount">subtractCount count to child</button>
-        <child-component @interface="getChildInterface" ></child-component>
+        <pisa-table-no-sorting :data="data" :headers="headers"></pisa-table-no-sorting>
     </div>
 </template>
   
@@ -10,82 +8,39 @@
 
 import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service'
-import Table7JSON from '../../../assets/testdata/table7_data.json'
-const table7JSON = ref(Table7JSON);
-//import FigureSortFilterTest from './figure-sort-test'
-import ChildComponent from '../../../components/child-component.vue'
-//import FigureControl from './FigureControl.js';
-// import PisaTable from './PisaTable.js'
-// import PisaTable2 from './PisaTable2.js'
-//import PisaTable3 from './PisaTable3.js'
+import Table9JSON from '../../../assets/testdata/table9_data_math.json'
+const table9JSON = ref(Table9JSON);
+import PisaTableNoSorting from '@/components/PisaTableNoSorting.vue';
 
-import table7_data from '../../../assets/testdata/table7_data.json';
+import table9_data_math from '../../../assets/testdata/table9_data_math.json';
 
 export default {
     name: 'TableM9',
     components: {
-        ChildComponent
-    },
-    childInterface: {
-        addCount: () => { },
-        subtractCount: () => { },
-        setKeyToSortBy: () => { },
-        sortedProperties: () => { },
-        addData: () => {},
-        addHeaders: () => {},
+        PisaTableNoSorting
     },
     data() {
         return {
+            headers: ['Percentage of students enrolled in schools eligible for FRPL', 'Average score', 'Score difference from U.S. average score'],
             data: [],
-            tableData:[],
-            tableHeaders:['race', 'averageScore', 'scoreDifferenceFromUSAvg', 'sig'],
+            tableData: [],
             rawData: [],
             figureControls: {},
-            sort: 0
+            whichSection: '',
 
 
         };
     },
-    methods: {
-        // Setting the interface when emitted from child
-        getChildInterface(childInterface) {
-            this.$options.childInterface = childInterface;
-        },
-
-        // Add count through the interface
-        addCount() {
-            this.$options.childInterface.addCount();
-        },
-        addData(data){
-            this.$options.childInterface.addData(data)
-        },
-        addHeaders(headers){
-            this.$options.childInterface.addHeaders(headers)
-        },
-        subtractCount() {
-            this.$options.childInterface.subtractCount();
-        },
-        setKeyToSortBy(key) {
-            console.log(key)
-            this.sort = this.$options.childInterface.setKeyToSortBy(key)
-        },
-        sortedProperties() {
-            this.$options.childInterface.sortedProperties();
-        }
-
-
-    },
     created() {
 
-        console.log('Table 7 created')
         this.subscription = DataService.getTableM7Data().subscribe(
             allResults => {
                 if (allResults.response) {
-                    console.log('Table 7 allresults', allResults.response);
+                    console.log('Table9 allresults', allResults.response);
                     this.rawData.push(allResults);
                 } else {
-                    this.data = table7JSON;
-                    console.log('table7', this.data)
+                    this.data = table9JSON;
+
                     var mapFunction = function (element, index, array) {
                         var ret = {}
                         ret.headers = [element.race]
@@ -96,54 +51,51 @@ export default {
                         if (element['sig'] == 'NA') gap = '\u2020';
                         if (gap == 0) gap = ''
                         ret.values = [score, gap];
-                        console.log('tablem7 ret.values', ret.values)
+                        console.log('tablem9 ret.values', ret.values)
                         return ret;
                     }
-                    // console.log('mapFunction tableM7', mapFunction)
-                    //console.log('this.data tableM7', this.data)
-
-                    // console.log('sort created',this.sort)
-
-                    //MyComponent.test();
-                    //ComponentClass.setKeyToSortBy('femaleScore');
-                    //console.log('ComponentClass',this.test)
-                    //var TableMyFigureControl = new FigureControl(this.data, mapFunction, [new PisaTable3('table.tblm7')]);
-                    // figureControls['tableM7'].sortFilterStatus.keyToSortBy = '';
-                    // figureControls['tableM7'].sortFilterStatus.isOECDFirst = false;
-                    // figureControls['tableM7'].sortFilterStatus.isOECDOnly = false;
-                    // figureControls['tableM7'].updateFigures();
-
-                    // console.log('TableMyFigureControl', this.TableMyFigureControl)
-
-
-
-
-
                 }
 
-                const table7data = ref(table7_data.result)
-                console.log('child component table8 data', table7data.value)
 
-                this.tableData = table7data
-                this.addData(this.tableData)
-               this.addHeaders(this.tableHeaders)
-                
+
+                console.log('table9 what current section', this.whichSection)
+                if (this.whichSection.includes('/mathematics')) {
+                    const table9data = ref(table9_data_math.result)
+                    console.log('pisa table9 data', table9data.value)
+                    this.data = table9data.value
+                } else if (this.whichSection.includes('/reading')) {
+                    const table9data = ref(table9_data_math.result)
+                    console.log('pisa table9 data', table9data.value)
+                    this.data = table9data.value
+                } else if (this.whichSection.includes('/science')) {
+                    const table9data = ref(table9_data_math.result)
+                    console.log('pisa table9 data', table9data.value)
+                    this.data = table9data.value
+                }
+
+
+
+
+
+                // this.tableData = table9data
+                //this.addData(this.tableData)
+                // this.addHeaders(this.tableHeaders)
+
 
             })
+
+
+        console.log('Table9 created')
+
     },
-    setup() {
-
-
+    mounted() {
+        this.whichSection = this.$route.path;
+        console.log('table9 current', this.whichSection)
     },
     beforeUnmount() {
         this.subscription.unsubscribe();
     },
-    mounted() {
-        this.setKeyToSortBy('gap');
-       
 
-
-    }
 }
 </script>
   
