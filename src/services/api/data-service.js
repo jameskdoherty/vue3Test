@@ -399,7 +399,7 @@ export const DataService = {
     },
     createTable5: (subScale) => {
         console.log("TCL: this.section", subScale);
-        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=USA&stattype=MN:MN,PC:P1,PC:P2,PC:P7,PC:P9&Year=2003,2006,2009,2012,2015,2018,2022&Program=PISA`).pipe(
+        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=USA&stattype=MN:MN,PC:P1,PC:P2,PC:P7,PC:P9&Year=2000,2003,2006,2009,2012,2015,2018,2022&Program=PISA`).pipe(
             switchMap(response => {
                 console.log('createTable5 ', response);
                 if (response.ok) {

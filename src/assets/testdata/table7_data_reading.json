@@ -1,0 +1,60 @@
+{
+    "result":[
+        {
+            "id": 1,
+            "race": "U.S. Average",
+            "averageScore": 504,
+            "scoreDifferenceFromUSAvg": "†",
+            "sig": "†",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 2,
+            "race": "White",
+            "averageScore": "537***",
+            "scoreDifferenceFromUSAvg": 33,
+            "sig": "HIGHER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 3,
+            "race": "Black",
+            "averageScore": "459***",
+            "scoreDifferenceFromUSAvg": -45,
+            "sig": "LOWER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 4,
+            "race": "Hispanic",
+            "averageScore": "481*",
+            "scoreDifferenceFromUSAvg": -23,
+            "sig": "LOWER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 5,
+            "race": "Asian",
+            "averageScore": "579***",
+            "scoreDifferenceFromUSAvg": 75,
+            "sig": "HIGER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 6,
+            "race": "Two or More Races",
+            "averageScore": "512***",
+            "scoreDifferenceFromUSAvg": 8,
+            "sig": "LOWER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 7,
+            "race": "OECD average",
+            "averageScore": 476,
+            "scoreDifferenceFromUSAvg": -28,
+            "sig": "",
+            "newsig": ""
+        }
+    ]
+}

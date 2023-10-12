@@ -8,11 +8,13 @@
 
 import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service'
-import Table7JSON from '../../../assets/testdata/table7_data.json'
+import Table7JSON from '../../../assets/testdata/table7_data_math.json'
 const table7JSON = ref(Table7JSON);
 import PisaTableA from '@/components/PisaTableA.vue';
 
-import table7_data from '../../../assets/testdata/table7_data.json';
+import table7_data_math from '../../../assets/testdata/table7_data_math.json';
+import table7_data_reading from '../../../assets/testdata/table7_data_reading.json';
+import table7_data_science from '../../../assets/testdata/table7_data_science.json';
 
 export default {
     name: 'TableM7',
@@ -27,7 +29,8 @@ export default {
             rawData: [],
             figureControls: {},
             sort: 0,
-            type: 'table7'
+            type: 'table7',
+            whichSection: '',
 
 
         };
@@ -39,11 +42,11 @@ export default {
             allResults => {
                 if (allResults.response) {
                     //console.log('Table7 allresults', allResults.response);
-                   // this.rawData.push(allResults);
+                    // this.rawData.push(allResults);
                 } else {
                     this.data = JSON.parse(JSON.stringify(table7JSON))
                     //console.log('Table7 JSON.parse', this.data)
-                   
+
                     var mapFunction = function (element, index, array) {
                         var ret = {}
                         ret.headers = [element.race]
@@ -54,27 +57,38 @@ export default {
                         if (element['sig'] == 'NA') gap = '\u2020';
                         if (gap == 0) gap = ''
                         ret.values = [score, gap];
-                       // console.log('Table7 ret.values', ret.values)
+                        // console.log('Table7 ret.values', ret.values)
                         return ret;
                     }
                     // console.log('mapFunction tableM7', mapFunction)
                 }
 
-                const table7data = ref(table7_data.result)
-                console.log('to send to child component table7 data', table7data.value)
+                if (this.whichSection.includes('/mathematics')) {
+                    const table7data = ref(table7_data_math.result)
+                    this.data = table7data.value
+                } else if (this.whichSection.includes('/reading')) {
+                    const table7data = ref(table7_data_reading.result)
+                    this.data = table7data.value
+                } else if (this.whichSection.includes('/science')) {
+                    const table7data = ref(table7_data_science.result)
+                    this.data = table7data.value
+                }
 
-                this.data = table7data.value
 
-                this.tableData = JSON.parse(JSON.stringify(table7data.value))
-                console.log('childcomp send to child component table7 data',this.tableData)
+
+                // this.tableData = JSON.parse(JSON.stringify(table7data.value))
+                // console.log('childcomp send to child component table7 data',this.tableData)
 
 
             })
     },
+    mounted() {
+        this.whichSection = this.$route.path;
+    },
     beforeUnmount() {
         this.subscription.unsubscribe();
     },
-   
+
 }
 </script>
 <style scoped>

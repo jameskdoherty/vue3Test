@@ -59,6 +59,7 @@ export default {
 
 
         console.log('RESPONSIVE BAR props.data', props.data)
+        console.log('RESPONSIVE BAR props.groups', props.groups)
         console.log('RESPONSIVE BAR props.imagesrc', image)
         console.log('RESPONSIVE BAR props.paddng', padding)
 
@@ -103,6 +104,7 @@ export default {
           .enter()
           .append("g")
           .attr("transform", function (d) {
+            console.log('d.group', d);
             return "translate(" + (xScale(d.group) - 79) + ",0)";
           })
           .selectAll("rect")
@@ -156,6 +158,24 @@ export default {
           .attr("fill", "black")
           .attr('font-size', '11px')
           .attr('font-weight', '500')
+
+        // g.selectAll('text.axis-bottom')
+        //   .data(props.groups)
+        //   .join("text")
+        //   .attr('class', 'bottomAixis')
+        //   .attr("text-anchor", "middle")
+        //   .attr("dominant-baseline", "hanging")
+        //   .attr("x", function (d) { return xScale(d)+25 })
+        //   .attr("y", function (d) {
+        //     return height + 7
+        //   })
+        //   .text(function (d, i, array) {
+        //     var labels = ['Bottom quarter', 'Second quarter', 'Third quarter', 'Top quarter']
+        //     return labels[i];
+        //   })
+        //   .attr("fill", "black")
+        //   .attr('font-size', '10px')
+        //   .attr('font-weight', '500')
 
         // Add the break lines on Y Axis
         g.selectAll('line.grid')
@@ -213,12 +233,16 @@ export default {
           .attr("font-weight", "bold")
           .text(function (d) { return d.unitedstates });
 
+
+
         // render axes with help of scales
         const xAxis = axisBottom(xScale).tickSize(1).tickPadding(10);
         svg
           .select(".x-axis")
           .style("transform", `translateY(${height}px)`) // position on the bottom
           .call(xAxis);
+
+         
 
       },
         { deep: true });

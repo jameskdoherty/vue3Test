@@ -1,0 +1,61 @@
+{
+    "result":[
+        {
+            "id": 1,
+            "category": "U.S. Average",
+            "mnScore": 504,
+            "gap": "†",
+            "sig": "†",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 2,
+            "category": "75 percent or more",
+            "mnScore": "456***",
+            "gap": -48,
+            "sig": "HIGHER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 3,
+            "category": "50 to 74.9 percent",
+            "mnScore": "494**",
+            "gap": -10,
+            "sig": "EQUAL",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 4,
+            "category": "25 to 49.9 percent",
+            "mnScore":"516*",
+            "gap": 12,
+            "sig": "LOWER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 5,
+            "category": "10 to 24.9 percent",
+            "mnScore": "547***",
+            "gap": 43,
+            "sig": "HIGER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 6,
+            "category": "Less than 10 percent",
+            "mnScore": "562***",
+            "gap": 58,
+            "sig": "HIGER",
+            "newsig": "sigdiffBOTH"
+        },
+        {
+            "id": 7,
+            "category": "OECD average",
+            "mnScore": 476,
+            "gap": -28,
+            "sig": "",
+            "newsig": ""
+        }
+        
+    ]
+}

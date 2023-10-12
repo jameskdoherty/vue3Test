@@ -5,14 +5,18 @@
                 <dt class="red"></dt>
                 <dd>OECD avergage</dd>
 
+                
+            </dl>
+            <dl>
                 <dt class="yellow"></dt>
                 <dd>United States</dd>
             </dl>
         </div>
-        <responsive-bar-chart :data="data" :groups="groups" :bardata="bardata" :subgroups="subgroups" :width="width" :height="height" :viewbox="viewbox" :image="imageSrc" :bottom="padding"/>
+        <responsive-bar-chart :data="data" :groups="groups" :bardata="bardata" :subgroups="subgroups" :width="width"
+            :height="height" :viewbox="viewbox" :image="imageSrc" :bottom="padding" />
     </div>
     <div class="chart-title">
-        <h4>National quarters of the ESCS index</h4>
+        <h5>National quarters of the ESCS index</h5>
     </div>
 </template>
 
@@ -36,7 +40,7 @@ export default {
             finalChartData: [],
             width: 800,
             height: 400,
-            padding: 52,
+            padding: 55,
             viewbox: "viewBox='0 0 60 55'",
             imageSrc: "http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/subject-home.png",
         };
@@ -54,11 +58,11 @@ export default {
 
                 console.log('chartM8 M8 allresults', allResults);
 
-                allResults.forEach((element, index, array ) => {
-                this.finalChartData.push(allResults[index]);
-            });
+                allResults.forEach((element, index, array) => {
+                    this.finalChartData.push(allResults[index]);
+                });
 
-            console.log('finalchartdata m8',this.finalChartData)
+                console.log('finalchartdata m8', this.finalChartData)
 
                 // if (allResults.response) {
                 //     this.finalChartData.push(allResults);
@@ -72,13 +76,25 @@ export default {
                 })
 
 
-                let finalMappedData = filteredData.map((ele) => {
-
+                let finalMappedData = filteredData.map((ele, index) => {
+                    
+                      if (ele.valLabel === 'Lowest ESCS Quartile (US Based)') {
+                        this.groups.push('Bottom quarter')
+                    } else if (ele.valLabel === 'Second ESCS Quartile (US Based)') {
+                         this.groups.push('Second quarter')
+                    } else if (ele.valLabel === 'Third ESCS Quartile (US Based)') {
+                        this.groups.push('Third quarter')
+                    } else if (ele.valLabel === 'Highest ESCS Quartile (US Based)') {
+                        this.groups.push('Top quarter')
+                    }
                     //this.data.push(Math.floor(ele.targetValue));
-                    this.groups.push(ele.valLabel);
+                    //console.log(ele.valLabel,'this.groups[index] ele.valLabel')
+                   // this.groups.push(ele.valLabel);
+
+                    console.log('this.groups[index]',this.groups[index]);
 
                     return {
-                        group: ele.valLabel,
+                        group: this.groups[index],
                         oecd: Math.floor(ele.focalValue),
                         unitedstates: Math.floor(ele.targetValue),
                         significant: ele.sig == 'LOWER' || ele.sig == 'HIGHER' ? true : false,
@@ -99,8 +115,15 @@ export default {
 
                 finalMappedData.forEach((element, index, array) => {
 
+                    console.log('finalmappedData chart8 element.group', element)
+
                     this.data.push(element)
+
+                  
+
                     groupds.push(element.group);
+
+                    console.log('chart8 groupds',groupds)
 
                     let keys = Object.keys(array[index]);
                     var subindexes = keys.filter((element, index) => {
@@ -108,7 +131,7 @@ export default {
                             var sg = index !== 0 ? this.subgroups.push(element) : null;
                         }
                     })
-                   
+
                 })
 
             });
@@ -122,23 +145,24 @@ export default {
 
 <style>
 #Chart-M8 {
-    padding: 50px;
+    padding: 50px 50px 10px 50px;
 }
 
 #legend {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-bottom: 40px;
 }
 
 .chart-title {
     text-align: center;
+    padding-bottom: 60px;
 }
 
 dl dt {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     vertical-align: middle;
 }
 
@@ -152,9 +176,11 @@ dl dd {
 
 dl dt.red {
     background: #00843d;
+    border: 1px solid #ddd;
 }
 
 dl dt.yellow {
     background: #fbb03b;
+    border: 1px solid #ddd;
 }
 </style>

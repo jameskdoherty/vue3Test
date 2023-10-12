@@ -736,7 +736,7 @@ select {
 }
 .main-content .table-1 #chart-area dl dt {
   font-weight: 500;
-  width: 40%;
+  width: 42%;
 }
 @media (max-width: 42em) {
   .main-content .table-1 #chart-area dl dt {
@@ -1113,7 +1113,7 @@ select {
   width: max(50%, min(900px, 100%));
 }
 .main-content .table-classic table th, .main-content .table-classic table td {
-  padding: 0.2em 0.5em;
+  padding: 0.3em 0.6em;
 }
 .main-content .table-classic table th:first-child {
   padding-left: 0;

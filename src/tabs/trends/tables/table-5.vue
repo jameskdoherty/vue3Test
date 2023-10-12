@@ -1,8 +1,6 @@
 <template>
     <div class="table-classic__container">
-        <button v-on:click="addCount">Add count to child</button>
-        <button v-on:click="subtractCount">subtractCount count to child</button>
-        <child-component @interface="getChildInterface"></child-component>
+        <pisa-table-c :data="data" :headers="headers" :type="type"></pisa-table-c>
     </div>
 </template>
   
@@ -10,84 +8,53 @@
 
 import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service'
-import Table7JSON from '../../../assets/testdata/table7_data.json'
+import Table7JSON from '../../../assets/testdata/table7_data_math.json'
 const table7JSON = ref(Table7JSON);
-//import FigureSortFilterTest from './figure-sort-test'
 import ChildComponent from '../../../components/child-component.vue'
-//import FigureControl from './FigureControl.js';
-// import PisaTable from './PisaTable.js'
-// import PisaTable2 from './PisaTable2.js'
-//import PisaTable3 from './PisaTable3.js'
-
-//import table7_data from '../../assets/testdata/table7_data.json';
+import PisaTableC from '@/components/PisaTableC.vue';
 
 export default {
     name: 'Table5',
     components: {
-        ChildComponent
-    },
-    childInterface: {
-        addCount: () => { },
-        subtractCount: () => { },
-        setKeyToSortBy: () => { },
-        sortedProperties: () => { },
-        addData: () => { },
-        addHeaders: () => { },
+        PisaTableC
     },
     data() {
         return {
             data: [],
             tableData: [],
+            headers: ['Average score and selected percentiles', '2000 score', '2003 score', '2009 score', '2012 score', '2015 score', '2018 score', '2022 score'],
             tableHeaders: ['race', 'averageScore', 'scoreDifferenceFromUSAvg', 'sig'],
             rawData: [],
             figureControls: {},
-            sort: 0
+            sort: 0,
+            type: 'table5',
+            whichSection: ''
 
 
         };
     },
-    methods: {
-        // Setting the interface when emitted from child
-        getChildInterface(childInterface) {
-            this.$options.childInterface = childInterface;
-        },
-
-        // Add count through the interface
-        addCount() {
-            this.$options.childInterface.addCount();
-        },
-        addData(data) {
-            this.$options.childInterface.addData(data)
-        },
-        addHeaders(headers) {
-            this.$options.childInterface.addHeaders(headers)
-        },
-        subtractCount() {
-            this.$options.childInterface.subtractCount();
-        },
-        setKeyToSortBy(key) {
-            console.log(key)
-            this.sort = this.$options.childInterface.setKeyToSortBy(key)
-        },
-        sortedProperties() {
-            this.$options.childInterface.sortedProperties();
-        }
-
-
-    },
     created() {
 
-        console.log('Table 5 created')
+
         this.subscription = DataService.getTable5Data().subscribe(
             allResults => {
-                console.log(allResults)
+                console.log('Table 5 created', allResults)
                 //_processPercentileData
-                //var data = JSON.parse(rawData)
+
+                let trendYears = '2000,2003,2009,2012,2015,2018,2022';
+                let lastYear = 2022;
+                let firstYear = 2000;
+                let priorYear = 2018;
+
                 var filteredData = allResults.filter(function (element, index, array) {
-                    return element.targetYear == '2022' || (element.focalYear == '2022' && element.targetYear == '2018');
+                    return element.targetYear == lastYear || (element.focalYear == lastYear && element.targetYear == priorYear);
+
+        
                 })
                 var finalData = [];
+
                 filteredData.forEach((element, index, array) => {
+                    console.log('table 5 element', element)
                     var statType = element.statType.split(':')[1];
                     var testArray = finalData.filter((element) => {
                         return element.statType == statType;
@@ -110,85 +77,84 @@ export default {
                 console.log('TABLE 5 finaldata', finalData)
 
 
-                const table5data = ref(finalData)
-                console.log('child component table 5 data', table5data.value)
-
-                this.tableData = table5data
-                this.addData(this.tableData)
-                this.addHeaders(this.tableHeaders)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                if (allResults.response) {
-                    // console.log('Table 7 allresults', allResults.response);
-                    // this.rawData.push(allResults);
-                } else {
-                    // this.data = table7JSON;
-                    // console.log('table7', this.data)
-                    // var mapFunction = function (element, index, array) {
-                    //     var ret = {}
-                    //     ret.headers = [element.race]
-                    //     // if(element.countryId == 'USA') ret.headers = ['<span>' + element.country + '</span>']
-                    //     var score = Math.round(element['mnScore'])
-                    //     var gap = Math.round(element['gap'])
-                    //     if (element['sig'] == 'HIGHER' || element['sig'] == 'LOWER') score += '*';
-                    //     if (element['sig'] == 'NA') gap = '\u2020';
-                    //     if (gap == 0) gap = ''
-                    //     ret.values = [score, gap];
-                    //     console.log('tablem7 ret.values', ret.values)
-                    //     return ret;
-                    // }
-                    // console.log('mapFunction tableM7', mapFunction)
-                    //console.log('this.data tableM7', this.data)
-
-                    // console.log('sort created',this.sort)
-
-                    //MyComponent.test();
-                    //ComponentClass.setKeyToSortBy('femaleScore');
-                    //console.log('ComponentClass',this.test)
-                    //var TableMyFigureControl = new FigureControl(this.data, mapFunction, [new PisaTable3('table.tblm7')]);
-                    // figureControls['tableM7'].sortFilterStatus.keyToSortBy = '';
-                    // figureControls['tableM7'].sortFilterStatus.isOECDFirst = false;
-                    // figureControls['tableM7'].sortFilterStatus.isOECDOnly = false;
-                    // figureControls['tableM7'].updateFigures();
-
-                    // console.log('TableMyFigureControl', this.TableMyFigureControl)
+                var temp = finalData[0];
+                console.log('TABLE 5 temp', temp)
+                finalData[0] = finalData[1]
+                console.log('TABLE 5 finalData[0]', finalData[0])
+                finalData[1] = finalData[2];
+                console.log('TABLE 5 finalData[1]', finalData[1])
+                finalData[2] = temp;
+                console.log('TABLE 5 finalData[2]', finalData[2])
+                var mapFunction = function (element, index, array) {
+                    var ret = {}
+                    var labels = { 'P1': '10th percentile', 'P2': '25th percentile', 'MN': 'Average score', 'P7': '75th percentile', 'P9': '90th percentile' }
+                    ret.statType = labels[element.statType]
+                    ret.values = trendYears.split(',').map(element1 => Math.round(element['Year' + element1]))
+                    ret.decorators = trendYears.split(',').map(element1 => element['sig' + element1])
+                    return ret;
                 }
+                
+                this.data = finalData.map(mapFunction);
+                console.log('TABLE 5 MAPPED finaldata', this.data)
 
-                // const table7data = ref(table7_data.result)
-                // console.log('child component table8 data', table7data.value)
 
-                // this.tableData = table7data
-                // this.addData(this.tableData)
-                // this.addHeaders(this.tableHeaders)
+                let finalMappedData = this.data.map((ele, index) => {
+                    
+                //     if (ele.valLabel === 'Lowest ESCS Quartile (US Based)') {
+                //       this.groups.push('Bottom quarter')
+                //   } else if (ele.valLabel === 'Second ESCS Quartile (US Based)') {
+                //        this.groups.push('Second quarter')
+                //   } else if (ele.valLabel === 'Third ESCS Quartile (US Based)') {
+                //       this.groups.push('Third quarter')
+                //   } else if (ele.valLabel === 'Highest ESCS Quartile (US Based)') {
+                //       this.groups.push('Top quarter')
+                //   }
+                  //this.data.push(Math.floor(ele.targetValue));
+                  //console.log(ele.valLabel,'this.groups[index] ele.valLabel')
+                 // this.groups.push(ele.valLabel);
+
+                  console.log('table 5 finalmapped ele',ele);
+                  console.log('table 5 finalmapped ele',ele.values[index]);
+
+                  return {
+                      statType: ele.statType,
+                      pctValue1: ele.values[0],
+                      pctValue2: ele.values[1],
+                      pctValue3: ele.values[2],
+                      pctValue4: ele.values[3],
+                      pctValue5: ele.values[4],
+                      pctValue6: ele.values[5]
+                      
+                  }
+              });
+
+
+              console.log('TABLE 5 absolutely MAPPED finaldata', finalMappedData)
+
+
+                //const table5data = ref(finalData)
+                //console.log('child component table 5 data', table5data.value)
+
+                //this.tableData = table5data
 
 
             })
     },
-    setup() {
-
-
+    mounted() {
+        this.whichSection = this.$route.path;
     },
     beforeUnmount() {
         this.subscription.unsubscribe();
     },
-    mounted() {
-        this.setKeyToSortBy('gap');
 
-
-
-    }
 }
 </script>
-  
+<style scoped>
+.table-classic__container td {
+    border-left: none;
+}
+
+table thead tr th {
+    padding-top: 0.5em;
+}
+</style> 

@@ -20,7 +20,7 @@ export default {
     },
     data() {
         return {
-            headers: ['Education system', 'Bottom quarter', 'Second quarter', 'Third quarter', 'Top quarter', 'All students'],
+            headers: ['Bottom quarter', 'Second quarter', 'Third quarter', 'Top quarter', 'All students'],
             data: [],
             tableData:[],
             tableHeaders:[],
@@ -45,6 +45,8 @@ export default {
                 let USAsig = [];
                 let OECDsig = [];
                 let OECDvalues = [];
+                let allStudentsUSAValue = 504;
+                let AllStudentsOECDAvgValue = "476*";
                 //let theHeaders = ['group', 'oecd', 'unitedstates', 'significant'];
                
 
@@ -66,7 +68,7 @@ export default {
 
                 let finalMappedDataUSA = filteredData.map((ele) => {
                     console.log('table8 element', ele)
-                    let allStudents0 = Math.round(ele.targetValue) + ((ele.sig == 'HIGHER' || ele.sig =='LOWER') ? '*':'');
+                    let allStudents0 = Math.round(ele.targetValue) ;
                     AllStudentsUSA.push(Math.round(ele.targetValue))
                     USAvalues.push(allStudents0)
                     USAsig.push(ele.sig)
@@ -79,11 +81,12 @@ export default {
                     console.log('table8 usa',allStudents0)
                     console.log('table8 total',total)
                     console.log('table8 allTotal',allTotal)
+                    console.log('table8 USAsig',USAsig)
 
                     return {
                         country: 'United States' ,
                         countryId: 'USA',
-                        allstudents: allTotal,
+                        allstudents: allStudentsUSAValue,
                         valValue1: USAvalues[0],
                         valValue1sig: USAsig[0],
                         valValue2: USAvalues[1],
@@ -97,9 +100,10 @@ export default {
 
                 let finalMappedDataOED = filteredDataOECD.map((ele) => {
                     console.log('table8 element', ele)
-                    var allStudents1 = Math.round(ele.focalValue);
-                    AllStudentsOECD.push(Math.round(ele.targetValue))
-
+                    var allStudents1 = Math.round(ele.targetValue) + ((ele.sig == 'HIGHER' || ele.sig =='LOWER') ? '*':'');
+                    OECDvalues.push(allStudents1);
+                    AllStudentsOECD.push(Math.round(ele.targetValue));
+                    OECDsig.push(ele.sig);
                     
                     var total = AllStudentsOECD.reduce((accumulator, currentValue) => {
                         return accumulator + currentValue
@@ -113,20 +117,24 @@ export default {
                     return {
                         country: 'OECD average' ,
                         countryId: 'IN3',
-                        allstudents: allTotal,
-                        valValue1: AllStudentsOECD[0],
-                        valValue2: AllStudentsOECD[1],
-                        valValue3: AllStudentsOECD[2],
-                        valValue4: AllStudentsOECD[3],
+                        allstudents: AllStudentsOECDAvgValue,
+                        valValue1: OECDvalues[0],
+                        valValue1sig: OECDsig[0],
+                        valValue2: OECDvalues[1],
+                        valValue2sig: OECDsig[1],
+                        valValue3: OECDvalues[2],
+                        valValue3sig: OECDsig[2],
+                        valValue4: OECDvalues[3],
+                        valValue4sig: OECDsig[3],
                     }
                 });
 
                 if (finalMappedDataOED.length == 4) {
-                    console.log('table8 finalMappedDataUSA',finalMappedDataUSA)
-                    console.log('table8 finalMappedDataOED',finalMappedDataOED)
+                    console.log('table8 finalMappedDataUSA',finalMappedDataUSA[3])
+                    console.log('table8 finalMappedDataOED',finalMappedDataOED[3])
 
-                    this.data.push(finalMappedDataUSA[3])
                     this.data.push(finalMappedDataOED[3])
+                    this.data.push(finalMappedDataUSA[3])
 
                     console.log('table8 DATA SENT', this.data)
                 }
@@ -203,4 +211,35 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+
+
+table thead tr th {
+  padding-top: 0.5em;
+}
+
+.main-content .table-classic table thead tr th[colspan] {
+  background-color: var(--clr-showy);
+  border-bottom: none;
+  border-radius: 0.4em 0.4em 0 0;
+  padding: 0.4em 0;
+  text-align: center;
+}
+
+.main-content .table-classic table thead tr th {
+    border-bottom: 3px solid var(--clr-dark);
+    line-height: 1.2;
+    text-align: right;
+    vertical-align: bottom;
+}
+
+.main-content .table-classic table thead tr.headers th:first-child {
+  text-align: right;
+}
+
+/* .main-content .table-classic table th, .main-content .table-classic table td {
+    padding: 0.2em 0.5em;
+} */
+
+
+</style>

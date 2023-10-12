@@ -8,24 +8,93 @@
 
 <script>
 
+import { onMounted, ref, watch, computed } from 'vue'
 
 export default {
+  name: "HighChartLollipop",
+  props: ["data", "categories", "title", "titlex", "titley", "average","whichSection"],
+  setup(props) {
+
+    const data = props.data;
+    const currentSection = props.whichSection;
+    const categories = props.categories;
+    const title = props.title;
+    const titlex = props.titlex;
+    const titley = props.titley;
+    const average = props.average;
+    
+    const chartData = JSON.parse(JSON.stringify(props.data))
+    console.log('LOLLIPOP Chartdata', chartData)
+    console.log('LOLLIPOP currentSection', currentSection)
+    console.log('LOLLIPOP data', data)
+    console.log('LOLLIPOP categories', categories)
+
+    let tableData = []
+
+
+
+
+
+    // onMounted(() => {
+
+      
+
+    //   console.log('Lollipop props --->', props)
+
+    //   if (props.whichSection == "/reading/achievement") {
+    //     console.log('lollipop reading')
+    //     const tableData = [[0, 458.5913, 438.2447, 'down', '*', ''],
+    //     [1, 463.3476, 478.2447, 'down', '*', ''],
+    //     [2, 478.2447, 489.1129, 'up', '*', ''],
+    //     [3, 478.2447, 530.7587, 'up', '*', ''],
+    //     [4, 478.2447, 546.6833, 'up', '*', '']]
+
+    //   } else if (props.whichSection == "/science/achievement") {
+    //     console.log('lollipop science')
+    //     const tableData = [[0, 458.5913, 428.2447, 'down', '*', ''],
+    //     [1, 463.3476, 478.2447, 'down', '*', ''],
+    //     [2, 478.2447, 489.1129, 'up', '*', ''],
+    //     [3, 478.2447, 530.7587, 'up', '*', ''],
+    //     [4, 478.2447, 546.6833, 'up', '*', '']]
+
+    //   } else {
+
+    //   }
+
+    //   // whenever any dependencies (like data, resizeState) change, call this!
+    //   watch(() => {
+    //     console.log('Lollipop props.data *******', props.data)
+
+    //   },
+    //     { deep: true });
+    // });
+    return { tableData };
+  },
   data() {
+
+    this.tableData = JSON.parse(JSON.stringify(this.data))
+
+    console.log('-----> LOLLIPOP data', this.data)
+    console.log('-----> LOLLIPOP currentSection', this.currentSection)
+    console.log('-----> LOLLIPOP this.tableData', this.tableData)
+    console.log('-----> LOLLIPOP categories', this.categories)
+    
+
+   
+
+    // this.tableData = [[0, 455.5913, 478.2447, 'down', '*', ''],
+    //   [1, 463.3476, 478.2447, 'down', '*', ''],
+    //   [2, 478.2447, 489.1129, 'up', '*', ''],
+    //   [3, 478.2447, 530.7587, 'up', '*', ''],
+    //   [4, 478.2447, 546.6833, 'up', '*', '']]
+
+    
+
     return {
-
-      created() {
-
-        // Highcharts.wrap(Highcharts.Axis.prototype, 'getLinePath', function (proceed, lineWidth) {
-        //         var axis = this;
-        //         console.log('axis',axis);
-
-
-
-        //       });
-
-      },
-
+      tableData: [],
+      chartData: [],
       chartOptions: {
+
         chart: {
           backgroundColor: 'white',
           margin: [100, 100, 80, 200],
@@ -55,23 +124,23 @@ export default {
               //var labelText = mklabel[0].children[1]
               //labelText.setAttribute('fill','#000000')
               //console.log('mklabel', labelText)
-             // console.log('mk3', mk3[0].children)
-             // console.log('mk3alone', mk3)
+              // console.log('mk3', mk3[0].children)
+              // console.log('mk3alone', mk3)
 
 
               Array.from(mk3[0].children).forEach(function (element) {
-                console.log('element chart 7', element)
+                console.log('lollipop element chart 7', element)
 
                 if (element.getAttribute('opacity') == '1') {
                   var isLow = element.classList.contains('highcharts-lollipop-low')
-                 // console.log('isLow', isLow);
+                  // console.log('isLow', isLow);
                   var _b = element.point
                   //console.log('_b', _b)
                   var _t = _b.dataLabels[(isLow) ? 1 : 0]
-                 // console.log('_t', _t);
+                  // console.log('_t', _t);
                   var _el = _t.text.element
                   if (isLow) {
-                   // console.log('what is _el', _el);
+                    // console.log('what is _el', _el);
                     _el.setAttribute('text-anchor', 'middle')
                     _el.setAttribute('x', 0)
 
@@ -104,10 +173,11 @@ export default {
 
               //let cc = document.querySelector(r)
               let stm1New = this.series[0].group.element.querySelectorAll('.highcharts-lollipop-stem')
-             // console.log('stm1New', stm1New)
+              console.log('lollipop stm1New', stm1New)
 
               //var stm1 = $(this.series[0].group.element).children('.highcharts-lollipop-stem')
               var dd = this.options.series[0].data
+              console.log(dd)
               var adjPx = +this.options.yAxis[0].plotLines[0].width / 2
               //console.log('stm1New parent', stm1New[0].parentNode)
               //stm1New[0].parentNode.removeAttr('usavg')
@@ -117,20 +187,20 @@ export default {
               //console.log('adjPx', adjPx)
               //let test1 = stm1.eq(0).attr('d').split(' ')
               let test1 = stm1New[0].getAttribute('d').split(' ')
-             // console.log('test1', test1)
+              // console.log('test1', test1)
               let uspt = (dd[0][3] == 'up') ? test1[2] : test1[5]
               //console.log('uspt value', uspt)
               stm1New[0].parentNode.setAttribute('usavg', uspt)
               stm1New.forEach(function (i, x) {
-               // console.log('2i', i)
+                // console.log('2i', i)
                 //console.log('2x', x)
                 let mx = i.getAttribute('d').split(' ')
-               // console.log('2mx', mx)
+                // console.log('2mx', mx)
                 let dx = dd[x]
                 if (dx[3] == 'up') {
                   // minus 2.5
                   mx[2] = uspt - adjPx
-                 // console.log('mx[2]', mx[2])
+                  // console.log('mx[2]', mx[2])
                   i.setAttribute('usat', 2)
                   //console.log('set2i', i)
                 }
@@ -139,7 +209,7 @@ export default {
                   mx[5] = uspt + adjPx
                   i.setAttribute('usat', 5)
                 }
-               i.setAttribute('d', mx.join(' '))
+                i.setAttribute('d', mx.join(' '))
                 return
               })
 
@@ -151,7 +221,7 @@ export default {
           description: 'Demo'
         },
         title: {
-          text: 'Average score',
+          text: '',
           style: {
             color: '#000000',
             fontSize: "14px",
@@ -175,7 +245,7 @@ export default {
           }
         },
         xAxis: {
-          categories: ['White', 'Black', 'Hispanic', 'Asian', 'Two or More Races'],
+          categories: this.categories,
           labels: {
             style: {
               color: "#000000",
@@ -187,16 +257,16 @@ export default {
           title: {
             rotation: 0,
             align: 'high',
-            x: 115,
-            y: -30,
+            x: this.titlex,
+            y: this.titley,
             textAlign: 'right',
-            text: 'Race/ethnicity',
+            text: this.title,
 
             style: {
               color: '#000000',
               fontSize: "14px",
               fontWeight: '700',
-              width: '200px'
+              width: '170px'
 
             }
           },
@@ -247,7 +317,7 @@ export default {
           plotLines: [{
             label: {
               useHTML: true,
-              text: '<p style="background-color: #fbb03b; border-radius: 0.3em; padding: 0.5em 1em;">U.S. average (478)</p>',
+              text: `<p style="background-color: #fbb03b; border-radius: 0.3em; padding: 0.5em 1em;">U.S. average (${this.average})</p>`,
               rotation: 0,
               verticalAlign: 'top',
               align: 'center',
@@ -262,7 +332,7 @@ export default {
             marginBottom: 10,
             color: '#fbb03b',
             width: 5,
-            value: 478,
+            value: this.average,
             // zIndex: 5
           }]
         },
@@ -294,7 +364,7 @@ export default {
                 var myfunc = function (e, ctr, f) {
                   let r = e.target
                   //let cc = document.querySelector(r)
-                  console.log('r', r)
+                  console.log('lollipop r', r)
                   let cc = r.group.element.querySelectorAll('path')
                   console.log('cc', cc)
                   let usbarHalf = +r.chart.userOptions.yAxis[0].plotLines[0].width / 2
@@ -399,13 +469,25 @@ export default {
           name: 'slunch3',
           color: '#cdcdcd',
           keys: ['x', 'low', 'high', 'dir', 'mkr', 'mkr2'],
-          data: [[0, 428.5913, 478.2447, 'down', '*', ''],
-          [1, 463.3476, 478.2447, 'down', '*', ''],
-          [2, 478.2447, 489.1129, 'up', '*', ''],
-          [3, 478.2447, 530.7587, 'up', '*', ''],
-          [4, 478.2447, 546.6833, 'up', '*', '']]
+          data: this.tableData
         }]
-      }
+      },
+
+      created() {
+
+        // Highcharts.wrap(Highcharts.Axis.prototype, 'getLinePath', function (proceed, lineWidth) {
+        //         var axis = this;
+        //         console.log('axis',axis);
+
+
+
+        //       });
+
+
+
+      },
+
+
     }
   },
 

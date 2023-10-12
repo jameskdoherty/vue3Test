@@ -13,6 +13,8 @@ const table9JSON = ref(Table9JSON);
 import PisaTableNoSorting from '@/components/PisaTableNoSorting.vue';
 
 import table9_data_math from '../../../assets/testdata/table9_data_math.json';
+import table9_data_reading from '../../../assets/testdata/table9_data_reading.json';
+import table9_data_science from '../../../assets/testdata/table9_data_science.json';
 
 export default {
     name: 'TableM9',
@@ -61,26 +63,14 @@ export default {
                 console.log('table9 what current section', this.whichSection)
                 if (this.whichSection.includes('/mathematics')) {
                     const table9data = ref(table9_data_math.result)
-                    console.log('pisa table9 data', table9data.value)
                     this.data = table9data.value
                 } else if (this.whichSection.includes('/reading')) {
-                    const table9data = ref(table9_data_math.result)
-                    console.log('pisa table9 data', table9data.value)
+                    const table9data = ref(table9_data_reading.result)
                     this.data = table9data.value
                 } else if (this.whichSection.includes('/science')) {
-                    const table9data = ref(table9_data_math.result)
-                    console.log('pisa table9 data', table9data.value)
+                    const table9data = ref(table9_data_science.result)
                     this.data = table9data.value
                 }
-
-
-
-
-
-                // this.tableData = table9data
-                //this.addData(this.tableData)
-                // this.addHeaders(this.tableHeaders)
-
 
             })
 
