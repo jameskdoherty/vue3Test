@@ -262,8 +262,9 @@ export default {
 
                     this.clearTable = function () {
 
-                        document.querySelectorAll('tbody > tr').forEach((el) => {
-                            console.log('parent', el.parentElement);
+                        document.querySelectorAll('#table3 > tr').forEach((el) => {
+                            console.log('clear table3 parent', el.parentElement);
+                            console.log('clear table3 el', el);
                             var parent = el.parentElement
                             // el.innerHTML = '<th class="country">commodi distinctio</th><td class="">422</td><td>21</td><td>332</td>'
                             parent.removeChild(el)

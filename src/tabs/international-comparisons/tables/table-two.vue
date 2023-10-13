@@ -350,8 +350,8 @@ export default {
                         console.log('clear table')
                         document.querySelectorAll('tbody > tr').forEach((el) => {
                             // console.log('parent', el.parentElement);
-                            var parent = el.parentElement
-                            parent.removeChild(el)
+                            //var parent = el.parentElement
+                            //parent.removeChild(el)
                         });
                     }
 

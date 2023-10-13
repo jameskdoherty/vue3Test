@@ -1,14 +1,13 @@
 <template>
-    <figure class="table-m8" :class="figureClassTable">
+    <figure class="table-m8 table-classic"  :class="figureClassTable">
         <component :is="elcaptionfig" :figuretitle="figcaptionTableTitle" :figurebody="figcaptionBody"></component>
         <div id="chart-area" class="d-flex flex-wrap justify-center" tabindex="1"
             aria-label="Average scores on the PISA science literacy scale, by education system: 2022">
             <div class="table-classic__container">
                 <component :is="eltable"></component>
             </div>
-            <component :is="elnote"></component>
         </div>
-
+        <component :is="elnote"></component>
     </figure>
 </template>
 <script>

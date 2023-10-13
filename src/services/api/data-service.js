@@ -317,105 +317,8 @@ export const DataService = {
             })
         ).subscribe(result => {
             let allResults = result.result
+            console.log('table1 allResults', allResults);
             return tableOneSubject.next(allResults)
-        });
-    },
-    createTable3: (subScale) => {
-        console.log("TCL: TABLE3 this.section", subScale);
-
-        forkJoin([
-            fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=gaponpercentileacrossjuris&subject=RMS&cohort=1&subscale=PVMATH&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=PC:P1,PC:P9&Year=2022&Program=PISA`).pipe(
-                switchMap(response => {
-                    // console.log('a table3', response);
-                    if (response.ok) {
-                        return response.json()
-                    } else {
-                        console.log('do something else')
-                        //return chart9MathTotal
-                    }
-                }),
-            ),
-            fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=gaponpercentileacrossjuris&subject=RMS&cohort=1&subscale=PVMATH&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=PC:P1,PC:P9&Year=2022&Program=PISA`).pipe(
-                switchMap(response => {
-                    // console.log('b table3', response);
-                    if (response.ok) {
-                        return response.json()
-                    } else {
-                        console.log('do something else')
-                        //return chart9Math
-                    }
-                }),
-            )
-        ]).subscribe(result => {
-            let tableResults = [];
-            result.forEach((element, index, array) => {
-                tableResults.push(element.result)
-            })
-            console.log("TCL: table 3 ", tableResults)
-            return tableThreeSubject.next(tableResults)
-        });
-    },
-    createTable4A: (subScale) => {
-        console.log("TCL: this.section", subScale);
-        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=${jurisdictionAUS_VNM}&stattype=MN:MN&Year=${firstYear},2022&Program=PISA`).pipe(
-            switchMap(response => {
-                console.log('createTable4A ', response);
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    console.log('do something else')
-                }
-            }),
-            catchError(err => {
-                console.log(err);
-                return of({ error: true, message: err.message })
-            })
-        ).subscribe(result => {
-            let allResults = result.result
-            console.log("TCL: createTable4A allResults", allResults)
-            return tableFourASubject.next(allResults)
-        });
-    },
-    createTable4B: (subScale) => {
-        console.log("TCL: this.section", subScale);
-        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=${jurisdictionAUS_VNM}&stattype=MN:MN&Year=2018,2022&Program=PISA`).pipe(
-            switchMap(response => {
-                console.log('createTable4B ', response);
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    console.log('do something else')
-                }
-            }),
-            catchError(err => {
-                console.log(err);
-                return of({ error: true, message: err.message })
-            })
-        ).subscribe(result => {
-            let allResults = result.result
-            console.log("TCL: DATASERVICE createTable4B allResults", allResults)
-            return tableFourBSubject.next(allResults)
-        });
-    },
-    createTable5: (subScale) => {
-        console.log("TCL: this.section", subScale);
-        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=USA&stattype=MN:MN,PC:P1,PC:P2,PC:P7,PC:P9&Year=2000,2003,2006,2009,2012,2015,2018,2022&Program=PISA`).pipe(
-            switchMap(response => {
-                console.log('createTable5 ', response);
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    console.log('do something else')
-                }
-            }),
-            catchError(err => {
-                console.log(err);
-                return of({ error: true, message: err.message })
-            })
-        ).subscribe(result => {
-            let allResults = result.result
-            console.log("TCL: DATASERVICE createTable5 allResults", allResults)
-            return tableFiveSubject.next(allResults)
         });
     },
     createTable2: (subScale) => {
@@ -427,7 +330,7 @@ export const DataService = {
             callsArray.push(`${domain}UseCache=true&type=sigacrossjuris&subject=RMS&cohort=1&subscale=${subScale}&variable=BMSCIE&jurisdiction=${element},USA&stattype=RP:RP&Year=2022&Program=PISA&collapse=BMSCIE:1-2-3-4-BelowLevel2,BMSCIE:8-9-FiveAndAbove`)
         })
 
-        console.log('callsarray length', callsArray.length)
+        console.log('table2 callsarray length', callsArray.length)
 
         forkJoin([
             fromFetch(callsArray[0]).pipe(
@@ -527,11 +430,105 @@ export const DataService = {
             result.forEach((element, index, array) => {
                 tableResults.push(element.result)
             })
-            console.log("TCL: table 2 ", tableResults)
+            console.log("table2 tableResults", tableResults)
             return tableTwoSubject.next(tableResults)
         });
 
     },
+    createTable3: (subScale) => {
+        forkJoin([
+            fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=gaponpercentileacrossjuris&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=PC:P1,PC:P9&Year=2022&Program=PISA`).pipe(
+                switchMap(response => {
+                    if (response.ok) {
+                        return response.json()
+                    } else {
+                        console.log('do something else')
+                    }
+                }),
+            ),
+            fromFetch(`http://poseidon.research.ets.org/surveys/idedataservice/getadhocdata.aspx?UseCache=true&type=gaponpercentileacrossjuris&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=IN3,AUS,AUT,BEL,CAN,CHL,COL,CRI,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA,ALB,DZA,ARG,AZE,BAK,BLR,BIH,BRA,BRN,QCH,QCI,ARG01,BGR,KHM,TAP,HRV,QCY,DOM,ARE03,SLV,GEO,GTM,HKG,IDN,JAM,JOR,KAZ,KSV,KGZ,LBN,LIE,LTU,MAC,MYS,MLT,MDA,MNG,MNE,MAR,MKD,PSE,PAN,PRY,PER,PHL,QAT,ROU,RUS,SAU,YUG,SRB,QCN,SGP,THA,TTO,TUN,UKR,QUR,ARE,URY,UZB,VNM&stattype=PC:P1,PC:P9&Year=2022&Program=PISA`).pipe(
+                switchMap(response => {
+                    if (response.ok) {
+                        return response.json()
+                    } else {
+                        console.log('do something else')
+                    }
+                }),
+            )
+        ]).subscribe(result => {
+            let tableResults = [];
+            result.forEach((element, index, array) => {
+                tableResults.push(element.result)
+            })
+            console.log('TCL: TABLE3@ tableResults', tableResults)
+            console.log("TCL: TABLE3@ this.section", subScale);
+            return tableThreeSubject.next(tableResults)
+        });
+    },
+    createTable4A: (subScale) => {
+        console.log("TCL: this.section", subScale);
+        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=${jurisdictionAUS_VNM}&stattype=MN:MN&Year=${firstYear},2022&Program=PISA`).pipe(
+            switchMap(response => {
+                console.log('createTable4A ', response);
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    console.log('do something else')
+                }
+            }),
+            catchError(err => {
+                console.log(err);
+                return of({ error: true, message: err.message })
+            })
+        ).subscribe(result => {
+            let allResults = result.result
+            console.log("TCL: createTable4A allResults", allResults)
+            return tableFourASubject.next(allResults)
+        });
+    },
+    createTable4B: (subScale) => {
+        console.log("TCL: this.section", subScale);
+        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=${jurisdictionAUS_VNM}&stattype=MN:MN&Year=2018,2022&Program=PISA`).pipe(
+            switchMap(response => {
+                console.log('createTable4B ', response);
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    console.log('do something else')
+                }
+            }),
+            catchError(err => {
+                console.log(err);
+                return of({ error: true, message: err.message })
+            })
+        ).subscribe(result => {
+            let allResults = result.result
+            console.log("TCL: DATASERVICE createTable4B allResults", allResults)
+            return tableFourBSubject.next(allResults)
+        });
+    },
+    createTable5: (subScale) => {
+        console.log("TCL: this.section", subScale);
+        fromFetch(`${domain}UseCache=true&type=sigacrossyear&subject=RMS&cohort=1&subscale=${subScale}&variable=TOTAL&jurisdiction=USA&stattype=MN:MN,PC:P1,PC:P2,PC:P7,PC:P9&Year=2000,2003,2006,2009,2012,2015,2018,2022&Program=PISA`).pipe(
+            switchMap(response => {
+                console.log('createTable5 ', response);
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    console.log('do something else')
+                }
+            }),
+            catchError(err => {
+                console.log(err);
+                return of({ error: true, message: err.message })
+            })
+        ).subscribe(result => {
+            let allResults = result.result
+            console.log("TCL: DATASERVICE createTable5 allResults", allResults)
+            return tableFiveSubject.next(allResults)
+        });
+    },
+   
     createCurrentSection: (currentSection) => {
         console.log("TCL: createCurrentSection this.section", currentSection);
         return currentSectionSubject.next(currentSection)

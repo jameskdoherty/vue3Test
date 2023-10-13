@@ -8,16 +8,28 @@
                     15-year-olds?</span>
             </label>
             <div class="panel-content">
-                <p>Voluptatem eum eaque amet illo delectus enim odio consectetur, alias incidunt? Lorem
-                    ipsum, dolor sit amet consectetur adipisicing elit. Quidem blanditiis maiores
-                    repudiandae assumenda veniam. Impedit autem rerum nostrum amet ad numquam. Deserunt
-                    autem, ipsam sed veniam alias beatae a eveniet?</p>
+                <p><strong>In 2022, there was no significant difference between the average science scores of U.S. male and
+                        female students. Among the other 80 education systems, female students scored higher, on average,
+                        than male students in 33 education systems, and male students scored higher, on average, than female
+                        students in 15 education systems.</strong></p>
                 <ul>
-                    <li>libero facilis nulla, voluptatum assumenda magni sit cumque modi. </li>
-                    <li>sit amet consectetur adipisicing elit. Numquam ratione minima</li>
-                    <li>molestiae error perferendis minus tempore voluptate quaerat mollitia</li>
-                    <li>Laboriosam omnis architecto illum a quos itaque veniam autem, nam</li>
+                    <li>On average across the participating OECD countries, there was no significant difference between the
+                        average science scores of male and female students.</li>
+                    <li>In 33 education systems, female students scored higher than male students on average, with score
+                        gaps ranging from 5 points in Kazakhstan to 33 points in Jordan.</li>
+                    <li>In 15 education systems, male students scored higher than female students on average, with score
+                        gaps ranging from 5 points in Spain and Brazil to 15 points in Costa Rica.</li>
                 </ul>
+
+                <!-- Click on the column headers -->
+                <FragmentParagraph v-if="this.currentSection == 'mathematics'" blurbOne=", average score, or difference from the
+                    U.S. average score" blurbTwo="2022–2006 difference in average score" />
+                <FragmentParagraph v-if="this.currentSection == 'reading'"
+                    blurbOne=", average score, or difference from the U.S. average score" blurbTwo="percentages of 15-year-olds in levels 5 and
+        above" />
+                <FragmentParagraph v-if="this.currentSection == 'science'"
+                    blurbOne=", score difference between male and female students or male and female scores in the table view."
+                    blurbTwo="absolute male–female difference in 2022 average scores" />
                 <!-- Chart/Table Component 6 -->
                 <!-- <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartSix"
                     :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
@@ -29,6 +41,8 @@
                     :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
                     figcaptionTitle="Figure R6" figcaptionTableTitle="Table R6" figcaptionBody="reading" /> -->
                 <!-- end Chart/Table Component 6 -->
+
+
             </div>
         </div>
         <div class="panel" id="panel-s3-m2">
@@ -38,30 +52,28 @@
                     race/ethnicity?</span>
             </label>
             <div class="panel-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit, <a href="#">amet
-                        consectetur adipisicing elit unde doloribus</a> consequatur
-                    recusandae, ipsa eius sunt eveniet veniam facilis molestiae asperiores architecto alias
-                    accusantium eos est nemo quasi deserunt, iste ea.</p>
-                <p><strong>Porro nemo molestias ipsa sunt eveniet veniam facilis molestiae</strong></p>
-                <p>Numquam doloribus molestias, quo ipsam facere quod architecto quasi veritatis deserunt a
-                    esse blanditiis hic, rem dolorem inventore voluptatum vel impedit? Modi. Lorem, <a href="#">ipsum dolor
-                        sit amet consectetur adipisicing elit</a>. Tempore
-                    reprehenderit, obcaecati recusandae officia facilis sequi adipisci minus in quos?
-                    Obcaecati beatae, necessitatibus voluptatem unde ratione possimus? Nam quas vero
-                    eveniet? Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, ex corrupti?
-                    Aperiam nemo nesciunt architecto, deserunt obcaecati nihil, deleniti aut numquam aliquid
-                    quis vel enim modi eius veritatis culpa eos. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Natus rem debitis enim doloribus quibusdam labore corporis eum sequi
-                    maxime. Eius alias ullam unde corrupti error vero fugit ipsam? Voluptates, iure!</p>
+
+                <p><strong>In 2022, White and Asian students and students reporting Two or More Races in the United States
+                        scored higher than the overall U.S. average in science literacy, while Hispanic and Black students
+                        scored lower compared to the U.S. average.</strong></p>
+
+                <ul>
+                    <li>White and Asian students and students reporting Two or More Races, on average, had higher science
+                        literacy scores (537, 578, and 513, respectively) than the overall U.S. average score (499). The
+                        average science literacy score for Black and Hispanic students were lower than the overall U.S.
+                        average score (445 and 471, respectively).</li>
+
+                </ul>
+
                 <!-- Chart/Table Component 7 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartSeven"
-                    :eltable="DynamicTableSeven" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    :eltable="DynamicTableSeven" :elnote="YetOtherDynamicComponent" :elnotefortable="DynamicNotesTable" :elcaptionfig="DynamicFigCaptionSeven"
                     figcaptionTitle="Figure M7" figcaptionTableTitle="Table M7" figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartSeven"
-                    :eltable="DynamicTableSeven" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    :eltable="DynamicTableSeven" :elnote="YetOtherDynamicComponent" :elnotefortable="DynamicNotesTable" :elcaptionfig="DynamicFigCaptionSeven"
                     figcaptionTitle="Figure S7" figcaptionTableTitle="Table S7" figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartSeven"
-                    :eltable="DynamicTableSeven" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSeven"
+                    :eltable="DynamicTableSeven" :elnote="YetOtherDynamicComponent" :elnotefortable="DynamicNotesTable" :elcaptionfig="DynamicFigCaptionSeven"
                     figcaptionTitle="Figure R7" figcaptionTableTitle="Table R7" figcaptionBody="reading" />
             </div>
         </div>
@@ -80,39 +92,61 @@
                         Reduced-priced lunch</span>
                 </p>
                 <!-- end toggle switch -->
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit, <a href="#">amet
-                        consectetur adipisicing elit unde doloribus</a> consequatur
-                    recusandae, ipsa eius sunt eveniet veniam facilis molestiae asperiores architecto alias
-                    accusantium eos est nemo quasi deserunt, iste ea.</p>
-                <p>Est ducimus illo labore repellendus at ipsam tempora, amet dolores numquam! Doloribus
-                    dolor debitis tempora modi ipsum possimus ea, vero voluptas. Eaque.</p>
-                <p><strong>Porro nemo molestias ipsa sunt eveniet veniam facilis molestiae</strong></p>
-                <p>Amet consectetur adipisicing elit. Rem
-                    saepe facilis beatae sit magni fuga, neque animi
-                    necessitatibus! Sequi reprehenderit aut in iste optio sapiente aliquam asperiores
-                    mollitia sed similique.</p>
+                <p><strong>The PISA 2022 questionnaire collected data on two measures of poverty: the <span
+                            class="tooltip-container">economic, social, and cultural status (ESCS) index<span
+                                class="tooltip-text bottom">The PISA index of economic, social, and cultural status
+                                (ESCS) was created using student reports on parental occupation, the highest level of
+                                parental education, and an index of home possessions related to family wealth, home
+                                educational resources and possessions related to "classical" culture in the family home.
+                                The home possessions relating to "classical" culture in the family home included
+                                possessions such as works of classical literature, books of poetry, and works of art
+                                (e.g., paintings).</span></span> and a U.S.-only <span class="tooltip-container">free or
+                            reduced-price lunch (FRPL)<span class="tooltip-text bottom">The National School Lunch
+                                Program provides free or reduced-price lunch for students meeting certain income
+                                guidelines. The percentage of students eligible for this program is an indicator of the
+                                socioeconomic level of families served by the school. Data are based on principals'
+                                responses to a question in the school questionnaire that asked the approximate
+                                percentage of eligible students in the school during the previous school year. Free or
+                                reduced-price lunch data are for public schools only.</span></span> variable. The ESCS
+                        index is a student-level, international measure of socioeconomic status. Students were grouped
+                        into four quarters using the distribution of ESCS scores specific to each education system.
+                        Those in the bottom ESCS quarter report the highest levels of poverty while those in the top
+                        quarter report the lowest levels of poverty. In 2022, U.S. 15-year-old students had higher
+                        average science literacy scores than the OECD average scores in the bottom and top ESCS
+                        quarters. There was no significant difference between U.S. students' average scores and the OECD
+                        average scores in the second and third ESCS quarters.</strong></p>
+                <ul>
+                    <li>U.S. students in the bottom ESCS quarter scored 10 points higher, on average, than the OECD
+                        average score in the bottom ESCS quarter. U.S. students in the top ESCS quarter scored 18 points
+                        higher than the OECD average score in the top ESCS quarter.</li>
+                    <li>The U.S. score gap between the top and bottom ESCS quarters was not significantly different from
+                        the score gap across the participating OECD countries, on average (108 points vs. 101 points,
+                        respectively).</li>
+
+                </ul>
                 <!-- Chart/Table Component 8 -->
                 <div :class="{ invisible: !isStatusActive }">8
+
                     <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicTableEight" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="YetOtherDynamicComponent" :elnotefortable="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure M8" figcaptionTableTitle="Table M8" figcaptionBody="mathematics" />
                     <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicTableEight" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="YetOtherDynamicComponent" :elnotefortable="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure S8" figcaptionTableTitle="Table S8" figcaptionBody="scientific" />
                     <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicTableEight" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="YetOtherDynamicComponent" :elnotefortable="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure R8" figcaptionTableTitle="Table R8" figcaptionBody="reading" />
                 </div>
                 <!-- Chart/Table Component 9 -->
                 <div :class="{ invisible: isStatusActive }">9
                     <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicTableNine" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableNine" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure M9" figcaptionTableTitle="Table M9" figcaptionBody="mathematics" />
                     <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicTableNine" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableNine" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure S9" figcaptionTableTitle="Table S9" figcaptionBody="scientific" />
                     <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicTableNine" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableNine" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure R9" figcaptionTableTitle="Table R9" figcaptionBody="reading" />
                 </div>
             </div>
@@ -173,6 +207,7 @@ export default {
             DynamicChartSix: ChartSix,
             DynamicTableSix: TableSix,
             DynamicTableSeven: TableM7,
+            DynamicNotesTable: NotesSignificantlyDifferentThree,
             DynamicChartSeven: ChartM7,
             DynamicChartEight: ChartM8,
             DynamicTableEight: TableM8,

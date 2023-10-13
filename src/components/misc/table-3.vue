@@ -1,7 +1,7 @@
 <template>
     <div class="table-classic__container" id="tableM3">
         <div class="table-control d-flex justify-center">
-            <p><strong>Filter by:</strong></p>
+            <p><strong>TABLE-3Filter by:</strong></p>
             <input type="radio" id="m3atbl-all-educations-systems" class="all-education-systems" name="m3a-toggle-one"
                 checked="checked">
             <label for="m3atbl-all-educations-systems">

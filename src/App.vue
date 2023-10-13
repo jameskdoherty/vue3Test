@@ -119,7 +119,7 @@ select {
   --clr-pisa-06: #00843d;
   --clr-pisa-07: #843298;
   --clr-pisa-08: #fbb03b;
-  --clr-neutral: #fffffe;
+  --clr-neutral: #ffffff;
   --clr-dark: #000000;
   --clr-shadow: rgba(0,0,0,0.25);
   --clr-grey: rgba(186,188,190,.8);
@@ -127,11 +127,12 @@ select {
   --clr-highlight: #f0f8ff;
   --clr-chartcol: #ececec;
   --clr-showy: #ebebeb;
-  --clr-usblue: #0a3161;
+  --clr-usblue: #002868;
   --clr-button: #20b8be;
   --clr-url: #3366cc;
   --clr-all-sections: #4f4d52;
   --clr-stem: #cdcdcd;
+  --clr-font: #4a4a4a;
   --ff-primary: Arial, sans-serif;
   font-size: 62.5%;
   font-weight: 500;
@@ -147,12 +148,19 @@ select {
 }
 
 .main-content {
-  color: var(--clr-dark);
+  color: var(--clr-font);
   font-family: var(--ff-primary);
   font-size: 1.6rem;
   line-height: 2.4rem;
   margin-top: 0.2em;
   text-align: left;
+}
+.main-content a {
+  color: var(--clr-url);
+  transition: text-decoration 0.25s ease-in-out;
+}
+.main-content a:hover {
+  text-decoration: underline solid transparent;
 }
 .main-content .top-banner {
   background-color: var(--clr-pisa-01);
@@ -340,17 +348,18 @@ select {
   }
 }
 .main-content .story__block img {
-  align-self: center;
+  align-self: start;
 }
 .main-content .story__block__content {
   margin-left: auto;
   padding: 0 1em;
 }
+
 .main-content .story__block__content blockquote {
-  border-left: 5px solid var(--clr-grey);
-  font-style: italic;
-  margin: 1em 0;
-  padding-left: 1.5em;
+    border-left: 5px solid var(--clr-grey);
+    font-weight: 700;
+    margin: 1em 0;
+    padding-left: 1.5em;
 }
 
 .main-content figure {
@@ -1288,6 +1297,51 @@ select {
   font-size: 1.1rem;
 }
 
+
+
+.main-content .story__block h2 {
+    color: var(--clr-pisa-05);
+    font-size: 1.2em;
+    margin: 1em 0;
+}
+
+.main-content .tooltip-container {
+  background-color: #f3f3f3;
+  border-radius: 0.3em;
+  color: var(--clr-pisa-05);
+  cursor: pointer;
+  padding: 0 0.3em;
+  position: relative;
+  display: inline-block;
+}
+.main-content .tooltip-container:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 500ms linear, visibility 0s linear 500ms;
+}
+.main-content .tooltip-container .tooltip-text {
+  background-color: var(--clr-neutral);
+  border: 1px solid var(--clr-grey);
+  border-radius: 0.5em;
+  box-shadow: 0 10px 6px -6px var(--clr-grey);
+  color: var(--clr-font);
+  font-size: 0.8em;
+  line-height: 1.5;
+  opacity: 0;
+  padding: 1em;
+  position: absolute;
+  visibility: hidden;
+  width: 30em;
+  z-index: 1;
+  transition: opacity 500ms linear, visibility 0s linear 500ms;
+}
+.main-content .tooltip-container .tooltip-text strong {
+  font-weight: 700;
+}
+.main-content .tooltip-container .bottom {
+  top: 2em;
+  left: 0;
+}
 
 
 

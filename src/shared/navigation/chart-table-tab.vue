@@ -15,7 +15,7 @@
         
             <component :is="eltable"></component>
       
-        <component :is="elnote"></component>
+        <component :is="elnotefortable"></component>
     </figure>
 </template>
 <script>
@@ -34,6 +34,10 @@ export default {
             default: 'div'
         },
         elnote: {
+            type: [String, Object],
+            default: 'div'
+        },
+        elnotefortable: {
             type: [String, Object],
             default: 'div'
         },

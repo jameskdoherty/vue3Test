@@ -3,6 +3,8 @@
         <p>† Not applicable.</p>
         <p>* Significantly different (<em>p</em> &lt; .05) from the U.S. average at the .05
             level of statistical significance.</p>
+            <p>** Significantly different (<em>p</em> &lt; .05) from the OECD average at the .05 level of statistical significance.</p>
+            <p>*** Significantly different (<em>p</em> &lt; .05) from both the U.S. and OECD averages at the .05 level of statistical significance.</p>
         <p>NOTE: Scores are reported on a scale from 0 to 1,000. The National School Lunch
             Program provides free or reduced-price lunch for students meeting certain income
             guidelines. The percentage of students eligible for this program is an indicator
