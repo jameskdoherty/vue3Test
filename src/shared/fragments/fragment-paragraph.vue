@@ -10,6 +10,7 @@ export default {
     name: 'fragment-paragraph',
     props: {
         blurbOne: { type: String },
+        blurbTwo: { type: String },
     },
 
     data() {

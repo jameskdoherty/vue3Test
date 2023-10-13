@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TrendsStudentAchievement from '../tabs/trends/trends-student-achievement.vue'
-import AchievementByStudentGroups from '../tabs/achievement/achievement-by-student-groups.vue'
-import InternationalComparisons from '../tabs/international-comparisons/international-comparisons.vue'
+import TrendsStudentAchievement from '../sections/trends/trends-student-achievement.vue'
+import AchievementByStudentGroups from '../sections/achievement/achievement-by-student-groups.vue'
+import InternationalComparisons from '../sections/international-comparisons/international-comparisons.vue'
 import NotFound from '../views/not-found.vue'
 
 const routes = [

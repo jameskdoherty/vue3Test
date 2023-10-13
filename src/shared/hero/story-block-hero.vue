@@ -3,7 +3,9 @@
         <p>PISA 2022 {{ this.currentSection }} Literacy Results</p><i class="fa-solid fa-calculator"></i>
     </div>
     <section class="story__block">
-        <img src="http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/subject-home.png" />
+        <img v-if="this.currentSection == 'Mathematics'" src="http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/math_hero.jpg" />
+        <img v-if="this.currentSection == 'Reading'" src="http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/reading_hero.jpg" />
+        <img v-if="this.currentSection == 'Science'" src="http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/sci_hero.jpg" />
 
 
         <div class="story__block__content">
@@ -35,18 +37,22 @@
 <script>
 import FragmentContainer from '../../shared/fragments/fragment-container.vue'
 import StoryBlockFragReading from '../../shared/fragments/story-block-frag-reading.vue'
+import StoryBlockFragMathematics from '../../shared/fragments/story-block-frag-mathematics.vue'
+import StoryBlockFragScience from '../../shared/fragments/story-block-frag-science.vue'
 export default {
     name: 'Story-Block-Mathematics',
     components: {
         FragmentContainer,
-        StoryBlockFragReading
+        StoryBlockFragReading,
+        StoryBlockFragMathematics,
+        StoryBlockFragScience
     },
     data() {
         return {
             currentSection: '',
-            DynamicFragmentMath: StoryBlockFragReading,
+            DynamicFragmentMath: StoryBlockFragMathematics,
             DynamicFragmentReading: StoryBlockFragReading,
-            DynamicFragmentScience: StoryBlockFragReading,
+            DynamicFragmentScience: StoryBlockFragScience,
         }
     },
     computed: {

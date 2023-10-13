@@ -191,10 +191,10 @@ select {
   background-color: var(--clr-pisa-05);
 }
 .main-content .top-banner.domain.mathematics {
-  background-color: var(--clr-pisa-06);
+  background-color: var(--clr-pisa-01);
 }
 .main-content .top-banner.domain.science {
-  background-color: var(--clr-pisa-01);
+  background-color: var(--clr-pisa-06);
 }
 .main-content .top-banner.domain p {
   font-weight: 500;

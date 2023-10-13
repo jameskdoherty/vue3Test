@@ -1,11 +1,10 @@
 <template>
    
-
     <ul class="secondary-nav" :class="getSectionClass">
         <li id="tab-one"><router-link :to="{ path: `/${pathName}/international-comparisons` }">International
                 Comparisons<br> of
                 Student Achievement</router-link></li>
-        <li id="tab-two"><router-link :to="{ path: `/${pathName}/trends` }">Change Trends in Student<br>
+        <li id="tab-two"><router-link :to="{ path: `/${pathName}/trends` }">Trends in Student<br>
                 Achievement</router-link></li>
         <li id="tab-three"><router-link :to="{ path: `/${pathName}/achievement` }">Achievement by<br> Student
                 Groups</router-link></li>
@@ -15,7 +14,7 @@
 
 
 export default {
-    name: 'mathematics-tabs',
+    name: 'section-tabs',
     data() {
         return {
             pathName: '',
@@ -82,13 +81,13 @@ export default {
 }
 
 .main-content .secondary-nav.mathematics li a.router-link-active {
-    background-color: var(--clr-pisa-06);
+    background-color: var(--clr-pisa-01);
 }
 .main-content .secondary-nav.reading li a.router-link-active {
     background-color: var(--clr-pisa-05);
 }
 .main-content .secondary-nav.science li a.router-link-active {
-    background-color: var(--clr-pisa-01);
+    background-color: var(--clr-pisa-06);
 }
 
 .main-content .secondary-nav li a.router-link-active {

@@ -1,18 +1,18 @@
 <template>
-    <StoryBlockMathematics />
+    <StoryBlockHero />
     <section id="section-container tabs">
-        <MathematicsTabs />
+        <SectionTabs />
         <AccordionTrendsStudentAchievement />
     </section>
 </template>
 <script>
-import MathematicsTabs from '../../shared/navigation/mathematics-tabs.vue'
-import StoryBlockMathematics from '../../shared/hero/story-block-mathematics.vue'
+import SectionTabs from '../../shared/navigation/section-tabs.vue'
+import StoryBlockHero from '../../shared/hero/story-block-hero.vue'
 import AccordionTrendsStudentAchievement from './accordion-trends-student-achievement.vue'
 
 export default {
     name: 'trends-student-achievement',
-    components: { MathematicsTabs, AccordionTrendsStudentAchievement, StoryBlockMathematics }
+    components: { SectionTabs, AccordionTrendsStudentAchievement, StoryBlockHero }
 }
 </script>
   <!-- Add "scoped" attribute to limit CSS to this component only -->

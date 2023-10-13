@@ -1,18 +1,18 @@
 <template>
-    <StoryBlockMathematics />
+    <StoryBlockHero />
     <section id="section-container tabs">
-        <MathematicsTabs />
+        <SectionTabs />
         <AccordionAchievementByStudentGroups />
     </section>
 </template>
 <script>
-import MathematicsTabs from '../../shared/navigation/mathematics-tabs.vue'
-import StoryBlockMathematics from '../../shared/hero/story-block-mathematics.vue'
+import SectionTabs from '../../shared/navigation/section-tabs.vue'
+import StoryBlockHero from '../../shared/hero/story-block-hero.vue'
 import AccordionAchievementByStudentGroups from './accordion-achievement-by-student-groups.vue'
 
 export default {
     name: 'achievement-by-student-groups',
-    components: { MathematicsTabs, StoryBlockMathematics,AccordionAchievementByStudentGroups},
+    components: { SectionTabs, StoryBlockHero, AccordionAchievementByStudentGroups},
 }
 
 </script>

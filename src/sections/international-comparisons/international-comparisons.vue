@@ -1,18 +1,18 @@
 <template>
-    <StoryBlockMathematics />
+    <StoryBlockHero />
     <section id="section-container tabs">
-        <MathematicsTabs />
+        <SectionTabs />
         <AccordionInternationalComparisons />
     </section>
 </template>
 <script>
-import MathematicsTabs from '../../shared/navigation/mathematics-tabs.vue'
-import StoryBlockMathematics from '../../shared/hero/story-block-mathematics.vue'
+import SectionTabs from '../../shared/navigation/section-tabs.vue'
+import StoryBlockHero from '../../shared/hero/story-block-hero.vue'
 import AccordionInternationalComparisons from './accordion-international-comparisons.vue'
 
 export default {
     name: 'international-comparisons',
-    components: { MathematicsTabs, StoryBlockMathematics, AccordionInternationalComparisons }
+    components: { SectionTabs, StoryBlockHero, AccordionInternationalComparisons }
 }
 </script>
   <!-- Add "scoped" attribute to limit CSS to this component only -->
