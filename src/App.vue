@@ -354,6 +354,9 @@ select {
   margin-left: auto;
   padding: 0 1em;
 }
+.main-content .story__block__content p {
+    margin-bottom: 1em;
+}
 
 .main-content .story__block__content blockquote {
     border-left: 5px solid var(--clr-grey);

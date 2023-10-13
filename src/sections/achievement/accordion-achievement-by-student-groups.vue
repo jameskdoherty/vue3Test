@@ -60,13 +60,13 @@
                     blurbTwo="absolute male–female difference in 2022 average scores" />
                 <!-- Chart/Table Component 6 -->
                 <!-- <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartSix"
-                    :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
+                    :eltable="DynamicTableSix" :elnote="DynamicNotesChart6" :elcaptionfig="DynamicFigCaptionSix"
                     figcaptionTitle="Figure M6" figcaptionTableTitle="Table M6" figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartSix"
-                    :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
+                    :eltable="DynamicTableSix" :elnote="DynamicNotesChart6" :elcaptionfig="DynamicFigCaptionSix"
                     figcaptionTitle="Figure S6" figcaptionTableTitle="Table S6" figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartSix"
-                    :eltable="DynamicTableSix" :elnote="NotesComponent" :elcaptionfig="DynamicFigCaptionSix"
+                    :eltable="DynamicTableSix" :elnote="DynamicNotesChart6" :elcaptionfig="DynamicFigCaptionSix"
                     figcaptionTitle="Figure R6" figcaptionTableTitle="Table R6" figcaptionBody="reading" /> -->
                 <!-- end Chart/Table Component 6 -->
 
@@ -192,16 +192,16 @@
 
                 <div :class="{ invisible: !isStatusActive }">8
                     <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicTableEight" :elnote="YetOtherDynamicComponent"
-                        :elnotefortable="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="DynamicNotesChart8"
+                        :elnotefortable="DynamicNotesChart8" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure M8" figcaptionTableTitle="Table M8" figcaptionBody="mathematics" />
                     <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicTableEight" :elnote="YetOtherDynamicComponent"
-                        :elnotefortable="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="DynamicNotesChart8"
+                        :elnotefortable="DynamicNotesChart8" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure S8" figcaptionTableTitle="Table S8" figcaptionBody="scientific" />
                     <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartEight"
-                        :eltable="DynamicTableEight" :elnote="YetOtherDynamicComponent"
-                        :elnotefortable="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption"
+                        :eltable="DynamicTableEight" :elnote="DynamicNotesChart8"
+                        :elnotefortable="DynamicNotesChart8" :elcaptionfig="DynamicFigCaption"
                         figcaptionTitle="Figure R8" figcaptionTableTitle="Table R8" figcaptionBody="reading" />
                 </div>
 
@@ -248,15 +248,15 @@
 
                 <div :class="{ invisible: isStatusActive }">9
                     <ChartTableTab v-if="this.whichSection == '/mathematics/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicTableNine" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                        :eltable="DynamicTableNine" :elnote="DynamicNotesChart9" :elnotefortable="DynamicNotesTable9"
                         :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M9" figcaptionTableTitle="Table M9"
                         figcaptionBody="mathematics" />
                     <ChartTableTab v-if="this.whichSection == '/science/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicTableNine" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                        :eltable="DynamicTableNine" :elnote="DynamicNotesChart9" :elnotefortable="DynamicNotesTable9"
                         :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure S9" figcaptionTableTitle="Table S9"
                         figcaptionBody="scientific" />
                     <ChartTableTab v-if="this.whichSection == '/reading/achievement'" :elchart="DynamicChartNine"
-                        :eltable="DynamicTableNine" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                        :eltable="DynamicTableNine" :elnote="DynamicNotesChart9" :elnotefortable="DynamicNotesTable9"
                         :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure R9" figcaptionTableTitle="Table R9"
                         figcaptionBody="reading" />
                 </div>
@@ -268,9 +268,14 @@
 
 <script>
 import NotesOne from '../../shared/notes/notes-one.vue'
+import NotesChart2 from '../../shared/notes/notes-chart2.vue'
 import NotesSignificantlyDifferentOne from '../../shared/notes/notes-significantly-different-one.vue'
 import NotesSignificantlyDifferentTwo from '../../shared/notes/notes-significantly-different-two.vue'
 import NotesSignificantlyDifferentThree from '../../shared/notes/notes-significantly-different-three.vue'
+import NotesSignificantlyDifferentThreeB from '../../shared/notes/notes-significantly-different-three-b.vue'
+import NotesSignificantlyDifferentFourB from '../../shared/notes/notes-significantly-different-four-b.vue'
+import NotesSignificantlyDifferentFourC from '../../shared/notes/notes-significantly-different-four-c.vue'
+import NotesSignificantlyDifferentFourD from '../../shared/notes/notes-significantly-different-four-d.vue'
 import ChartM7 from './charts/chart-m7.vue'
 import ChartM8 from './charts/chart-m8.vue'
 import ChartNine from './charts/chart-nine.vue'
@@ -295,9 +300,14 @@ export default {
     name: 'accordion-achievement-by-student-groups',
     components: {
         NotesOne,
+        NotesChart2,
         NotesSignificantlyDifferentOne,
         NotesSignificantlyDifferentTwo,
         NotesSignificantlyDifferentThree,
+        NotesSignificantlyDifferentThreeB,
+        NotesSignificantlyDifferentFourB,
+        NotesSignificantlyDifferentFourC,
+        NotesSignificantlyDifferentFourD,
         ChartM7,
         ChartM8,
         ChartNine,
@@ -320,13 +330,17 @@ export default {
             DynamicChartSix: ChartSix,
             DynamicTableSix: TableSix,
             DynamicTableSeven: TableM7,
-            DynamicNotesTable: NotesSignificantlyDifferentThree,
+            DynamicNotesTable: NotesSignificantlyDifferentThreeB,
             DynamicChartSeven: ChartM7,
             DynamicChartEight: ChartM8,
             DynamicTableEight: TableM8,
             DynamicTableNine: TableM9,
             DynamicChartNine: ChartNine,
             DynamicNotesOne: NotesOne,
+            DynamicNotesChart6: NotesChart2,
+            DynamicNotesChart8: NotesSignificantlyDifferentFourB,
+            DynamicNotesChart9: NotesSignificantlyDifferentFourC,
+            DynamicNotesTable9: NotesSignificantlyDifferentFourD,
             YetOtherDynamicComponent: NotesSignificantlyDifferentOne,
             NotesComponent: NotesSignificantlyDifferentTwo,
             DynamicFigCaption: FigCaption,

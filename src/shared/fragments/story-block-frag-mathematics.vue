@@ -1,29 +1,30 @@
 <template>
-    <p>Mathematics literacy was a <span class="tooltip-container">minor domain <span class="tooltip-text bottom">As a
-          <strong>minor domain</strong>, a smaller proportion of the assessment is devoted to the subject area and
-          utilizes only items that have been developed for previous cycles of PISA (trend items only). Analysis of the
-          minor domain subject is more limited than when it is a major domain.</span></span> in PISA 2022. For 2022,
-      the PISA reading literacy assessment component included only trend items used in prior cycles of PISA, including the
-      2000, 2009, and 2018 cycles, when reading literacy was the <span class="tooltip-container">major domain <span
-          class="tooltip-text bottom">As the <strong>major domain</strong>, a greater proportion of the assessment is
-          devoted to the subject area, including newly developed items, allowing for more detailed analyses of student
-          performance in the subject. In addition, most items in the background questionnaires for students and
-          schools focus on some aspect of the major domain subject, such as how it is taught, school resources related
-          to the teaching of the subject, or students' levels of engagement with the subject.</span></span>. Read more
-      about the latest version of the <a
-        href="https://www.oecd-ilibrary.org/education/pisa-2018-assessment-and-analytical-framework_b25efab8-en">reading
-        literacy framework for PISA</a>.</p>
-    <p>Reading involves not only the printed page but also digital formats. Increasingly, it requires readers to distinguish
-      between fact and opinion, synthesize and interpret texts from multiple sources, and deal with conflicting information
-      across source materials.</p>
-      <blockquote>In PISA 2022 mathematics literacy is defined as students' capacity to understand, use, evaluate, reflect on, and engage with texts in order to achieve one's goals; develop one's knowledge and potential; and participate in society.</blockquote>
-  </template>
-  <script>
+  <p>Mathematics literacy was a <span class="tooltip-container">major domain <span class="tooltip-text bottom">As the
+        <strong>major domain</strong>, a greater proportion of the assessment is devoted to the subject area, including
+        newly developed items, allowing for more detailed analyses of student performance in the subject. In addition,
+        most items in the background questionnaires for students and schools focus on some aspect of the major domain
+        subject, such as how it is taught, school resources related to the teaching of the subject, or students' levels of
+        engagement with the subject.</span></span>in PISA 2022 as it was in 2003 and 2012. For 2022, the <a
+      href="https://pisa2022-maths.oecd.org/ca/index.html">PISA mathematics literacy framework</a> was updated to reflect
+    mathematics in a rapidly changing world driven by new technologies and trends in which citizens are creative and
+    engaged, making nonroutine judgments for themselves and the society in which they live. This brings into focus
+    students' ability to reason mathematically and to understand computational thinking concepts that are part of
+    mathematical literacy.</p>
+  <p>In PISA, the assessment of mathematics literacy focuses on students' capacity to formulate, use, and interpret
+    mathematics in a variety of contexts. Proficiency in mathematics is more than the ability to reproduce the knowledge
+    of mathematical concepts and procedures; it is conceptualized as students' ability to extrapolate from what they know
+    and apply their knowledge in both familiar and unfamiliar situations.</p>
+  <blockquote>In PISA 2022, mathematics literacy is defined as students' capacity to formulate, employ, and interpret
+    mathematics in a variety of contexts. It includes reasoning mathematically and using mathematical concepts,
+    procedures, facts, and tools to describe, explain, and predict phenomena.</blockquote>
   
-  
-  export default {
-    name: 'story-block-frag-mathematics',
-  }
-  </script>
+</template>
+<script>
+
+
+export default {
+  name: 'story-block-frag-mathematics',
+}
+</script>
     <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped></style>
+<style scoped></style>

@@ -21,7 +21,7 @@
             <!-- <blockquote>In PISA 2022, {{ this.currentSection }} literacy is defined as students' capacity to formulate, employ, and
                 interpret {{ this.currentSection }} in a variety of contexts. It includes reasoning mathematically and using mathematical
                 concepts, procedures, facts, and tools to describe, explain, and predict phenomena.</blockquote> -->
-            <p>To take better advantage of the administration of PISA on computer and to improve the measurement of the
+            <p v-if="this.currentSection == 'Mathematics' || this.currentSection == 'Reading'">To take better advantage of the administration of PISA on computer and to improve the measurement of the
                 subject, the PISA 2022 assessment of {{ this.currentSection }} literacy included multi-stage adaptive
                 testing {{ this.sentenceFragmentAdaptiveTesting }}. Instead of using fixed, predetermined test
                 booklets,{{ this.sentenceFragmentPredetermined }} the PISA 2022

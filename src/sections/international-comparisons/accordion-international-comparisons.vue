@@ -46,13 +46,13 @@
                 <!-- Chart/Table Component 1 -->
 
                 <ChartTableNotab v-if="this.whichSection == '/mathematics/international-comparisons'"
-                    :eltable="DynamicTableOne" :elnote="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption"
+                    :eltable="DynamicTableOne" :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption"
                     figcaptionTableTitle="Table M1" figcaptionBody="mathematics" figureClassTable="table-1" />
                 <ChartTableNotab v-if="this.whichSection == '/science/international-comparisons'" :eltable="DynamicTableOne"
-                    :elnote="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table S1"
+                    :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table S1"
                     figcaptionBody="scientific" figureClassTable="table-1" />
                 <ChartTableNotab v-if="this.whichSection == '/reading/international-comparisons'" :eltable="DynamicTableOne"
-                    :elnote="YetOtherDynamicComponent" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table R1"
+                    :elnote="DynamicNotesOne" :elcaptionfig="DynamicFigCaption" figcaptionTableTitle="Table R1"
                     figcaptionBody="reading" figureClassTable="table-1" />
             </div>
         </div>
@@ -120,15 +120,15 @@
                     they were in the default view.</p> -->
                 <!-- Chart/Table Component 2 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/international-comparisons'"
-                    :elchart="DynamicChartTwo" :eltable="DynamicTableTwo" :elnote="YetOtherDynamicComponent"
-                    :elnotefortable="NotesComponent" :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M2"
+                    :elchart="DynamicChartTwo" :eltable="DynamicTableTwo" :elnote="DynamicRoundsToZero"
+                    :elnotefortable="DynamicRoundsToZero" :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M2"
                     figcaptionTableTitle="Table M2" figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/international-comparisons'" :elchart="DynamicChartTwo"
-                    :eltable="DynamicTableTwo" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                    :eltable="DynamicTableTwo" :elnote="DynamicRoundsToZero" :elnotefortable="DynamicRoundsToZero"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure S2" figcaptionTableTitle="Table S2"
                     figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/international-comparisons'" :elchart="DynamicChartTwo"
-                    :eltable="DynamicTableTwo" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                    :eltable="DynamicTableTwo" :elnote="DynamicRoundsToZero" :elnotefortable="DynamicRoundsToZero"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure R2" figcaptionTableTitle="Table R2"
                     figcaptionBody="reading" />
             </div>
@@ -175,15 +175,15 @@
         above" />
                 <!-- Chart/Table Component 3 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/international-comparisons'"
-                    :elchart="DynamicChartThree" :eltable="DynamicTableThree" :elnote="YetOtherDynamicComponent"
+                    :elchart="DynamicChartThree" :eltable="DynamicTableThree" :elnote="DynamicScoreGapDifferent"
                     :elnotefortable="NotesComponent" :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M3"
                     figcaptionTableTitle="Table M3" figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/international-comparisons'" :elchart="DynamicChartThree"
-                    :eltable="DynamicTableThree" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                    :eltable="DynamicTableThree" :elnote="DynamicScoreGapDifferent" :elnotefortable="NotesComponent"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure S3" figcaptionTableTitle="Table S3"
                     figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/international-comparisons'" :elchart="DynamicChartThree"
-                    :eltable="DynamicTableThree" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                    :eltable="DynamicTableThree" :elnote="DynamicScoreGapDifferent" :elnotefortable="NotesComponent"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure R3" figcaptionTableTitle="Table R3"
                     figcaptionBody="reading" />
 
@@ -201,6 +201,8 @@ import NotesSignificantlyDifferentTwo from '../../shared/notes/notes-significant
 import NotesSignificantlyDifferentThree from '../../shared/notes/notes-significantly-different-three.vue'
 import FigCaption from '../../shared/notes/fig-caption.vue'
 import NotesTable1 from '../../shared/notes/notes-table1.vue'
+import NotesChart2 from '../../shared/notes/notes-chart2.vue'
+import NotesChart3 from '../../shared/notes/notes-chart3.vue'
 
 import { DataService } from '../../services/api/data-service'
 import ChartTableTab from '../../shared/navigation/chart-table-tab.vue'
@@ -218,6 +220,8 @@ export default {
     name: 'accordion-international-comparisons',
     components: {
         NotesOne,
+        NotesChart2,
+        NotesChart3,
         NotesTable1,
         NotesSignificantlyDifferentOne,
         NotesSignificantlyDifferentTwo,
@@ -241,6 +245,8 @@ export default {
 
             DynamicNotesOne: NotesTable1,
             YetOtherDynamicComponent: NotesSignificantlyDifferentOne,
+            DynamicRoundsToZero: NotesChart2,
+            DynamicScoreGapDifferent: NotesChart3,
             NotesComponent: NotesSignificantlyDifferentTwo,
             DynamicFigCaption: FigCaption,
             DynamicChartTablePlaceholder: ChartTablePlaceholder,

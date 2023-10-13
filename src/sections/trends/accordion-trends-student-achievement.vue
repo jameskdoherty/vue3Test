@@ -217,15 +217,15 @@
                     75th percentile—the top 25 percent of students; (d) 90th percentile—the top 10 percent of students.</p>
                 <!-- Figure/Table Component 5 -->
                 <ChartTableTab v-if="this.whichSection == '/mathematics/trends'" :elchart="DynamicChartFive"
-                    :eltable="DynamicTableFive" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                    :eltable="DynamicTableFive" :elnote="DynamicNotesChart5" :elnotefortable="DynamicNotesChart5"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure M5" figcaptionTableTitle="Table M5"
                     figcaptionBody="mathematics" />
                 <ChartTableTab v-if="this.whichSection == '/science/trends'" :elchart="DynamicChartFive"
-                    :eltable="DynamicTableFive" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                    :eltable="DynamicTableFive" :elnote="DynamicNotesChart5" :elnotefortable="DynamicNotesChart5"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure S5" figcaptionTableTitle="Table S5"
                     figcaptionBody="scientific" />
                 <ChartTableTab v-if="this.whichSection == '/reading/trends'" :elchart="DynamicChartFive"
-                    :eltable="DynamicTableFive" :elnote="YetOtherDynamicComponent" :elnotefortable="NotesComponent"
+                    :eltable="DynamicTableFive" :elnote="DynamicNotesChart5" :elnotefortable="DynamicNotesChart5"
                     :elcaptionfig="DynamicFigCaption" figcaptionTitle="Figure R5" figcaptionTableTitle="Table R5"
                     figcaptionBody="reading" />
                 <!-- end Figure/Table Component 5 -->
@@ -240,9 +240,11 @@
 <script>
 import NotesOne from '../../shared/notes/notes-one.vue'
 import NotesTable1 from '../../shared/notes/notes-table1.vue'
+import NotesTable4 from '../../shared/notes/notes-table4.vue'
 import NotesSignificantlyDifferentOne from '../../shared/notes/notes-significantly-different-one.vue'
 import NotesSignificantlyDifferentTwo from '../../shared/notes/notes-significantly-different-two.vue'
 import NotesSignificantlyDifferentThree from '../../shared/notes/notes-significantly-different-three.vue'
+import NotesSignificantlyDifferentFour from '../../shared/notes/notes-significantly-different-four.vue'
 import FigCaption from '../../shared/notes/fig-caption.vue'
 
 import { DataService } from '../../services/api/data-service'
@@ -261,9 +263,11 @@ export default {
     components: {
         NotesOne,
         NotesTable1,
+        NotesTable4,
         NotesSignificantlyDifferentOne,
         NotesSignificantlyDifferentTwo,
         NotesSignificantlyDifferentThree,
+        NotesSignificantlyDifferentFour,
         ChartTableTab,
         ChartTableNotab,
         ChartTablePlaceholder,
@@ -282,7 +286,8 @@ export default {
             currentSection: '',
 
             DynamicNotesOne: NotesTable1,
-            YetOtherDynamicComponent: NotesSignificantlyDifferentOne,
+            YetOtherDynamicComponent: NotesTable4,
+            DynamicNotesChart5: NotesSignificantlyDifferentFour,
             NotesComponent: NotesSignificantlyDifferentTwo,
             DynamicFigCaption: FigCaption,
             DynamicChartTablePlaceholder: ChartTablePlaceholder,
