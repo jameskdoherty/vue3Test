@@ -1,0 +1,88 @@
+@mixin chart_table_specific {
+    &.chart-2 {
+        &.d-flex {
+            @media (max-width: 62em) {
+                display: block;
+            }
+        }
+        .chart__controller {
+            .grouping .directive {
+                @media (max-width: 62em) {
+                    display: block;
+                }
+            }
+        }
+    }
+    &.chart-3.math,
+    &.chart-3.read,
+    &.chart-3.sci {
+        .m3__legend,
+        .r3__legend,
+        .s3__legend {
+            margin: 0 auto;
+            padding-bottom: 2em;
+            height: 50px;
+            width: 450px;
+            @media (max-width: 42em) {
+                height: 100%;
+                width: 100%;
+            }
+            &__title {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+            &__item__text {
+                font-weight: 600;
+            }
+        }
+        .sub-contain {
+            align-items: flex-start !important;
+            .grouping {
+                margin-left: 0;
+            }
+        }
+    }
+    &.chart-5 {
+        svg {
+            button, .m5key {
+                background-color: white !important;
+            }
+        }
+    }
+    &.chart-6 {
+        .sub-contain {
+            align-items: flex-start !important;
+            .grouping {
+                margin-left: 0;
+            }
+        }
+    }
+    &[class^="table-"] .table-classic__container {
+        padding: 0.5em 4em;
+        @media (max-width: 42em) {
+            padding: 0 1em 0 4em;
+        }
+        @media (max-width: 24em) {
+            padding: 0 1em 0 2em;
+        }
+    }
+    &.table-8 table {
+        thead tr {
+            th {
+                padding-top: 0.5em;
+            }
+            th[colspan] {
+                background-color: var(--clr-showy);
+                border-bottom: 0;
+                border-radius: 0.4em 0.4em 0 0;
+                padding: 0.4em 0;
+                text-align: center;
+            }
+            &:last-child {
+                th {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

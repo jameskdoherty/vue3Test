@@ -1,0 +1,305 @@
+@import "parts/resets";
+@import "parts/_secondary-nav";
+@import "parts/_accordion-panel";
+@import "parts/_table-1";
+@import "parts/_chart-types";
+@import "parts/_table-classic";
+@import "parts/_display-as";
+@import	"parts/_chart_table_specific";
+@import	"parts/_highcharts_styles";
+@import "parts/_tooltip";
+
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --clr-pisa-01: #071d49;
+    --clr-pisa-02: #293034;
+    --clr-pisa-03: #123e9f;
+    --clr-pisa-04: #971b2f;
+	--clr-pisa-05: #003da5;
+    --clr-pisa-06: #00843d;
+	--clr-pisa-07: #843298;
+	--clr-pisa-08: #fbb03b;
+
+    --clr-neutral: #ffffff;
+    --clr-dark: #000000;
+	--clr-shadow: rgba(0,0,0,0.25);
+	--clr-grey: rgba(186,188,190,.8);
+	--clr-bdr: rgba(186,188,190,.3);
+	--clr-highlight: #f0f8ff;
+	--clr-chartcol: #ececec;
+	--clr-showy: #ebebeb;
+	--clr-usblue: #002868;
+	--clr-button: #20b8be;
+	--clr-url: #3366cc;
+	--clr-all-sections: #4f4d52;
+	--clr-stem: #cdcdcd;
+	--clr-font: #4a4a4a;
+    --ff-primary: Arial, sans-serif;
+    font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+	font-weight: 500;
+}
+
+@page {
+	size: a4 portrait;
+	margin: 0.5in;
+}
+
+
+.main-content {
+	color: var(--clr-font);
+	font-family: var(--ff-primary);
+	font-size: 1.6rem;
+	line-height: 2.4rem;
+	margin-top: 0.2em;
+	text-align: left;
+	a {
+		color: var(--clr-url);
+		transition: text-decoration .25s ease-in-out;
+		&:hover {
+			text-decoration: underline solid transparent;
+		}
+	}
+	.top-banner {
+		background-color: var(--clr-pisa-05);
+		border-bottom: 0.2em solid var(--clr-neutral);
+		line-height: 1.1;
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		a {
+			color: var(--clr-neutral);
+			text-shadow: 0 2px 4px var(--clr-shadow);
+		}
+		p { 
+			color: var(--clr-neutral);
+			font-weight: 700;
+			margin: 0;
+			padding: 0.5em 0;
+			text-align: center; 
+		}
+		&.domain {
+			display: flex;
+			align-items: center;
+			font-size: 2em;
+			
+			&.reading {
+				background-color: var(--clr-pisa-05);
+			}
+			&.mathematics { background-color: var(--clr-pisa-01)};
+			&.science {
+				background-color: var(--clr-pisa-06);
+			}
+			p {
+				font-weight: 500;
+				padding: 0.5em 1em;
+				text-align: left;
+			}
+			.fa-solid {
+				color: var(--clr-neutral);
+				margin-left: auto;
+				padding-right: 1em;
+			}
+		}
+		@media print { display: none; }
+	}
+	.focal-image {
+		max-width: 100%;
+		height: auto;
+		@media print { display: none; }
+	}
+	.hero-subcontainer {
+		background-color: var(--clr-neutral);
+		margin: auto;
+		padding: 0 2em;
+		transform: translateY(-170px);
+		max-width: 790px;
+		@media print { 
+			color: var(--clr-dark);
+			padding: 0;
+			transform: translateY(0);
+			width: 100%; 
+		}
+		h2 {
+			font-size: 1.4em;
+			font-weight: 600;
+			margin-top: 2em;
+			text-align: center;
+			@media print {
+				margin-top: 0;
+				text-align: left;
+			}
+		}
+		.intro-header {
+			transform: translateY(-36px);
+			margin-bottom: -28px;
+			@media print {
+				transform: none;
+				margin-bottom: 1em;
+			}
+			.title-bar {
+				background-color: var(--clr-pisa-01);
+				display: inline-block;
+				padding: 0.5em 1.5em;
+				@media print { 
+					background-color: var(--clr-neutral); 
+					padding: 0;
+				}
+				h1 {
+					color: var(--clr-neutral);
+					font-size: 1.9em;
+					font-weight: normal;
+					line-height: 1.5;
+					margin: 0;
+					text-align: center;
+					text-shadow: 0 2px 4px var(--clr-shadow);
+					@media print { 
+						color: var(--clr-dark); 
+						font-weight: 700;
+						text-align: left;
+					}
+				}
+				
+			}
+			
+		}
+	}
+	.subject {
+		&__area {
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+			&__block {
+				display: table;
+				margin: 1em 0;
+				
+				a.sub-link {
+					background-color: var(--clr-dark); //default
+					box-shadow: 5px 10px 15px -8px var(--clr-shadow);
+					color: var(--clr-neutral)!important;
+					display: inline-block;
+					padding: 1em 0;
+					text-align: center;
+					text-decoration: none;
+					transition: .3s;
+					vertical-align: middle;
+					width: 190px;
+					&[data-subject="reading"] { background-color: var(--clr-pisa-05); }
+					&[data-subject="mathematics"] { background-color: var(--clr-pisa-06); }
+					&[data-subject="science"] { background-color: var(--clr-pisa-06); }
+					&[data-subject="finance"] { background-color: var(--clr-pisa-07); }
+
+					&:hover {
+						transform: translateY(-5px);
+						transition: all 0.3s ease 0s;
+					}
+					.fa-solid {
+						font-size: 4em;
+					}
+				}
+				.sub-des { 
+					padding-left: 2em;
+					// width: auto;
+				}
+				.sub-label {
+					display: block;
+					font-weight: 700;
+					padding: 1em 1.5em 0 1.5em;
+					text-transform: uppercase;
+				}
+				.sub-des, .sub-link {
+					display:table-cell;
+					vertical-align: middle;
+				}
+				
+
+				// > * {
+				// 	display: inline-block;
+				// 	vertical-align: middle;
+				// }
+				
+			}
+		}
+	}
+	.story__block {
+		display: flex;
+		justify-content: space-between;
+		h2 {
+			color: var(--clr-pisa-05);
+			font-size: 1.2em;
+			margin: 1em 0;
+		}
+		img {
+			align-self: start;
+		}
+		@media (max-width: 42em) {
+			display: block;
+			img {
+				margin: 0 auto;
+			}
+		}
+		&__content {
+			margin-left: auto;
+			padding: 0 1em;
+			blockquote {
+				border-left: 5px solid var(--clr-grey);
+				// font-style: italic;
+				font-weight: 700;
+				margin: 1em 0;
+				padding-left: 1.5em;
+			}
+			p {
+				margin-bottom: 1em;
+			}
+		}
+	}
+	.secondary-nav {
+		@include secondary-nav;
+	}
+
+
+
+
+
+	figure {
+		border: 1px solid var(--clr-bdr);
+		border-radius: 3px;
+		margin: 1em 0;
+		figcaption {
+			background-color: var(--clr-highlight );
+			font-size: 1.1em;
+			padding: 0.5em;
+		}
+	}
+	figure {
+		@include chart_table_specific;
+	}
+	.highcharts-figure {
+		@include highcharts;
+	}
+	.accordion-panel {
+		@include accordion-panel;
+	}	
+	.table-1 {
+		@include table-1;
+	}
+	.chart {
+		@include  chart-types;
+	}
+	.table-classic {
+		@include table-classic;
+	}
+	.display-as {
+		@include display-as;
+	}
+	.tooltip-container {
+		@include tooltip;
+	}
+}

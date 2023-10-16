@@ -1,0 +1,11 @@
+@mixin highcharts {
+    .highcharts-figure {
+        min-width: 320px;
+        max-width: 900px;
+        margin: 1em auto;
+    }
+    #m7container,
+    #m9container {
+        height: 400px;
+    }
+}

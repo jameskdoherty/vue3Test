@@ -1,0 +1,53 @@
+@mixin tooltip {
+    background-color: #f3f3f3;
+    border-radius: 0.3em;
+    color: var(--clr-pisa-05);
+    cursor: pointer; 
+    padding: 0 0.3em;
+    position: relative;
+    display: inline-block;
+    &:hover .tooltip-text {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 500ms linear, visibility 0s linear 500ms;
+    }
+    .tooltip-text {
+        background-color: var(--clr-neutral);
+        border: 1px solid var(--clr-grey);
+        border-radius: 0.5em;
+        box-shadow: 0 10px 6px -6px var(--clr-grey);
+        color: var(--clr-font);
+        font-size: 0.8em;
+        line-height: 1.5;
+        opacity: 0;
+        padding: 1em;
+        position: absolute;
+        visibility: hidden;
+        width: 30em;
+        z-index: 1;
+        strong {
+            font-weight: 700;
+        }
+        transition: opacity 500ms linear, visibility 0s linear 500ms;
+    }
+    // .top {
+    //     top: -40px;
+    //     left: -50%;
+    // }
+    .bottom {
+        // top: 25px;
+        // left: -50%;
+        top: 2em;
+        left: 0;
+    }
+   
+
+    // .left {
+    //     top: -8px;
+    //     right: 120%;
+    // }
+    // .right {
+    //     top: -8px;
+    //     left: 120%;
+    // } 
+}

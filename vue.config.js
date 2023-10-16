@@ -13,5 +13,14 @@ module.exports = defineConfig({
   //       changeOrigin: true,
   //     },
   // }
+},
+css:{
+  loaderOptions: {
+    sass: {
+      additionalData: `
+        @import "@/scss/main.scss";
+      `
+    }
+  }
 }
 })

@@ -1,0 +1,35 @@
+@mixin display-as {
+    display: inline-block;
+    margin: 2em 0 !important;
+    span {
+        color: var(--clr-all-sections);
+        cursor: pointer;
+        display: inline-block;
+        padding: 0.4em 0.8em;
+        text-decoration: underline;
+        text-transform: uppercase;
+        transition: all 0.3s ease-out;
+        vertical-align: middle;
+        &:hover,
+        &.active {
+            background-color: var(--clr-all-sections); 
+            border-radius: 0.2em;
+            color: var(--clr-neutral); 
+            
+        }
+        &.active {
+            cursor: default;
+            text-decoration: none;
+        }
+        .fa-solid {
+            padding-right: 0.3em;
+        }
+    }
+    strong {
+        font-weight: 700;
+        @media (max-width: 62em) {
+            display: block;
+            padding-bottom: 0.5em;
+        }
+    }
+}

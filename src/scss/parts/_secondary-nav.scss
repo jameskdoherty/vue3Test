@@ -1,0 +1,77 @@
+@mixin secondary-nav {
+	display: flex;
+	flex-wrap: wrap;
+    gap: 0.5em;
+	margin: 2em 0;
+	padding: 0;
+    @media (max-width: 42em) {
+        display: block;
+    }
+	li {
+        background-color: var(--clr-highlight);
+        flex-grow: 1;
+        line-height: 1em;
+		list-style-type: none;
+		padding: 0;
+		text-align: center;
+		white-space: normal;
+		width: calc((100% / 3) - 1em);
+        @media (max-width: 42em) {
+			margin-bottom: 1em;
+			width: 100%;
+		}
+        &:last-of-type { margin-right: 0; }
+        &.active {
+            // background-color: var(--clr-pisa-06);
+            color: var(--clr-neutral);
+			font-weight: 600;
+            a {
+                color: var(--clr-neutral);
+                &:hover {
+                    cursor: default;
+                    opacity: 1;
+                    transition: none;
+                }
+            }
+        }
+		a {
+			color: var(--clr-dark);
+			display: block;
+			font-size: 1.4rem;
+			padding: 2em;
+			text-decoration: none;
+			// vertical-align: middle;
+			&:hover {
+				cursor: pointer;
+				transition: opacity 1s ease-in-out;
+			}
+           
+		}
+		// span.temp-disable {
+		// 	color: #000000;
+		// 	display: block;
+		// 	font-weight: 500;
+		// 	text-decoration: none;
+		// }
+		// &.ui-state-active {
+		// 	background-color: black;
+		// 	transition-duration: 1s;
+		// 	a {
+		// 		color: #ffffff;
+		// 		&:hover {
+		// 			opacity: 1;
+		// 			cursor: default;
+		// 		}
+		// 	}
+		// }
+	} 
+	&.mathematics li.active {
+		background-color: var(--clr-pisa-01);
+	}
+	&.reading li.active {
+		background-color: var(--clr-pisa-05);
+	}
+	&.science li.active {
+		background-color: var(--clr-pisa-06);
+	}
+}

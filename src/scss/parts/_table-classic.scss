@@ -1,0 +1,215 @@
+@mixin table-classic {
+    &__container {
+        padding: 0.5em;
+    }
+    .marker-1:before {
+        content: '\00a0\00B9';
+    }
+    .marker-2:before {
+        content: '\00a0\00B2';
+    }
+    .justify-center {
+        justify-content: center;
+    }
+    .d-flex {
+        display: flex;
+    }
+    .table-control {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1em auto;
+        text-align: center;
+        &.d-flex {
+            @media (max-width: 62em) {
+                display: block;
+            }
+        }
+
+        label {
+            cursor: pointer;
+        }
+        input {
+            margin-left: 0.5em;
+            margin-right: 0.3em;
+            &[type="radio"] {
+                accent-color: var(--clr-pisa-03);
+            }
+        }
+    }
+    table {
+        border-collapse: collapse;
+        font-size: 1.2rem;
+        font-weight: 500;
+        // line-height: 3rem;
+        margin: 2em auto;
+        // width: 100%;
+        width: max(50%, min(900px, 100%));
+        th, td {
+            padding: 0.2em 0.5em;
+        }
+        th:first-child { padding-left: 0; }
+        th:last-child { padding-right: 0; }
+        thead tr {
+            th {
+                border-bottom: 3px solid var(--clr-dark);
+                line-height: 1.2;
+                text-align: right;
+                vertical-align: bottom;
+                span {
+                    display: inline-block;
+                }
+    
+                &:first-child {
+                    text-align: left;
+                }
+                .fa {
+                    font-size: 1.1rem;
+                    &::before {
+                        background-color: var(--clr-showy);
+                        border-radius: 0.3em;
+                        padding: 0.2em;
+                    }
+                    &:hover {
+                        color: var(--clr-neutral);
+                        &::before {
+                            background-color: var(--clr-pisa-03);
+                            transition: 0.2s;
+                        }
+                    }
+                    &.active {
+                        color: var(--clr-neutral);
+                        &::before {
+                            background-color: var(--clr-pisa-03);
+                        }
+                    }
+                }
+            }
+        }
+        tbody tr {
+            th, td {
+                border-bottom: 1px solid var(--clr-grey);
+            }
+            th {
+                font-weight: 500;
+                text-align: left; 
+                &.oecd {
+                    font-weight: 700;
+                }
+            }
+            td {
+                border-left: 1px solid var(--clr-grey);
+                text-align: right;
+
+            }
+            &:last-child {
+                th, td {
+                    border-bottom: 1px solid var(--clr-dark);
+                }
+            }
+            &.usa {
+                background-color: var(--clr-usblue);
+                border-radius: 0 0.2em 0.2em 0;
+                color: var(--clr-neutral);
+                padding-left: 0.3em;
+                position: relative;
+                th span {
+                    &::before {
+                        content: "";
+                        background: url(http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/us-flag-icon.svg);
+                        background-repeat: no-repeat;
+                        background-size: 50px 30px;
+                        height: 30px;
+                        width: 50px;
+                        position: absolute;
+                        left: -4.3em;
+                        top: 0;
+                        // @media (max-width: 62em) {
+                        //     background-size: 40px 20px;
+                        //     height: 20px;
+                        //     width: 40px;
+                        //     left: -3.5em;
+                        // }
+                        @media (max-width: 24em) {
+                            background: url(http://poseidon.research.ets.org/jhsu/pisa2022/inc/css/images/us-indicator.png);
+                            background-size: 30px 30px;
+                            height: 30px;
+                            width: 30px;
+                            left: -2.5em;
+                        }
+                    }
+                }
+                th, td { 
+                    font-weight: 700 !important; 
+                    padding-left: 0.5em;
+                }
+            }
+        }  
+        &.tbl2 {
+            thead th {
+                &:first-child {
+                    width: 25%;
+                }
+                width: calc(75% / 5);
+            }
+        } 
+        &.tbl3 {
+            thead th {
+                &:first-child {
+                    width: 25%;
+                }
+                width: calc(75% / 4);
+            }      
+        }
+        &.tblm5 {
+            width: 100%;
+        }
+         
+    }
+    i.fas {
+        background-color: var(--clr-showy);
+        border-radius: 50%;
+        border: 1px solid var(--clr-grey);
+        color: var(--clr-dark);
+        padding: 0.1em 0.3em;
+        margin: 0 0 0 1em;
+    }
+    i.fa-diamond:before {
+        font-size: 1rem !important;
+        margin-left: 1em;
+        padding: 0.3em;
+    }
+    .marker-1:before {
+        content: '\00a0\00B9';
+    }
+    .marker-2:before {
+        content: '\00a0\00B2';
+    }
+    .not-oecd {
+        .country {
+            font-style: italic;
+        }
+    }
+    .notes {
+        background-color: var(--clr-highlight);
+        font-size: 1.1rem;
+        line-height: 1.2em;
+        margin-top: 2em;
+        padding: 1em;
+        p {
+            padding-bottom: 0.5em;
+        }
+        p + p { 
+            margin-top: 0 !important;
+        }
+        // .marker-1:before {
+        //     content: '\00a0\00B9';
+        // }
+        // .marker-2:before {
+        //     content: '\00a0\00B2';
+        // }
+        i.fas,
+        i.fa-diamond:before {
+            margin-left: 0;
+        }
+    }
+}
