@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import TrendsStudentAchievement from '../sections/trends/trends-student-achievement.vue'
 import AchievementByStudentGroups from '../sections/achievement/achievement-by-student-groups.vue'
 import InternationalComparisons from '../sections/international-comparisons/international-comparisons.vue'
-import NotFound from '../views/not-found.vue'
+import NotFound from '../notfound/not-found.vue'
 
 const routes = [
     {
@@ -61,7 +61,7 @@ const routes = [
     { 
         path: '/404',
         name: NotFound,
-        component: () => import('@/views/not-found')
+        component: () => import('@/notfound/not-found')
 }
 ]
 
