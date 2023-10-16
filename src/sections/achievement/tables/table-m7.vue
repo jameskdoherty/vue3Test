@@ -1,6 +1,6 @@
 <template>
     <div class="table-classic__container">
-        <pisa-table-a :data="data" :headers="headers" :type="type"></pisa-table-a>
+        <pisa-table-7 :data="data" :headers="headers" :type="type"></pisa-table-7>
     </div>
 </template>
   
@@ -10,7 +10,7 @@ import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service'
 import Table7JSON from '../../../assets/testdata/table7_data_math.json'
 const table7JSON = ref(Table7JSON);
-import PisaTableA from '@/components/PisaTableA.vue';
+import PisaTable7 from '@/components/PisaTable7.vue';
 
 import table7_data_math from '../../../assets/testdata/table7_data_math.json';
 import table7_data_reading from '../../../assets/testdata/table7_data_reading.json';
@@ -19,7 +19,7 @@ import table7_data_science from '../../../assets/testdata/table7_data_science.js
 export default {
     name: 'TableM7',
     components: {
-        PisaTableA
+        PisaTable7
     },
     data() {
         return {

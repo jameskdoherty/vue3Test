@@ -128,7 +128,7 @@ export default {
                         .attr('y', function () { return yScale('United States') - yScale.bandwidth() / 2 + 8 })
                         .attr('width', 40)
                         .attr('height', 21)
-                        .attr('href', '../../vue3/vue3Test/src/assets/images/us-flag-icon.svg')
+                        .attr('href', '../../vue3/vuepisa2022/src/assets/images/us-flag-icon.svg')
                 }
 
                 g.append('rect')

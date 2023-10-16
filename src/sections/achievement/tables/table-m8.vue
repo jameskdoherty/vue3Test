@@ -1,6 +1,6 @@
 <template>
    <div class="table-classic__container">
-    <pisa-table-b :data="data" :headers="headers" :type="type"></pisa-table-b>
+    <pisa-table-8 :data="data" :headers="headers" :type="type"></pisa-table-8>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service';
 import M8chart_data from '../../../assets/testdata/m8chart_data.json';
-import PisaTableB from '@/components/PisaTableB.vue';
+import PisaTable8 from '@/components/PisaTable8.vue';
 
 import table8_data from '../../../assets/testdata/table8_data.json';
 
@@ -16,7 +16,7 @@ import table8_data from '../../../assets/testdata/table8_data.json';
 export default {
     name: 'Table-M8',
     components: {
-        PisaTableB
+        PisaTable8
     },
     data() {
         return {

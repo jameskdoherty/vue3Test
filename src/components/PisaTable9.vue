@@ -22,7 +22,7 @@
 import { onMounted, watch } from "vue";
 
 export default {
-    name: "PisaTableNoSorting",
+    name: "PisaTable9",
     props: ["data", "headers",],
     setup(props) {
         const tableData = props.data
@@ -33,7 +33,7 @@ export default {
            
             // whenever any dependencies (like data, resizeState) change, call this!
             watch(() => {
-                console.log('PISA props.data', props.data)
+                console.log('PISA Table9 props.data', props.data)
                
             },
                 { deep: true });
@@ -41,7 +41,6 @@ export default {
         return { tableData };
     },
     mounted() {
-        console.log('PISA MOUNTED')
         // watch();
     }
 };

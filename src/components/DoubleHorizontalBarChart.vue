@@ -1,37 +1,4 @@
 <template>
-    <!-- <div id="container" ref="resizeRef">
-        <div class="chart__controller">
-            <div class="sub-contain d-flex j-around">
-                <div class="grouping">
-                    <div class="thead d-flex j-space align-e">
-                        <span class="like-th m6-sort-alpha">Education system <i class="fa fa-chevron-down"></i><i
-                                class="fa fa-chevron-up"></i></span>
-                        <span class="like-th m6-sort-score-gap"><span>Score difference
-                                between<br>male and female students</span> <i class="fa fa-chevron-down"></i><i
-                                class="fa fa-chevron-up"></i></span>
-                    </div>
-                    SVG LEFT
-                    <svg id="left-chart" class="left-column" ref="svgRef">
-
-                        <g></g>
-                    </svg>
-                </div>
-                <div class="grouping">
-                    <div class="thead d-flex j-space align-e">
-                        <span class="like-th">Education system</span>
-                        <span class="like-th">Score difference between<br>male and female
-                            students</span>
-                    </div>
-                    SVG RIGHT
-                    <svg id="right-chart" class="right-column" ref="svgRef">
-
-                        <g></g>
-                    </svg>
-                </div>
-            </div>
-            <p class="axis-title">Difference in average mathematics literacy scores</p>
-        </div>
-    </div> -->
     <div id="HBcontainer" ref="resizeRef">
         <svg id="HBchart" style="background:none" ref="svgRef">
             <g></g>

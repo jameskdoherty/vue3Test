@@ -40,27 +40,14 @@
 <script>
 import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service';
-//import ChildComponent from './child-component.vue'
 
-// import FigureControl from './FigureControl.js';
-// import PisaTable from './PisaTable.js'
-// import PisaTable2 from './PisaTable2.js'
-// import PisaTable3 from './PisaTable3.js'
 
 
 export default {
     name: 'Table-One',
     components: {
-        // ChildComponent
     },
-    // childInterface: {
-    //     addCount: () => { },
-    //     subtractCount: () => { },
-    //     setKeyToSortBy: () => { },
-    //     sortedProperties: () => { },
-    //     addData: () => { },
-    //     addHeaders: () => { },
-    // },
+
     data() {
         return {
             data: [{ 'country': 'OECD average' }, { 'country': 'United States' }],
@@ -72,37 +59,7 @@ export default {
 
         };
     },
-    methods: {
-        // Setting the interface when emitted from child
-        // getChildInterface(childInterface) {
-        //     this.$options.childInterface = childInterface;
-        // },
 
-        // // Add count through the interface
-        // addCount() {
-        //     this.$options.childInterface.addCount();
-        // },
-        // addData(data) {
-        //     console.log('add data', data)
-        //     this.$options.childInterface.addData(data)
-        // },
-        // addHeaders(headers) {
-        //     console.log('add headers', headers)
-        //     this.$options.childInterface.addHeaders(headers)
-        // },
-        // subtractCount() {
-        //     this.$options.childInterface.subtractCount();
-        // },
-        // setKeyToSortBy(key) {
-        //     console.log(key)
-        //     this.sort = this.$options.childInterface.setKeyToSortBy(key)
-        // },
-        // sortedProperties() {
-        //     this.$options.childInterface.sortedProperties();
-        // }
-
-
-    },
     created() {
 
         let datamap = {
@@ -118,12 +75,11 @@ export default {
         this.subscription = DataService.getTable1Data().subscribe(
             allResults => {
                 console.log('---table 1 allresults', allResults)
+                console.log('---table 1 allresults', allResults.length)
 
-                // let data = [];
                 let theHeaders = ['group', 'oecd', 'unitedstates', 'significant'];
 
 
-                //var data = JSON.parse(allResults);
                 var data = allResults.filter(function (element) {
                     return (element.targetJurisdiction == 'USA' && element.focalValue != 999) || (element.focalJurisdiction == 'USA' && element.targetJurisdiction == 'IN3');
                 })
@@ -149,10 +105,6 @@ export default {
 
                 createTableM1(data)
 
-                // this.tableHeaders = theHeaders
-                // this.tableData = finalMappedData
-                //this.addData(data)
-                // this.addHeaders(this.tableHeaders)
 
             })
 
@@ -422,7 +374,7 @@ export default {
             var elems = document.querySelectorAll("ul > li, .mobile > *");
             //console.log(elems);
 
-            //console.log('mxdlNotNotbothLeftRight', mxdlNotNotbothLeftRight)
+            console.log('mxdlNotNotbothLeftRight', mxdlNotNotbothLeftRight)
             //console.log('mxdlNotNotEOCDLeft', mxdlNotNotEOCDLeft)
 
             // for (let i = 0; i < mxdlNotNotEOCDRight.length; i++) {
@@ -437,16 +389,16 @@ export default {
 
             mx.forEach((element, index, array) => {
                 // let mx = $('#area-left, #area-right').find('dl').remove()
-                //console.log('remove', element)
+                console.log('remove', element)
                 element.parentNode.removeChild(element);
             });
 
 
-            //console.log('let notoecd', notoecd)
+            console.log('let notoecd', notoecd)
 
             // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
             for (i = 0; i < notoecd.length; i++) {
-                // console.log('NOT-OECD',x)
+                console.log('NOT-OECD',notoecd[i])
                 w3RemoveClass(notoecd[i], "show");
                 // notoecd.addClass('d-none')
                 if (notoecd[i].className.indexOf(".not-oecd") > -1) w3AddClass(notoecd[i], "d-none");
@@ -469,19 +421,19 @@ export default {
             let splicedArray = oecdArray.splice(-half)
 
             // move 2nd half to right
-            //_right.append(oecdArray.splice(-half))
+           // _right.append(oecdArray.splice(-half))
 
 
             splicedArray.forEach((element, index, array) => {
                 // move 2nd half to right
-                _right.append(element)
+                //_right.append(element)
 
             });
 
             // move 1st half to left
             mxdlNotNotbothLeftRight.forEach((element, index, array) => {
                 // move 2nd half to right
-                _left.append(element)
+                //_left.append(element)
 
             });
 
@@ -503,12 +455,10 @@ export default {
 
             let _left = document.querySelector('#area-left')
             let _right = document.querySelector('#area-right')
-            let mxL = document.querySelector('#area-left')
-           // console.log('mxl', mxL)
-            let mxR = document.querySelector('#area-right')
-            //mxL.append(mxR)
+            // let mxL = document.querySelector('#area-left')
+            // let mxR = document.querySelector('#area-right')
             //let mx = mxL.querySelector('dl')
-            let mx = mxL.querySelectorAll('dl')
+            let mx = _left.querySelectorAll('dl')
            // console.log('mx', mx)
            // console.log('get class', document.querySelectorAll('.oecd'))
             let _oecd = document.querySelectorAll('.oecd');
@@ -517,7 +467,7 @@ export default {
             // make array
             mx = [].slice.call(mx);
 
-            //console.log("TCL: window.chartreset -> mx Array to sort and append BEFORE", mx)
+            console.log("TCL: window.chartreset -> mx Array to sort and append BEFORE", mx)
 
             var mxb = document.getElementById("area-left");
             //console.log(mxb)
@@ -566,20 +516,15 @@ export default {
 
             let _left = document.querySelector('#area-left')
 
+            console.log('TABLE1',_left)
+
             myData.forEach((x, i) => {
-                // console.log('i', i)
-                // console.log('x', x)
                 x.push(i)
 
 
                 let createmxL = document.querySelector('#area-left')
-                //console.log('mxl', createmxL)
                 let createmxR = document.querySelector('#area-right')
-                //createmxL.append(createmxR)
-                //let mx = mxL.querySelector('dl')
                 let dl = document.createElement('dl')
-                //console.log("TCL: dl", dl)
-                //console.log("TCL: dl", typeof dl)
 
                 dl.classList.add('d-flex')
                 dl.tabindex = '1'
@@ -589,9 +534,6 @@ export default {
                 let mxarray = mp.querySelectorAll('dl')
                 let createmx = createmxL.querySelectorAll('dl')
                 let node = document.getElementsByTagName("dl")[0];
-               // console.log('htmlarray node is', node)
-               // console.log('htmlarray dl is', mp)
-               // console.log('htmlarray mxarray is', mxarray)
 
                 let htmlarray = [].slice.call(createmx)
 
@@ -600,7 +542,6 @@ export default {
                     dl.classList.add('not-oecd');
                 }
 
-                //console.log('htmlarray', htmlarray)
                 let dt = document.createElement('dt')
                 dl.appendChild(dt)
 
@@ -624,15 +565,7 @@ export default {
                 if (x[datamap.country] == 'United States') {
                     dl.classList.add('usa')
                 }
-                //console.log(x[datamap.marker])
-                // if (x[datamap.marker] != '0') {
-                //     // let sp = document.createElement('span')
-                //     sp.classList.add(`marker-${x[datamap.marker]}`)
-                //     sp.setAttribute('aria-describedby', `marker${x[datamap.marker]}`)
-                //     dt.append(sp)
-
-                //     //sp = $('<span>', {class:`marker-${x[ datamap.marker ]}`, 'aria-describedby':`marker${x[ datamap.marker ]}`}).appendTo(dt)                    
-                // }
+               
                 dd.append(document.createElement('span').text = x[datamap.score])
                 dd_icon.append(document.createElement('span').text = x[datamap.diff])
                 sp.append(document.createElement('span').text = x[datamap.country])
@@ -641,8 +574,6 @@ export default {
 
                 if (x[datamap.icon] == '1') {
 
-                    //console.log('what is sp',sp)
-                    // up triangle
                     let msg = 'score higher than U S average score'
 
                     sp_icon.setAttribute('role', 'img')
@@ -658,7 +589,6 @@ export default {
 
                 if (x[datamap.icon] == '2') {
 
-                    // diamond
                     let msg = 'no significant difference from U S average score'
 
                     sp_icon.setAttribute('role', 'img')
@@ -671,8 +601,8 @@ export default {
                     ic.classList.add('fa-diamond')
                     sp_icon.append(ic)
                 }
+
                 if (x[datamap.icon] == '3') {
-                    // up triangle
                     let msg = 'score lower than U S average score'
                     sp_icon.setAttribute('role', 'img')
                     sp_icon.setAttribute('aria-label', msg)
@@ -702,7 +632,6 @@ export default {
         this.subscription.unsubscribe();
     },
     mounted() {
-        // this.setKeyToSortBy('gap');
         let downChevrons = document.querySelectorAll('.table-1 i.fa-chevron-down')
         let mnChevrons = document.querySelectorAll('.table-1 .hdr #mn i.fa')
         let diffChevrons = document.querySelectorAll('.table-1 .hdr #diff i.fa')

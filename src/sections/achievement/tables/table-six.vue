@@ -39,25 +39,14 @@ import M8chart_data from '../../../assets/testdata/m8chart_data.json';
 import ChildComponent from '../../../components/child-component.vue'
 
 import table8_data from '../../../assets/testdata/table8_data.json';
-// import FigureControl from './FigureControl.js';
-// import PisaTable from './PisaTable.js'
-// import PisaTable2 from './PisaTable2.js'
-// import PisaTable3 from './PisaTable3.js'
 
 
 export default {
     name: 'Table-Six',
     components: {
-        //ChildComponent
+       
     },
-    // childInterface: {
-    //     addCount: () => { },
-    //     subtractCount: () => { },
-    //     setKeyToSortBy: () => { },
-    //     sortedProperties: () => { },
-    //     addData: () => { },
-    //     addHeaders: () => { },
-    // },
+    
     data() {
         return {
             data: [{ 'country': 'OECD average' }, { 'country': 'United States' }],

@@ -1,6 +1,6 @@
 <template>
     <div class="table-classic__container">
-        <pisa-table-no-sorting :data="data" :headers="headers"></pisa-table-no-sorting>
+        <pisa-table-9 :data="data" :headers="headers"></pisa-table-9>
     </div>
 </template>
   
@@ -10,7 +10,7 @@ import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service'
 import Table9JSON from '../../../assets/testdata/table9_data_math.json'
 const table9JSON = ref(Table9JSON);
-import PisaTableNoSorting from '@/components/PisaTableNoSorting.vue';
+import PisaTable9 from '@/components/PisaTable9.vue';
 
 import table9_data_math from '../../../assets/testdata/table9_data_math.json';
 import table9_data_reading from '../../../assets/testdata/table9_data_reading.json';
@@ -19,7 +19,7 @@ import table9_data_science from '../../../assets/testdata/table9_data_science.js
 export default {
     name: 'TableM9',
     components: {
-        PisaTableNoSorting
+        PisaTable9
     },
     data() {
         return {

@@ -33,41 +33,6 @@ export default {
 
 
 
-
-
-    // onMounted(() => {
-
-      
-
-    //   console.log('Lollipop props --->', props)
-
-    //   if (props.whichSection == "/reading/achievement") {
-    //     console.log('lollipop reading')
-    //     const tableData = [[0, 458.5913, 438.2447, 'down', '*', ''],
-    //     [1, 463.3476, 478.2447, 'down', '*', ''],
-    //     [2, 478.2447, 489.1129, 'up', '*', ''],
-    //     [3, 478.2447, 530.7587, 'up', '*', ''],
-    //     [4, 478.2447, 546.6833, 'up', '*', '']]
-
-    //   } else if (props.whichSection == "/science/achievement") {
-    //     console.log('lollipop science')
-    //     const tableData = [[0, 458.5913, 428.2447, 'down', '*', ''],
-    //     [1, 463.3476, 478.2447, 'down', '*', ''],
-    //     [2, 478.2447, 489.1129, 'up', '*', ''],
-    //     [3, 478.2447, 530.7587, 'up', '*', ''],
-    //     [4, 478.2447, 546.6833, 'up', '*', '']]
-
-    //   } else {
-
-    //   }
-
-    //   // whenever any dependencies (like data, resizeState) change, call this!
-    //   watch(() => {
-    //     console.log('Lollipop props.data *******', props.data)
-
-    //   },
-    //     { deep: true });
-    // });
     return { tableData };
   },
   data() {

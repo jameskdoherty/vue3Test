@@ -1,6 +1,10 @@
 <template>
     <table>
         <thead>
+            <tr>
+                <th rowspan="2">Education system</th>
+                <th colspan="5">National quarters of the ESCS index</th>
+            </tr>
             <tr class="headers">
                 <th v-for="head in headers">
                     {{ head }}
@@ -8,14 +12,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(d, i) in data">
-                <th>{{ d.statType }}</th>
-                <td v-for="(value, idx) in d.values" >
-                    {{ value }}<span v-if="d.decorators[idx] === 'HIGHER' || d.decorators[idx] === 'LOWER'">*</span>
-                </td>
+            <tr v-for="d in data">
+                <td>{{ d.country }}</td>
+                <td>{{ d.valValue1 }}</td>
+                <td>{{ d.valValue2 }}</td>
+                <td>{{ d.valValue3 }}</td>
+                <td>{{ d.valValue4 }}</td>
+                <td>{{ d.allstudents }}</td>
             </tr>
         </tbody>
-
     </table>
 </template>
     
@@ -23,21 +28,18 @@
 import { onMounted, watch } from "vue";
 
 export default {
-    name: "PisaTableC",
+    name: "PisaTable8",
     props: ["data", "headers"],
     setup(props) {
         const tableData = props.data
-        const pctvalues = props.data.values
-        const stattype = props.data.statType
+
 
         onMounted(() => {
 
 
             // whenever any dependencies (like data, resizeState) change, call this!
             watch(() => {
-                console.log('PISA Table 5 TableC props.data', props.data)
-                console.log('PISA Table 5 TableC pctvalues', pctvalues)
-                console.log('PISA Table 5 TableC stattype', stattype)
+                console.log('PISA props.data', props.data)
 
             },
                 { deep: true });
@@ -63,9 +65,5 @@ export default {
 .notinvisible {
     /* visibility: hidden; */
     display: block;
-}
-
-.main-content .table-classic table thead tr.headers th:first-child {
-  text-align: left;
 }
 </style>

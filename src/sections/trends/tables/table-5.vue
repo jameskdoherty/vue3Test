@@ -1,6 +1,6 @@
 <template>
     <div class="table-classic__container">
-        <pisa-table-c :data="data" :headers="headers" :type="type"></pisa-table-c>
+        <pisa-table-5 :data="data" :headers="headers" :type="type"></pisa-table-5>
     </div>
 </template>
   
@@ -11,12 +11,12 @@ import { DataService } from '../../../services/api/data-service'
 import Table7JSON from '../../../assets/testdata/table7_data_math.json'
 const table7JSON = ref(Table7JSON);
 import ChildComponent from '../../../components/child-component.vue'
-import PisaTableC from '@/components/PisaTableC.vue';
+import PisaTable5 from '@/components/PisaTable5.vue';
 
 export default {
     name: 'Table5',
     components: {
-        PisaTableC
+        PisaTable5
     },
     data() {
         return {

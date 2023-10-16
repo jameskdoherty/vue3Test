@@ -22,7 +22,7 @@
 import { onMounted, watch } from "vue";
 
 export default {
-    name: "PisaTableA",
+    name: "PisaTable7",
     props: ["data", "headers"],
     setup(props) {
         const tableData = props.data
