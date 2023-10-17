@@ -1,5 +1,15 @@
 <template>
     <table>
+        <!-- <colgroup>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                        </colgroup> -->
         <thead>
             <tr class="headers">
                 <th v-for="head in headers">

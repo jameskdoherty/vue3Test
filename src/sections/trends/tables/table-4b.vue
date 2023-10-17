@@ -88,11 +88,7 @@ export default {
 
         this.subscription = DataService.getTable4BData().subscribe(
             allResults => {
-                // console.log('---table 4B allresults', allResults)
-
-                // let data = [];
-                //let theHeaders = ['group', 'oecd', 'unitedstates', 'significant'];
-
+               
                 /* _processAverageScoreData */
                 var filteredData = allResults.filter(function (element, index, array) {
                     // return element.focalYear == '2022' && element.jurisdiction != 'IN3';

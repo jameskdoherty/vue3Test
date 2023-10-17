@@ -80,7 +80,7 @@
 
 
 
-                <div :class="{ invisible: isStatusActive }">4b
+                <div :class="{ invisible: isStatusActive }">
 
                     <p><strong>Compared to the most recent comparable PISA score in {{ this.currentSection }} (in {{
                         this.compPISAScoreDate1 }}), the average {{ this.currentSection }}
