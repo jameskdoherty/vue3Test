@@ -28,7 +28,7 @@
                 <tr>
                     <th><span class="alpha-4b">Education system <i class="fa fa-chevron-down"></i><i
                                 class="fa fa-chevron-up"></i></span></th>
-                    <th><span class="score1-4b">2003 score <i class="fa fa-chevron-down"></i><i
+                    <th><span class="score1-4b">2018 score <i class="fa fa-chevron-down"></i><i
                                 class="fa fa-chevron-up"></i></span></th>
                     <th><span class="score2-4b">2022 score <i class="fa fa-chevron-down"></i><i
                                 class="fa fa-chevron-up"></i></span></th>
@@ -51,27 +51,14 @@
 <script>
 import { onMounted, ref, watch, computed } from 'vue'
 import { DataService } from '../../../services/api/data-service';
-//import ChildComponent from './child-component.vue'
 
-// import FigureControl from './FigureControl.js';
-// import PisaTable from './PisaTable.js'
-// import PisaTable2 from './PisaTable2.js'
-// import PisaTable3 from './PisaTable3.js'
 
 
 export default {
     name: 'Table-Four-B',
     components: {
-        // ChildComponent
     },
-    // childInterface: {
-    //     addCount: () => { },
-    //     subtractCount: () => { },
-    //     setKeyToSortBy: () => { },
-    //     sortedProperties: () => { },
-    //     addData: () => { },
-    //     addHeaders: () => { },
-    // },
+
     data() {
         return {
             data: [{ 'country': 'OECD average' }, { 'country': 'United States' }],
@@ -82,37 +69,6 @@ export default {
 
 
         };
-    },
-    methods: {
-        // Setting the interface when emitted from child
-        // getChildInterface(childInterface) {
-        //     this.$options.childInterface = childInterface;
-        // },
-
-        // // Add count through the interface
-        // addCount() {
-        //     this.$options.childInterface.addCount();
-        // },
-        // addData(data) {
-        //     console.log('add data', data)
-        //     this.$options.childInterface.addData(data)
-        // },
-        // addHeaders(headers) {
-        //     console.log('add headers', headers)
-        //     this.$options.childInterface.addHeaders(headers)
-        // },
-        // subtractCount() {
-        //     this.$options.childInterface.subtractCount();
-        // },
-        // setKeyToSortBy(key) {
-        //     console.log(key)
-        //     this.sort = this.$options.childInterface.setKeyToSortBy(key)
-        // },
-        // sortedProperties() {
-        //     this.$options.childInterface.sortedProperties();
-        // }
-
-
     },
     created() {
 
@@ -128,7 +84,7 @@ export default {
 
         let _lastYear = '2022';
         let _priorYear = '2018';
-        let _firstYear = '2003';
+        let _firstYear = '2018';
 
         this.subscription = DataService.getTable4BData().subscribe(
             allResults => {
@@ -172,6 +128,7 @@ export default {
                 // console.log('TABLE 4B finaldata', finalData)
 
                 var mapFunction = function (element, index, array) {
+                    console.log('table4b element', element)
                     var ret = {}
                     ret.country = element['country'];
                     ret.countryId = element['countryId'];
@@ -218,6 +175,7 @@ export default {
                         console.log('---- table4b tbody',this.tBody)
                         this.rowHtmlTemplate4b = document.querySelector('tr.first-tr-4b');
                         this.rowTemplate = document.querySelectorAll('.four-b-systems > tr.first-tr-4b')
+                        this.rowTemplateTR = document.querySelectorAll('.four-b-systems > tr')
                         var toberemoved = this.tBody.querySelectorAll('tr')[0];
                         //this.tBody.removeChild(this.tBody.querySelectorAll('tr')[0]);
 
@@ -225,19 +183,20 @@ export default {
                     //     console.log('row constructor',this.rowTemplate)
 
                     //    console.log('toberemoved',toberemoved)
-                    //    console.log('this tbody',this.tBody)
+                    console.log('table4b this rowTemplateTR',this.rowTemplateTR[0])
                        
                     }
 
                     addRow(dataRow) {
 
                         this.wrapper = document.createElement('tr');
-                        this.wrapper.innerHTML = this.rowHtmlTemplate4b.innerHTML;
+                        this.wrapper.innerHTML = this.rowTemplateTR[0].innerHTML;
     
-                        // console.log('wrapper', this.wrapper)
+                       // console.log('wrapper', this.wrapper)
+                       // console.log('table4b datarow', dataRow.values)
                        this.tBody.append(this.wrapper);
                        var lastRow = this.tBody.lastChild;
-                            // console.log(lastRow)
+                            console.log('table4b this LastRow',lastRow)
                        if (dataRow.country == 'United States') {
                             lastRow.querySelectorAll('th')[0].innerHTML = '<span>' + dataRow.country + '</span>'
                         } else {
@@ -251,7 +210,7 @@ export default {
                         }
                         var cell1Content = ''
                         if (dataRow.errorFlag > 0) cell1Content = '<tspan font-size="10px" font-weight="normal" font-style="normal" dx="2" dy="-2">1</tspan>';
-                        lastRow.querySelectorAll('td')[0].innerHTML = dataRow.values[0] + cell1Content
+                       lastRow.querySelectorAll('td')[0].innerHTML = dataRow.values[0] + cell1Content
                         lastRow.querySelectorAll('td')[1].innerHTML = Math.round(dataRow.values[1])
                         var content = '';
                         if (dataRow.decorators[2] && dataRow.decorators[2].toLowerCase() == 'higher') {
@@ -261,12 +220,11 @@ export default {
                         } else if (dataRow.decorators[2] && dataRow.decorators[2].toLowerCase() == 'equal') {
                             content = '<span class="sig-up" role="img" aria-label="no significant difference from US average score" title="no significant difference from US average score"><i class="fa fa-diamond"></i></span>';
                         }
-                        // console.log('4b add content', content)
                         var gap = Math.round(dataRow.values[2]);
                         if (gap == 0) gap = '#';
-                        lastRow.querySelectorAll('td')[2].innerHTML = gap + content
+                       lastRow.querySelectorAll('td')[2].innerHTML = gap + content
                         if (dataRow.country == 'United States') {
-                            lastRow.classList.add('usa');
+                           lastRow.classList.add('usa');
                         }
                     }
 
@@ -286,6 +244,7 @@ export default {
                     generate(data) {
                         this.clearTable();
                         for (var i = 0; i < data.length; i++) {
+                           // console.log('table4b data i',data[i])
                             this.addRow(data[i])
                         }
                     }
@@ -310,7 +269,7 @@ export default {
                             // console.log('update', i)
 
                             // $(this.figures[i].selector).html('')
-                           // console.log('4b remove these figures', this.figures[i])
+                           //console.log('table4b remove these figures', this.figures[i])
                             this.figures[i].generate(data[i])
                         }
                     }
