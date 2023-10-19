@@ -1,7 +1,9 @@
 <template>
+    <!-- <div class="scaling-svg-container"> -->
     <div class="scaling-svg-container" :style="{ paddingBottom: bottom + '%' }">
         {{ trend }}
-        <svg class="scaling-svg" viewBox="-35 0 800 400" ref="svgRef">
+        <svg class="scaling-svg" viewBox="0 0 1000 1000" ref="svgRef">
+        <!-- <svg class="scaling-svg" viewBox="-35 0 800 400" ref="svgRef"> -->
             <!-- SVG content -->
             <g class="x-axis" />
             <g class="y-axis" />
@@ -73,9 +75,9 @@ export default {
 
                 var chartAreaHeight = 400;
                 var chartAreaWidth = 800;
-                var heightAboveChartArea = 0;
+                var heightAboveChartArea = 60;
                 var heightBelowChartArea = 0;
-                var widthLeftChartArea = 0;
+                var widthLeftChartArea = 50;
                 var widthRightChartArea = 0;
                 // var svg = d3.select(this.selector);
                 // svg.attr('width', chartAreaWidth + widthLeftChartArea + widthRightChartArea)
@@ -94,6 +96,7 @@ export default {
                 var smallShapeWidth = 18;
                 var g = svg.append("g")
                     .attr('class', 'chart-area')
+                    // .attr("transform", "translate(" + 50 + "," + 60 + ")")
                     .attr("transform", "translate(" + widthLeftChartArea + "," + heightAboveChartArea + ")")
                 var yAxisArray = [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800];
                 g.selectAll('text.axis-bottom')
@@ -200,10 +203,12 @@ export default {
                     console.log('scores length', scores.length)
                     console.log('scores length', index)
                     console.log('scores[index].values', scores[index].values)
+                    console.log(g.selectAll('path.p9'))
                     g.selectAll('path.p9')
                         .data(scores[index].values)
                         .join("path")
                         .attr("d", function (d, i, array) {
+                            console.log(this,"index -> " + index)
                             return ['M', xScale(bottomAxisArray[i]), yScale(d) + 2, 'L', xScale(bottomAxisArray[i]), yScale(d) - 2, 'L', xScale(bottomAxisArray[i + 1]), yScale(scores[index].values[i + 1]) - 2, 'L', xScale(bottomAxisArray[i + 1]), yScale(scores[index].values[i + 1]) + 2, 'Z'].join(' ');
                         })
                         .attr("fill", function (d, i, array) {
@@ -218,6 +223,9 @@ export default {
                         })
                         .attr('stroke-width', '1')
 
+                    }
+
+                    for (var index = 0; index < scores.length; index++) {
 
                     var m5KeyXLocation = xScale(bottomAxisArray[bottomAxisArray.length - 1]) + 50;
 
@@ -407,6 +415,7 @@ export default {
                     //     else if ($(this).hasClass('p9')) { $('svg.m5 text.score.p9').toggle(); }
                     // })
                 }
+                // wnajarian
 
                 //   remove() {
                 //     var figure = d3.select(this.selector);

@@ -1,14 +1,18 @@
 <template>
-  <div id="Chart-5">
-    <h1>Chart 5</h1>
-    <div class="chart chart-5">
+  <!-- wnajarian -> only way I could find to get rid of white space below the chart -->
+  <div id="Chart-5" style="height: 500px;">
+  <!-- <div id="Chart-5"> -->
+    
+
+    <!-- <h1>Chart 5</h1> -->
+    <!-- <div class="chart chart-5" style="height: auto;"> -->
 
       <!-- chart m5 goes here -->
 
       <responsive-horizontal-line-chart @interface="getChildInterface" :data="THEFINALFINALdata" :height="height" :width="width" :bottom="padding"
         :trendyears="trendyears" />
 
-    </div>
+    <!-- </div> -->
 
   </div>
 </template>
@@ -29,17 +33,19 @@ export default {
   data() {
     return {
       data: [],
+      // width: 920,
       width: 800,
+      // height: 520,
       height: 400,
       padding: 100,/* this is a percentage*/
-      trendyears: '2003,2006,2009, 2012, 2015, 2018, 2022',
+      trendyears: '2003,2006,2009,2012,2015,2018,2022',
       string: 'this is the string',
       THEFINALFINALdata: [],
     };
   },
   created() {
 
-    let trendYears = '2003,2006,2009, 2012, 2015, 2018, 2022';
+    let trendYears = '2003,2006,2009,2012,2015,2018,2022';
     let numberOfDataSets = 1;
 
 
